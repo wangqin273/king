@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>价格排序</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    li{
+        list-style: none;
+    }
+
+    #products{
+        position: relative;
+        width: 800px;
+        margin:50px auto;
+        padding: 5px 20px;
+        background-color: #fff;
+        border:1px solid #ccc;
+    }
+    .tab{
+        position: relative;
+        width: 800px;
+        padding: 0 20px;
+        margin:50px auto;
+        border:1px solid #ccc;
+    }
+    .tab li{
+        float: left;
+        width: 100px;
+        padding: 10px 0;
+    }
+    #btnPrice{
+        cursor: pointer;
+        position: relative;
+    }
+    #btnPrice ul{
+        display: none;
+        position: absolute;
+        top:100%;
+        border:1px solid #3d92e3;
+        font-size: 14px;
+        background-color: #fff;
+        z-index: 999;
+    }
+    #btnPrice ul li{
+        padding: 5px;;
+    }
+    #btnPrice ul li:hover{
+        background-color: #3d92e3;
+        color: #fff;
+    }
+
+    .clearfix:after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    .price{
+        color: #f34d49;
+    }
+    .price span{
+        font-size: 20px;
+    }
+
+    #products li{
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        float: left;
+        width: 200px;
+        margin-bottom: 20px;
+        padding: 5px;
+        border:3px solid transparent;
+    }
+    #products li:hover{
+        border:3px solid #f34d49;
+    }
+    #products li img{
+        width: 100%;
+    }
+    #products li p{
+        padding: 5px 0;
+        font-size: 14px;
+    }
+
+</style>
+<body>
+
+
+    <ul class="tab clearfix">
+        <li>流行</li>
+        <li>热销</li>
+        <li>上新</li>
+        <li>
+            <div id="btnPrice">
+                <p>价格排序</p>
+                <ul>
+                    <li>价格由低到高</li>
+                    <li>价格由高到低</li>
+                </ul>
+            </div>
+
+        </li>
+    </ul>
+    <ul id="products" class="clearfix">
+
+    </ul>
+ <!--获取json数据-->
+<script src="data.js"></script>
+<script>
+//封装函数 添加数据
+    var pro = document.getElementById("products"),
+     length = flower.length;
+    function changePro() {
+        var str = "";
+        for(var i=0;i<length;i++){
+            flower[i].index = i;
+            str += "<li>";
+            str += "<img src="+flower[i].imgUrl+" alt=''>";
+            str += " <p class='price'>￥<span>"+flower[i].price+"</span></p>";
+            str += " <p>"+flower[i].name+"</p>";
+            str += "</li>";
+        }
+        pro.innerHTML = str;
+    }
+//调用函数 把数据导入页面
+    changePro()
+    //   排序操作开始
+    var btnPrice = document.getElementById("btnPrice"),
+         priceUl = btnPrice.getElementsByTagName("ul")[0],
+        priceTxt = btnPrice.getElementsByTagName("p")[0],
+        priceBtn = btnPrice.getElementsByTagName("li"),
+            lens = priceBtn.length;
+    var priceNum = pro.querySelectorAll(".price span"),
+             len = priceNum.length;
+
+    //显示隐藏价格排序按钮
+    btnPrice.onmouseenter = function () {
+        priceUl.style.display = "block"
+    }
+    btnPrice.onmouseleave = function () {
+        priceUl.style.display = "none"
+    }
+
+    for(var k=0;k<lens;k++){
+        priceBtn[k].index = k;
+        //点击按钮 商品排序
+        priceBtn[k].onclick= function () {
+            // 调用函数 改变价格排序文字 显示隐藏价格排序按钮
+            changeTxt.call(this);
+            switch (this.index){
+                case 0:
+                    flower.sort(function(x,y){
+                        // 关键点 找到排序依据
+                        return x.price-y.price;
+                    });
+                    break;
+                case 1:
+                    flower.sort(function(x,y){
+                        return y.price-x.price;
+                    });
+                    break;
+            }
+            //调用函数把改变排序后的数据导入页面
+            changePro()
+        }
+    }
+//改变价格排序文字 显示隐藏价格排序按钮 函数
+    function changeTxt() {
+        priceTxt.innerHTML = this.innerHTML;
+        priceUl.style.display = "none"
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/* CSS Document */
+
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;}
+
+#wrapper{position:absolute;top:50px;bottom:50px;width:100%;}
+#wrapper .scrollper{position:relative;width:100%;background: #fff}
+#wrapper ul{position:relative;width:100%;background: #fff}
+#wrapper ul li{border-bottom:1px solid #dfdfdf;text-align:center;padding:10px;}
+#wrapper img{width: 100%;}
+/* scrollbars */
+.iScrollHorizontalScrollbar{left:1px;height:8px}
+.iScrollHorizontalScrollbar,.iScrollVerticalScrollbar{position:absolute;right:1px;bottom:1px;z-index:9999;overflow:hidden}
+.iScrollVerticalScrollbar{top:1px;width:8px}
+.iScrollIndicator{border-radius:8px}
+.iScrollHorizontalScrollbar .iScrollIndicator{width:75pt;height:100%;background:linear-gradient(to right,#39cfd5 0,#057175 100%)}
+.iScrollVerticalScrollbar .iScrollIndicator{width:100%;height:75pt;background:linear-gradient(to bottom,#39cfd5 0,#057175 100%)}
+ 

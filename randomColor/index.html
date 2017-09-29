@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机生成颜色</title>
+    <style>
+        #btn{
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 20px auto;
+            cursor: pointer;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+        }
+        #btn span{
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 0 5px;
+        }
+        #box{
+            display: flex;
+            flex-flow: row wrap;
+        }
+        ul li{
+            list-style: none;
+            width: 100px;
+            height: 40px;
+            margin: 5px;
+            color: #fff;
+            line-height: 40px;
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="btn">
+        点我生成<span>随机</span>颜色
+    </div>
+    <ul id="box">
+    </ul>
+
+    <script>
+        var oBtn = document.getElementById("btn");
+        var oBox = document.getElementById("box");
+
+         // 封装在一个函数中以便于事件控制
+        function addColor() {
+            //    设置 定时器 生成li标签 添加到 oBox中
+            oBox.numColor = setInterval(function () {
+                //  设置一个变量保存随机生成的一次颜色值
+                randomColor  = randomNum();
+                //  console.log(randomColor);
+                oBox.innerHTML += "<li style='background-color: "+randomColor+";'>"+randomColor+"</li>";
+                // 无聊 顺便改一下按钮的字体颜色
+                oBtn.style.color = randomColor
+                // 设置 生成60组后停止 如果不停止可以无限生成下去
+
+            },50)
+
+        }
+        // 设置随机数函数 返回十六进制颜色值
+        function randomNum() {
+            // 随机生成6个 0到15 之间的随机数转换为十六进制 和 # 号拼接成十六进制颜色值
+            var strColor = "#"
+            for(var i=0;i<6;i++){
+                 strColor += Math.floor(Math.random()*16).toString(16)
+            }
+            return strColor;
+        }
+        // 按钮添加点击事件
+        oBtn.onclick = function () {
+            if(this.stop){
+                this.innerHTML="点我<span>继续</span>生成"
+                this.stop = false;
+                clearInterval(oBox.numColor)
+            }else{
+                this.innerHTML="点我<span>停止</span>生成"
+                this.stop = true;
+                addColor();
+            }
+        }
+
+    </script>
+</body>
+</html>

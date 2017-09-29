@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义滚动条</title>
+    <style>
+        *{margin: 0;padding: 0;}
+       #box{
+            position: relative;
+            margin: 50px auto;
+            width: 400px;
+            height: 400px;
+           border-right: none;
+           background-color: #99fdff;
+           overflow: hidden;
+           line-height: 1.5em;
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+        }
+       #content{
+           position: absolute;
+           background-color: #d9b7ff;
+           width: 100%;
+           top:0;
+           left:0;
+           padding: 10px;
+       }
+       /*自定义滚动条*/
+        .bar_bg {
+            display: none;
+            width: 10px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0.9;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        .bar_btn{
+            width: 10px;
+            height: 100px;
+            border-radius: 5px;
+            position: absolute;
+            top:0;
+            right:0;
+            background:#ff0000;
+            background: linear-gradient(to bottom, #ff0000 0%, #0085ff 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0000', endColorstr='#0085ff', GradientType='0'); /* IE*/
+        }
+       #box:hover .bar_bg{
+            display: block;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="box">
+    <div id="content">
+     <!--p{第$行}*30-->
+        <p>第 1 行</p>
+        <p>第 2 行</p>
+        <p>第 3 行</p>
+        <p>第 4 行</p>
+        <p>第 5 行</p>
+        <p>第 6 行</p>
+        <p>第 7 行</p>
+        <p>第 8 行</p>
+        <p>第 9 行</p>
+        <p>第 10 行</p>
+        <p>第 11 行</p>
+        <p>第 12 行</p>
+        <p>第 13 行</p>
+        <p>第 14 行</p>
+        <p>第 15 行</p>
+        <p>第 16 行</p>
+        <p>第 17 行</p>
+        <p>第 18 行</p>
+        <p>第 19 行</p>
+        <p>第 20 行</p>
+        <p>第 21 行</p>
+        <p>第 22 行</p>
+        <p>第 23 行</p>
+        <p>第 24 行</p>
+        <p>第 25 行</p>
+        <p>第 26 行</p>
+        <p>第 27 行</p>
+        <p>第 28 行</p>
+        <p>第 29 行</p>
+        <p>第 30 行</p>
+    </div>
+</div>
+    <script>
+        var oBox= document.getElementById("box"),
+            oContent= document.getElementById("content");
+
+        // 添加自定义滚动条
+        var oBar = document.createElement("div");
+            oBar.className="bar_bg";
+        var oBtn = document.createElement("div");
+            oBtn.className="bar_btn";
+        oBox.appendChild(oBar);
+        oBar.appendChild(oBtn);
+
+        //  自定义滚动条移动函数
+        oBtn.onmousedown = function (e) {
+            e=e||window.event;
+            var sT = this.offsetTop;        // 滚动按钮 初始位置
+            var sY = e.clientY;             // 获取鼠标 初始y位置
+            var sTop = oContent.offsetTop;  // 内容区块 初始位置
+
+            document.onmousemove = function (e) {
+                e = e||window.event;
+
+                var nY = e.clientY;  // 鼠标 当前位置
+                var cY = nY-sY;      // 鼠标位置的变化量
+                var top =sT+cY;      // 滚动按钮 当前位置 = 滚动按钮初始位置 + 鼠标变化量
+
+                // var oBtnH = oBar.clientHeight - oBtn.clientHeight;  //滚动按钮  可滚动高度
+                // var oConH = oContent.clientHeight - oBox.clientHeight; // 内容区块 可滚动高度
+                // 分析：（关键换算点）
+                // 滚动条可滚动高度/滚动条鼠标变化量 = 内容区块可滚动高度/ 内容区块变化量
+                //  oBtnH       /    cY          =         oConH   /    x
+                //   x = cY * oConH/oBtnH
+
+                var Top = sTop - cY*(oContent.clientHeight-oBox.clientHeight)/(oBar.clientHeight-oBtn.clientHeight);
+
+                // 滚动按钮移动到顶部和底部状态
+                if(top<=0){
+                    top=0;
+                    Top=0;
+                }
+                if(top>=oBar.clientHeight-oBtn.clientHeight){
+                    top=oBar.clientHeight-oBtn.clientHeight;
+                    Top= oBox.clientHeight - oContent.clientHeight;
+                }
+
+                // 设置滚动按钮位置
+                oBtn.style.top = top+'px';
+                // 设置内容区块位置
+                oContent.style.top = Top+'px';
+            };
+            // 鼠标抬起清除移动函数
+           document.onmouseup = function () {
+                this.onmousemove = null;
+            }
+        };
+
+        /*注册滚轮事件*/
+
+        var oBtnTop = 0;
+        var conTop = 0;
+        var speed = 10;
+        mousewheel( document , function (e,d) {
+            if ( d < 0 ){
+                oBtnTop += speed;
+                conTop += -speed;
+                if(oBtnTop>=oBar.clientHeight-oBtn.clientHeight){
+                    oBtnTop=oBar.clientHeight-oBtn.clientHeight;
+                    conTop= oBox.clientHeight - oContent.clientHeight;
+                }
+            }else{
+                oBtnTop+= -speed;
+                conTop += speed;
+                if(oBtnTop<=0){
+                    oBtnTop=0;
+                    conTop=0;
+                }
+            }
+            oBtn.style.top = oBtnTop+'px';
+            oContent.style.top = conTop+'px';
+            return false;
+        } );
+        /*滚轮事件兼容性*/
+        function mousewheel(obj , Fn) {
+            function eFn(e) {
+                e = e||window.event;
+                if ( Fn.call(this,e,e.wheelDelta/120||-e.detail/3) === false ){
+                    e.preventDefault();
+                }
+            }
+            var eName = document.onmousewheel===null?"mousewheel":"DOMMouseScroll";
+            document.addEventListener?obj.addEventListener(eName,eFn,false):obj.attachEvent("onmousewheel",eFn);
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="Anthor" content="阿飞老师" />
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            body{
+            }
+            #box{
+                overflow: hidden;
+                width: 1090px;
+                height: 429px;
+                margin: 200px auto 0;
+            }
+            #box ul{
+                width: 1000%;
+                height: 100%;
+            }
+            #box ul li{
+                overflow: hidden;
+                float: left;
+                width: 100px;
+                height: 429px;
+            }
+            #box ul li p{
+                width: 14px;
+                height: 400px;
+                padding: 29px 43px 0;
+                background: rgb(0,0,0);
+                background: rgba(0,0,0,.5);
+                color: #fff;
+                font-size: 14px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            <ul>
+                <li style="background: url('../img/1.jpg')">
+                    <p>我的个人拉萨之旅丨丨故事之城</p>
+                </li>
+                <li style="background: url('../img/2.jpg')">
+                    <p>我的个人拉萨之旅丨丨故事之城</p>
+                </li>
+                <li style="background: url('../img/3.jpg')">
+                    <p>我的个人拉萨之旅丨丨故事之城</p>
+                </li>
+                <li style="background: url('../img/4.jpg')">
+                    <p>我的个人拉萨之旅丨丨故事之城</p>
+                </li>
+            </ul>
+        </div>
+
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+
+            (function(){
+
+                var $li = $("#box").find("ul li");
+                $li.last().width(789);
+                $li.mouseenter(function () {
+                    $(this).stop().animate({
+                        width : 789
+                    },500).siblings().stop().animate({
+                        width : 100
+                    },500);
+                });
+
+            })();
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全选反选</title>
+    <style type="text/css">
+        li {
+            list-style: none
+        }
+        input {
+            display: none
+        }
+        ul li input+label {
+            display: inline-block;
+            background: url("uncheck.jpg") no-repeat left center;
+            background-size: 18px;
+            padding:5px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: rgb(110, 110, 110);
+        }
+        ul li input:checked+label{
+            background: url("checked.jpg") no-repeat left center;
+            background-size: 18px;
+            color: rgb(2,150,140);
+        }
+    </style>
+</head>
+<body>
+<ul id="fruits">
+    <li>
+        <input type="checkbox" id="apple"><label for="apple">苹果</label>
+    </li>
+    <li>
+        <input type="checkbox" id="banana"><label for="banana">香蕉</label>
+    </li>
+
+    <li>
+        <input type="checkbox" id="orange"><label for="orange">橙子</label>
+    </li>
+    <li>
+        <input type="checkbox" id="mango"><label for="mango">芒果</label>
+    </li>
+    <li>
+        <input type="checkbox" id="peach"><label for="peach">桃子</label>
+    </li>
+    <li>
+        <input type="checkbox" id="litchi"><label for="litchi">荔枝</label>
+    </li>
+
+    <li>
+        <input type="checkbox" id="grape"><label for="grape">葡萄</label>
+    </li>
+    <li>
+        <input type="checkbox" id="watermelon "><label for="watermelon ">西瓜</label>
+    </li>
+</ul>
+
+<ul>
+    <li>
+        <input type="checkbox" id="allCheck"><label for="allCheck">全选/全不选</label>
+    </li>
+    <li>
+        <input type="checkbox" id="uncheck"><label for="uncheck">反选</label>
+    </li>
+</ul>
+<script>
+    var allCheck = document.getElementById("allCheck"),
+        uncheck = document.getElementById("uncheck"),
+        boxCheck = document.querySelectorAll("#fruits input"),
+        lens = boxCheck.length;
+    for (var i = 0; i < lens; i++) {
+        boxCheck[i].onclick=function () {
+            //获取所有选中状态的checkbox长度，每点击一次获取一次
+            length = document.querySelectorAll("#fruits input:checked").length;
+            //如果所有选中状态的checkbox长度小于checkbox总长度全选按钮不亮
+            if( length<lens ){
+                allCheck.checked = false;
+            }else {
+                allCheck.checked = true;
+            }
+            //取消反选按钮选中状态
+            uncheck.checked = false;
+        }
+    };
+    //全选按钮
+    allCheck.onclick = function () {
+        for (var i = 0; i < lens; i++) {
+            if (this.checked) {
+                boxCheck[i].checked = true;
+            } else {
+                boxCheck[i].checked = false;
+            }
+        }
+        //取消反选按钮选中状态
+        uncheck.checked = false;
+    };
+    //反选按钮
+    uncheck.onclick = function () {
+        for (var i = 0; i < lens; i++) {
+        	  boxCheck[i].checked =  !boxCheck[i].checked ;
+        	  /*
+            if (boxCheck[i].checked) {
+                boxCheck[i].checked = false;
+            } else {
+                boxCheck[i].checked = true;
+            }
+            */
+            //必须在反选按钮改变复选框状态之后判断是否全部选中
+            length = document.querySelectorAll("#fruits input:checked").length;
+            if( length<lens ){
+                allCheck.checked = false;
+            }else {
+                allCheck.checked = true;
+            }
+
+        }
+    }
+
+</script>
+</body>
+</html>
+
