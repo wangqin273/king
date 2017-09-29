@@ -1,0 +1,187 @@
+/*一些动画，可以根据情况重新设定*/
+@-webkit-keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0,-100%,0);
+                transform: translate3d(0,-100%,0)
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none
+            }
+        }
+
+@keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0,-100%,0);
+                -ms-transform: translate3d(0,-100%,0);
+                transform: translate3d(0,-100%,0)
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: none;
+                -ms-transform: none;
+                transform: none
+            }
+        }
+@-webkit-keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0)
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none
+            }
+        }
+@keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 100%, 0);
+                -ms-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0)
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: none;
+                -ms-transform: none;
+                transform: none
+            }
+        }
+
+*{
+	padding:0;
+	margin:0;
+}
+html,body,.swiper-container,.swiper-wrapper,.swiper-slide{
+	width:100%;
+	height:100%;/*全屏滚动必须设置，这个很重要*/
+}
+html{
+	font: 12px/1.5 "Microsoft YaHei","PingFang SC","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+img{
+	vertical-align: middle; 
+}
+a{
+	text-decoration:none;
+}
+.swiper-slide{background-position:50% 50%; position:relative;}
+.slide1{background-image:url(../img/1.jpg);}
+.slide2{background-image:url(../img/2.jpg);}
+.slide3{background-image:url(../img/3.jpg);}
+.slide4{background-image:url(../img/4.jpg);}
+.slide5{background-image:url(../img/5.jpg);}
+.slide6{background-image:url(../img/6.jpg);}
+.pagination{
+	position: fixed;
+    z-index: 100;
+    margin-top: -81.5px;
+    top: 50%;
+	right:17px;
+}
+.swiper-pagination-switch{
+	width:11px;
+	height:11px;
+	border:1px solid #ddd;
+	border-radius:50%;
+	display:block;
+	margin:7px 7px 13px;
+	cursor:pointer;
+}
+.swiper-active-switch{
+	background: #fc4a20;
+}
+.logo{
+	position: absolute;
+    left: 60px;
+    top: 60px;
+}
+.fs16{font-size:16px;}
+.fs24{font-size:24px;}
+.pt5{padding-top:5px;}
+.pt10{padding-top:10px;}
+.mt30{margin-top:30px;}
+.mb20 {margin-bottom: 20px;}
+.mt20 {margin-top: 20px;}
+.mt15{margin-top:15px;}
+.mt40{margin-top:40px;}
+.mr35{margin-right:35px;}
+.ml10 {margin-left: 10px;}
+.line {width: 40px;height: 1px;background: #fff;}
+.dividing-line {display: inline-block;vertical-align: middle;border-left: 1px solid #fff;height: 15px;margin: 0 8px;}
+.white{color:#fff;}
+.btn{
+	display: inline-block;
+    vertical-align: middle;
+    width: 240px;
+    height: 60px;
+    line-height: 60px;
+    background: #f8ac00;
+    border-radius: 2px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+	transition: all 1s;   
+    -webkit-transition: all 1s;  
+}
+.btn:hover{
+	 background: #ffc555;
+}
+.slide1 p{
+	color: #666;
+}
+.ani{
+	opacity:0;
+}
+.ani-slide .ani1-1{
+	opacity:1;
+	-webkit-animation: fadeInDown 0.5s both;
+    animation: fadeInDown 0.5s both;
+}
+.ani-slide .ani1-2{
+	opacity:1;
+    -webkit-animation: fadeInDown 1s 0.5s both;
+    animation: fadeInDown 1s 0.5s both;
+}
+.ani-slide .ani1-3{
+	opacity:1;
+    -webkit-animation: fadeInDown 1s 1s both;
+    animation: fadeInDown 1s 1s both;
+}
+.ani-slide .ani2-1,.ani-slide .ani3-1,.ani-slide .ani4-1,.ani-slide .ani5-1{
+    opacity: 1;
+    -webkit-animation: fadeInUp 1s both;
+    animation: fadeInUp 1s both;
+}
+.ani-slide .ani2-2,.ani-slide .ani3-2,.ani-slide .ani4-2,.ani-slide .ani5-2{
+    opacity: 1;
+    -webkit-animation: fadeInUp 1s 0.5s both;
+    animation: fadeInUp 1s 0.5s both;
+}
+.ani-slide .ani5-1-2{
+	opacity: 1;
+	-webkit-animation: fadeInUp 1s 0.3s both;
+    animation: fadeInUp 1s 0.3s both;
+}
+.ani-slide .ani6-1 {
+    opacity: 1;
+    -webkit-animation: fadeInDown 0.5s both;
+    animation: fadeInDown 0.5s both;
+}
+.ani-slide .ani6-2 {
+    opacity: 1;
+    -webkit-animation: fadeInDown 1s 0.5s both;
+    animation: fadeInDown 1s 0.5s both;
+}
+.ani-slide .ani6-3 {
+    opacity: 1;
+    -webkit-animation: fadeInDown 1s 1s both;
+    animation: fadeInDown 1s 1s both;
+}

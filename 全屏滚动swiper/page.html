@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        *{margin: 0;padding: 0}
+        a{
+            color: #333;
+            display: inline-block;
+            text-decoration: none;
+            padding: 20px;
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            border:1px solid #23caff;
+            cursor: pointer;
+        }
+        a:hover{
+            background-color:#23caff ;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<a class="btn" href="SwiperPC.html" target="_blank">点击我进入全屏页面效果展示</a>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('.btn').click(function () {
+            /* 存储名字为 index , 值为 1 的变量 如下两种方法 */
+            localStorage.localIndex = 2;
+           // localStorage.setItem("localIndex","1"); // 注意这里的index类型是string 所以不能直接加法运算,稍后处理时候要转为number类型
+        });
+    })
+</script>
+</body>
+</html>
