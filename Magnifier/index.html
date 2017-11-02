@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="Anthor" content="wangqin273" />
         <title>Title</title>
         <style>
             *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
@@ -101,13 +102,13 @@
             <div id="tab">
                 <ul>
                     <li class="on">
-                        <img src="https://i.loli.net/2017/09/20/59c200346f1d6.jpg" alt="">
+                        <img src="img/1.jpg" alt="">
                     </li>
                     <li>
-                        <img src="https://i.loli.net/2017/09/20/59c200347dfa4.jpg" alt="">
+                        <img src="img/2.jpg" alt="">
                     </li>
                     <li>
-                        <img src="https://i.loli.net/2017/09/20/59c20034abd8c.jpg" alt="">
+                        <img src="img/3.jpg" alt="">
                     </li>
                     
 
@@ -155,6 +156,7 @@
                     //移入事件
                     $tabLi.mouseenter(enter.call($tabLi[0]));
                     function enter() {
+                        $(this).addClass("on").siblings().removeClass("on")
                         var prop = propArr[$(this).index()];
                         $showPic.width(prop<1?sW*prop:sW);
                         $showPic.height(prop>1?sH/prop:sH);
@@ -208,23 +210,6 @@
             })();
 
 
-
-            /*if ( width > height ){
-                this.width = liWidth;
-            }else if ( width <= height ){
-                this.height = liWidth;
-            }*/
-
-            /*if ( prop === 1 ){
-                $showPic.width(400);
-                $showPic.height(400);
-            }else if ( prop > 1 ){
-                $showPic.width(400);
-                $showPic.height(400/prop);
-            }else{
-                $showPic.height(400);
-                $showPic.width(400*prop);
-            }*/
 
 
 

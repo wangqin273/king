@@ -1,4 +1,4 @@
-
+/*by wangqin273*/
 //  自定义函数getClass获取类名
     function getClass(hasclass) {
         // 获取所有标签

@@ -1,4 +1,4 @@
-
+/*by wangqin273*/
 //addclass函数封装
 function addClass(el,newClass,length) {
     //判断要添加类名的元素是一个还是多个
