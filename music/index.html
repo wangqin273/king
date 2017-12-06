@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>音频播放器</title>
+    <meta name="author" content="wangqin273" />
+    <meta name="generator" content="WebStorm 2017" />
+    <meta name="keywords" content="播放器,音乐播放器,音频播放器,网页播放器,H5播放器">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" href="css/mobile.css">
+    <!--音频播放器-->
+    <link rel="stylesheet" href="audio/css/audio_player.css">
+</head>
+<body>
+    <div class="header bg_white mb_20  pad30">
+        <div class="meun_btn">歌单</div>
+        <div class="search_box">
+            <input type="text" class="search_input" id="searchTxt" placeholder="请输入歌曲名或者歌手名"/>
+            <label for="searchTxt" class="search_label">搜索</label>
+        </div>
+        <!--歌曲列表-->
+        <ul class="song_list">
+        </ul>
+    </div>
+    <div class="height100"></div>
+    <div class="bg_white mb_20 pb_20 pad30">
+        <div class="box_radio">
+            <div class="book_title">
+                <div class="audio_title"> </div>
+            </div>
+            <div class="audio_box">
+                <!--音乐控制面板-->
+                <div class="audio_btn">
+                    <!--快退-->
+                    <img class="btn_fr" src="audio/img/btn_fr.png" alt="">
+                    <!--旋转碟片-->
+                    <div class="cover" id="play"></div>
+                    <!--暂停/播放按钮-->
+                    <div class="btn_play btn_pause"></div>
+                    <!--快进-->
+                    <img class="btn_ff" src="audio/img/btn_ff.png" alt="">
+                </div>
+                <div class="music-nav">
+                    <!--当前时间-->
+                    <div class="time" id="time_cur"> </div>
+                    <!--进度条-->
+                    <div class="audio_progress">
+                        <span class="audio_line"></span>
+                        <span class="audio_blue"></span>
+                        <span class="audio_dot"></span>
+                        <input type="range" min="0" max="0" step="0.4" value="0" id="scale" >
+                    </div>
+                    <!--歌曲时长-->
+                    <div class="time" id="time_long"></div>
+                </div>
+                <audio id="music" src="" >
+                    Your browser does not support HTML5 audio.
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg_white mb_20 pb_20 pad30">
+        <div class="des_title">
+        </div>
+        <div class="des_sub_title">
+            <span class="green_line"></span>
+            歌词
+        </div>
+
+        <div class="des_info lyric_wrap" >
+            <ul id="lyric_list">
+
+            </ul>
+        </div>
+
+        <div class="des_sub_title">
+            <span class="green_line"></span>
+            简介
+        </div>
+        <div class="des_info" id="singer"></div>
+    </div>
+	<!--底部导航-->
+    <div class="height100"></div>
+    <ul class="tabbar">
+
+        <li>
+            <div class="btn_prev">
+                <span>上一曲</span>
+            </div>
+        </li>
+        <li>
+            <div class="btn_next">
+                <span>下一曲</span>
+            </div>
+        </li>
+    </ul>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!--旋转动画插件-->
+    <script src="audio/js/jquery.rotate.min.js"></script>
+   <!--音频播放器-->
+    <script src="audio/js/audio_player.js"></script>
+
+</body>
+</html>

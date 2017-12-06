@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery animate 滚动公告</title>
+    <style>
+        div,ul,li{margin: 0;padding: 0}
+        .notice {
+            margin-top: 200px;
+            /*width: 300px;*/
+            height: 35px;
+            padding: 0 30px;
+            overflow: hidden;
+            background-color: #b3effe;
+        }
+        .notice ul li {
+            list-style: none;
+            line-height: 35px;
+          /*  display: block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;*/
+        }
+
+    </style>
+</head>
+<body>
+<!--滚动公告-->
+<div class="notice">
+    <ul>
+        <li>第1条公告第1条公告第1条公告第1条公告第1条公告第1条公告</li>
+        <li>第2条公告第2条公告第2条公告第2条公告第2条公告第2条公告</li>
+        <li>第3条公告第3条公告第3条公告第3条公告第3条公告第3条公告</li>
+        <li>第4条公告第4条公告第4条公告第4条公告第4条公告第4条公告</li>
+    </ul>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    // 公告滚动 封装函数
+    function noticeUp(obj,top,time) {
+        $(obj).animate({
+            marginTop: top
+        }, time, function () {
+
+            $(this).css({marginTop: "0"}).find(":first").appendTo(this);
+//            $(this).css({marginTop: "0"}).find(":first").appendTo(this);
+        })
+    }
+    $(function () {
+        // 调用 公告滚动函数
+        setInterval("noticeUp('.notice ul','-35px',500)", 2000);
+
+    });
+</script>
+</body>
+</html>
