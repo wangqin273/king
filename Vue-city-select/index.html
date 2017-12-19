@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue城市选择器</title>
+	 <meta name="Anthor" content="wangqin273" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<!--<link rel="stylesheet" href="css/apple.css">-->
+	<link rel="stylesheet" href="css/city_select.css">
+	<link rel="stylesheet" href="css/area.css">
+
+</head>
+<body>
+<div class="vueBox">
+
+    <div class="select_list">
+        <span class="select_title">所在地</span>
+        <div class="select_area" @click="getArea">
+            <span class="select_value" >{{prov_text}} {{city_text}} {{dist_text}}</span>
+        </div>
+    </div>
+
+    <transition name="fade" >
+        <div class="area_cover" v-show="areaShow">
+            <transition name="slide-fade">
+                <div class="area_box" v-show="areaShow">
+                    <!--按钮-->
+                    <div class="area_btn">
+                        <span v-for="(item,index) in area_btn"  :class="[index?'btn_sure':'btn_cancel']" @click="sureSelect(index)">{{item}}</span>
+                    </div>
+                    <div class="area_main">
+                        <div class="area_list" >
+                            <!--省份-->
+                            <ul class="area_prov" :style="{top: prov_top+'rem'}"  v-drag>
+                                <li class="city_list"   v-for="(prov,index) in prov_name" :style="{top:0.6*index+'rem'}">
+                                    {{prov.name}}
+                                </li>
+                            </ul>
+                            <!--城市-->
+                            <ul class="area_city" :style="{top: city_top+'rem'}"  v-drag>
+                                <li class="city_list"   v-for="city in city_name[num]">
+                                    {{city.name}}
+                                </li>
+                            </ul>
+                            <!--区县-->
+                            <ul  class="area_dist" :style="{top: dist_top+'rem'}"  v-drag v-for="(item,index) in city_name[num]" v-show="index===city_num">
+                                <li  class="city_list"  v-for="dist in item.sub">
+                                    {{ dist.name}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </transition>
+        </div>
+    </transition>
+</div>
+    <script src="js/vue.min.js"></script>
+    <script src="js/vue-resource.min.js"></script>
+	<script src="js/city_select.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>

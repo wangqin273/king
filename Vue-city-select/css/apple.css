@@ -1,0 +1,117 @@
+@media only screen and (max-width: 1920px), only screen and (max-device-width:1920px) {
+    html,body {
+        font-size:256px;
+    }
+}
+@media only screen and (max-width: 1440px), only screen and (max-device-width:1440px) {
+    html,body {
+        font-size:192px;
+    }
+}
+@media only screen and (max-width: 1360px), only screen and (max-device-width:1360px) {
+    html,body {
+        font-size:182.133333px;
+    }
+}
+@media only screen and (max-width: 1200px), only screen and (max-device-width:1200px) {
+    html,body {
+        font-size:160px;
+    }
+}
+@media only screen and (max-width: 1080px), only screen and (max-device-width:1080px) {
+    html,body {
+        font-size:144px;
+    }
+}
+@media only screen and (max-width: 1024px), only screen and (max-device-width:1024px) {
+    html, body {
+        font-size: 136.533333px;
+    }
+}
+@media only screen and (max-width: 960px), only screen and (max-device-width:960px) {
+    html,body {
+        font-size:128px;
+    }
+}
+@media only screen and (max-width: 800px), only screen and (max-device-width:800px) {
+    html,body {
+        font-size:106.666667px;
+    }
+}
+@media only screen and (max-width: 768px), only screen and (max-device-width:800px) {
+    html,body {
+        font-size:102px;
+    }
+}
+@media only screen and (max-width: 750px), only screen and (max-device-width:750px) {
+    html,body {
+        font-size:100px;
+    }
+}
+@media only screen and (max-width: 640px), only screen and (max-device-width:640px) {
+    html,body {
+        font-size:85.333333px;
+    }
+}
+@media only screen and (max-width: 600px), only screen and (max-device-width:600px) {
+    html,body {
+        font-size:80px;
+    }
+}
+@media only screen and (max-width: 540px), only screen and (max-device-width:540px) {
+    html,body {
+        font-size:72px;
+    }
+}
+@media only screen and (max-width: 480px), only screen and (max-device-width:480px) {
+    html,body {
+        font-size:64px;
+    }
+}
+@media only screen and (max-width: 414px), only screen and (max-device-width:414px) {
+    html,body {
+        font-size:55.2px;
+    }
+}
+@media only screen and (max-width: 412px), only screen and (max-device-width:412px) {
+    html,body {
+        font-size:54.8px;
+    }
+}
+@media only screen and (max-width: 400px), only screen and (max-device-width:400px) {
+    html,body {
+        font-size:53.33333333px;
+    }
+}
+@media only screen and (max-width: 375px), only screen and (max-device-width:375px) {
+    html,body {
+        font-size:50px;
+    }
+}
+@media only screen and (max-width: 360px), only screen and (max-device-width:360px) {
+    html,body {
+        font-size:47.8px;
+    }
+}
+@media only screen and (max-width: 320px), only screen and (max-device-width:320px) {
+    html,body {
+        font-size:42.4px;
+    }
+}
+@media only screen and (max-width: 240px), only screen and (max-device-width:240px) {
+    html,body {
+        font-size:32px;
+    }
+}
+/* css reset */
+blockquote,body,button,code,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}
+h1,h2,h3,h4,h5,h6{font-weight:400;font-size:100%}
+address,caption,cite,code,dfn,em,strong,th,var{font-weight:400;font-style:normal}
+a{color:#333;text-decoration:none}
+a:hover{color:#00A6FF;text-decoration:none}
+img{border:none}
+li,ol,ul{list-style:none}
+button,input,select,textarea{border:none;font:14px Verdana,Helvetica,Arial,sans-serif}
+table{border-collapse:collapse}
+html{overflow-y:scroll}
+body,html{height:100%;background:#f2f3f7}

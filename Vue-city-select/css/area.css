@@ -1,0 +1,115 @@
+.area_cover{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+}
+.area_box{
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f2f3f7;
+    transition: all 1s;
+}
+.area_btn{
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.area_btn span{
+    font-size: 0.3rem;
+    padding: 0.2rem 0.5rem;
+}
+.btn_cancel{
+    color: #999;
+}
+.btn_sure{
+    color: #00A6FF;
+}
+.area_main{
+    width: 100%;
+    height: 3rem;
+    overflow: hidden;
+    font-size: 0.24rem;
+}
+.area_list{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 1.2rem;
+    width: 100%;
+    height: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #00A6FF;
+    border-bottom: 1px solid #00A6FF;
+    background-color: #fff;
+    user-select: none;
+}
+
+.area_prov,.area_city,.area_dist{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    text-align: center;
+    user-select: none;
+}
+.area_prov{
+    width: 2rem;
+    transition: top 1s;
+}
+.area_city{
+    width: 3rem;
+    left: 2rem;
+    transition: top 1s;
+}
+.area_dist{
+    width: 2.5rem;
+    left: 5rem;
+    transition: top 1s;
+}
+.city_list{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    user-select: none;
+    white-space: nowrap;
+     text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+/*过渡效果*/
+.slide-fade-enter-active {
+    transition: all .5s ease;
+}
+.slide-fade-leave-active {
+    transition: all 1s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to{
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.fade-enter-active{
+    transition: opacity .3s ease
+}
+.fade-leave-active {
+    transition: opacity .3s ease
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0
+}
+
