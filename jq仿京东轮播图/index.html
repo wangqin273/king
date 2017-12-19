@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+           <meta name="Anthor" content="QQ253737688" />
+        <title>轮播图</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            a img{ display: block;}
+
+            #banner{
+                position: relative;
+                width: 790px;
+                height: 340px;
+                margin: 50px auto;
+                /*user-select: none;*/
+            }
+            #banner .pic{
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            #banner .pic ul{
+                width: 100%;
+                height: 100%;
+            }
+            #banner .pic ul li{
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #banner .pic ul li a{
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+            #banner .tab{
+                overflow: hidden;
+                position: absolute;
+                bottom: 15px;
+                left: 50%;
+                width: 180px;
+                height: 20px;
+                margin-left: -90px;
+                background: rgba(255,255,255,.5);
+                border-radius: 10px;
+            }
+
+            #banner .tab ul{
+                position: absolute;
+                left: 10px;
+                top: 0;
+                width: 1000px;
+            }
+
+            #banner .tab li{
+                float: left;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background: #fff;
+                margin: 3px;
+            }
+            #banner .tab li.on{
+                background: #db192a;
+            }
+            #banner .btn{
+                display: none;
+            }
+            #banner:hover .btn{
+                display: block;
+            }
+            #banner .btn div{
+                position: absolute;
+                z-index: 10;
+                top: 50%;
+                width: 30px;
+                height: 60px;
+                margin-top: -30px;
+                line-height: 60px;
+                text-align: center;
+                color: #fff;
+                background: #000;
+                background: rgba(0,0,0,.2);
+                font-size: 18px;
+                cursor: pointer;
+            }
+            #banner .btn div.left{
+                left: 0;
+            }
+            #banner .btn div.right{
+                right: 0;
+            }
+            #banner .btn div:hover{
+                background: rgba(0,0,0,.7);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="banner">
+
+            <div class="pic">
+                <ul>
+                    <li><a href=""><img src="img/1.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/2.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/3.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/4.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/5.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/6.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/7.jpg" alt=""></a></li>
+                    <li><a href=""><img src="img/8.jpg" alt=""></a></li>
+                </ul>
+            </div>
+
+            <div class="tab">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+
+            <div class="btn">
+                <div class="left"></div>
+                <div class="right"></div>
+            </div>
+
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+
+            (function(){
+
+                var $banner = $("#banner"),
+                    $btn = $banner.find(".btn div"),
+                    $pic = $banner.find(".pic ul li"),
+                    $tab = $banner.find(".tab ul li"),
+                    length = $pic.length,
+                    index = 0;
+
+                $pic.eq(0).css({opacity:1});
+                $tab.eq(0).addClass("on");
+
+                $btn.click(function () {
+                    var x = index;
+                    if ( $(this).index() ){
+                        x ++;
+                        x %= length;
+                    }else{
+                        x --;
+                        if(x<0)x=length-1;
+                    }
+                    change(x);
+                });
+
+                function change(i) {
+                    $pic.eq(index).stop().animate({opacity:0});
+                    $tab.eq(index).removeClass("on");
+                    index = i;
+                    $pic.eq(index).stop().animate({opacity:1});
+                    $tab.eq(index).addClass("on");
+                }
+
+                $banner.mouseleave(function () {
+                    console.log( 1 );
+                });
+
+            })();
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
