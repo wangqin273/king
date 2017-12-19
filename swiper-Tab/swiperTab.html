@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swiper选项卡通过地址栏哈希值指定显示页</title>
+    <meta name="description" content="Swiper2+CSS3，没有使用animate.js和Animate.css，">
+    <link href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="box">
+    <ul class="swiperTab">
+        <li> <span>Div+CSS</span> </li>
+        <li> <span>JavaScript+JQuery</span> </li>
+        <li> <span>AngularJS+Vue+NodeJs</span> </li>
+    </ul>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">千寻Div+CSS</div>
+            <div class="swiper-slide">阿飞JavaScript+JQuery</div>
+            <div class="swiper-slide">无虑AngularJS+Vue+NodeJs</div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+<script src="js/swiperTab.js"></script>
+<script>
+    /*swiper选项卡切换*/
+    $(function () {
+        //swiperTab 是你导航的className,active是你当前状态的className
+        var $tabList =  $('.swiperTab > li'),
+        lens= $tabList.length; /*获取选项卡长度*/
+        var index = 0; /*设置初始索引为0  即 没有哈希值的时候显示第一个选项卡内容*/
+        var hash = window.location.hash;
+        /* *
+        * 获取哈希值（你也可以获取整个url剪切出你要的字段）。根据哈希值中设置的数字显示对应的选项卡内容；
+        * 例如：SwiperPC.html#slide1对应显示第索引值为1的选项卡内容即第二个选项卡
+        * */
+        if(hash){
+            value = hash.match(/\d/g).join('');
+            index = Number(value);/*字符串转换为数字*/
+            index = parseInt(index)%lens;
+        }
+        $tabList.eq(index).addClass('active');
+        tabs('.swiperTab > li','.swiper-container','active',index);
+    });
+</script>
+</body>
+</html>
