@@ -1,0 +1,11 @@
+<!--template swiper.wxml-->
+<template name="swiperCon">
+<swiper indicator-dots="{{swiperCon.indicatorDots}}" indicator-color="{{swiperCon.indicatorColor}}" indicator-active-color="{{swiperCon.indicatorActiveColor}}"
+        autoplay="{{swiperCon.autoplay}}" interval="{{swiperCon.interval}}" duration="{{swiperCon.duration}}" >
+    <block wx:for="{{swiperCon.imgUrls}}" wx:key="*this">
+        <swiper-item>
+            <image src="{{item}}" class="slide-image"  />
+        </swiper-item>
+    </block>
+</swiper>
+</template>

@@ -1,0 +1,7 @@
+ 
+<swiper indicator-dots="{{swiperCon.indicatorDots}}" indicator-color="{{swiperCon.indicatorColor}}" indicator-active-color="{{swiperCon.indicatorActiveColor}}"
+        autoplay="{{swiperCon.autoplay}}" interval="{{swiperCon.interval}}" duration="{{swiperCon.duration}}" >
+        <swiper-item class="swiper-slide"  wx:for="{{swiperCon.imgUrls}}">
+            <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+</swiper>
