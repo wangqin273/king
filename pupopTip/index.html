@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!--假设事件源-->
+<div class="btn">购买</div>
+<!--引入jq库-->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+ <!--引入自定义弹窗-->
+<script src="js/pupopTip.js"></script>
+
+ <!--事件源触发弹窗函数-->
+<script>
+    $(function() {
+        $('.btn').click(function () {
+            pupopTip('200px','120px','亲～你找的产品已售罄！<br>我们为您推荐其他类似产品!','img/pupClose.png','37px','去瞧瞧');
+        })
+    })
+</script>
+</body>
+</html>
