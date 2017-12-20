@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/picker1/picker1",
+    "pages/picker2/picker2",
+    "pages/picker3/picker3"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "picker组件",
+    "backgroundColor": "#eeeeee",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar": {
+    "color": "#353535",
+    "selectedColor": "green",
+    "backgroundColor": "#f2f2f2",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/picker1/picker1",
+        "text": "picker",
+        "iconPath": "images/icon-1.png",
+        "selectedIconPath": "images/icon-1-cur.png"
+      },
+      {
+        "pagePath": "pages/picker2/picker2",
+        "text": "picker",
+        "iconPath": "images/icon-1.png",
+        "selectedIconPath": "images/icon-1-cur.png"
+      },
+      {
+        "pagePath": "pages/picker3/picker3",
+        "text": "swiper",
+        "iconPath": "images/icon-2.png",
+        "selectedIconPath": "images/icon-2-cur.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false
+}

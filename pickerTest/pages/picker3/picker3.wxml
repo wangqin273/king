@@ -1,0 +1,11 @@
+<view class="bg_white mt_10  mb_10">
+    <view class="column_list mt_10" wx:for="{{objArray}}" wx:for-item="itm"  wx:for-index="idx" wx:key="id" >
+        <text class="font15">{{itm.title}} </text>
+        <picker  class="inputText"  bindchange="bindChange_select" value="{{itm.index}}" data-current="{{idx}}" range="{{itm.option}}" >
+            <view class="select_picker">
+                 {{itm.option[itm.index]}}
+                <image  mode="aspectFit"  class="arrow" src="../../images/arrow.png"></image>
+            </view>
+        </picker>
+    </view>
+</view>

@@ -1,0 +1,7 @@
+.column_list{display:flex;padding:24rpx 40rpx;border-bottom:1px solid #f2f3f7;font-size:30rpx;flex-direction:row;justify-content:space-between;align-items:center;}
+.title{width: 20%}
+.inputText,.select_picker{color:#4F4F4F;text-align:right;font-size:30rpx;flex:0 0 30%;}
+.place_holder{color:#999;}
+.select_picker{position:relative;box-sizing:border-box;padding-right:50rpx;width:100%;height:50rpx;line-height:50rpx;}
+.arrow{position:absolute;top:10rpx;right:0;width:36rpx;height:36rpx;opacity:.3;}
+ 

@@ -1,0 +1,29 @@
+ 
+ <view class="column_list" >
+        <text class="font15">选项一</text>
+        <picker class="inputText" bindchange="bindchange1" value="{{index1}}" range="{{option1}}">
+            <view class="select_picker">
+                {{option1[index1]}}
+                <image  mode="aspectFit"  class="arrow" src="../../images/arrow.png"></image>
+            </view>
+        </picker>
+    </view>
+    <view class="column_list" >
+        <text class="font15">选项二</text>
+        <picker class="inputText" bindchange="bindchange2" value="{{index2}}" range="{{option2}}">
+            <view class="select_picker">
+                {{option2[index2]}}
+                <image  mode="aspectFit"  class="arrow" src="../../images/arrow.png"></image>
+            </view>
+        </picker>
+    </view>
+    <view class="column_list" >
+        <text class="font15">选项三</text>
+        <picker class="inputText" bindchange="bindchange3" value="{{index3}}" range="{{option3}}">
+            <view class="select_picker">
+                {{option3[index3]}}
+                <image  mode="aspectFit"  class="arrow" src="../../images/arrow.png"></image>
+            </view>
+        </picker>
+    </view>
+  
