@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>事件委托</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            width: 100%;
+            background-color: #ddd;
+        }
+        td{
+            background-color: #fff;
+            padding: 10px;
+        }
+        table tbody tr td:nth-child(2){
+            cursor: pointer;
+        }
+
+        .btn{
+
+            width: 100px;
+            text-align: center;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #0c97d2;
+            border: 1px solid #0c97d2;
+            color: #fff;
+        }
+        .btn:hover{
+            background-color: #fff;
+            border: 1px solid #0c97d2;
+            color: #0c97d2;
+        }
+    </style>
+
+</head>
+<body>
+<div class="btn">
+    添加一行
+</div>
+<div>
+    <table cellspacing="1" cellpadding="0" class="table">
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function () {
+
+    /*事件绑定 --on前面的元素必须在页面加载的时候就存在DOM里面*/
+    $('table tbody tr td:nth-child(2)').on('click',function () {
+        $(this).css({
+            color:'red'
+        })
+    });
+
+    $('.btn').on('click',function () {
+        var $tr = $("<tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>")
+        var $tbody = $("table tbody");
+        $tbody.append($tr);
+    });
+
+    /*事件委托 -- 适用于动态创建的元素*/
+/*
+    $('table tbody ').on('click','tr td:nth-child(2)',function () {
+        $(this).css({
+            color:'red'
+        })
+    });
+*/
+
+})
+
+</script>
+</body>
+</html>
+
+
+
