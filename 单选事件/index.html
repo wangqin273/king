@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单选事件</title>
+    <style>
+     [isAct="1"]{ color: red; }
+    </style>
+
+</head>
+<body>
+<div>
+    <button class="diyperiod" disabled="true">周期</button>
+    <button class="diyperiod" id="6h">6小时</button>
+</div>
+<div>
+    <button class="diyperiod" id="3h">3小时</button>
+    <button class="diyperiod" id="7h">7小时</button>
+</div>
+<div>
+    <button class="diyperiod" id="4h">4小时</button>
+    <button class="diyperiod" id="8h">8小时</button>
+</div>
+<div>
+    <button class="diyperiod" id="5h">5小时</button>
+    <button class="diyperiod" id="9h">9小时</button>
+</div>
+
+<script>
+    var n = 0;
+    var btn = document.querySelectorAll('.diyperiod');
+    for(var i=0,length = btn.length; i<length;i++){
+        btn[i].index = i;
+        btn[i].setAttribute('isAct','0');
+        btn[i].onclick=function () {
+            var isAct = this.getAttribute('isAct');
+            if(Number(isAct)){
+                this.setAttribute('isAct','0');
+            }else {
+                btn[n].setAttribute('isAct','0');
+                this.setAttribute('isAct','1');
+                n = this.index;
+            }
+        }
+    }
+</script>
+
+<!--<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $(".diyperiod").on("click",function(){
+        $(this).toggleClass("activebtn");
+        $(".activebtn").not($(this)).removeClass('activebtn');
+    });
+</script>-->
+
+</body>
+</html>
+
