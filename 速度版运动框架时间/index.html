@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运动版图片格式当前时间</title>
+    <style>
+        #box{
+            position: relative;
+            width: 400px;
+            height: 60px;
+            margin: 100px auto;
+            font-size: 18px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .dot{
+            animation:animation1 1s;
+        }
+        @keyframes animation1 {
+            0%{ opacity:1;}
+            50%{ opacity:0;}
+            100%{ opacity:1;}
+        }
+        #box img{
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+        #box img:nth-child(2){
+            left:40px;
+        }
+        #box img:nth-child(3){
+            left:80px;
+        }
+        #box img:nth-child(4){
+            left:96px;
+        }
+        #box img:nth-child(5){
+            left:136px;
+        }
+        #box img:nth-child(6){
+            left:176px;
+        }
+        #box img:nth-child(7){
+            left:192px;
+        }
+        #box img:nth-child(8){
+            left:232px;
+            top:0
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="box">
+
+</div>
+<script>
+    var oBox = document.getElementById("box"),
+        num=["images/0.png","images/1.png","images/2.png","images/3.png","images/4.png","images/5.png","images/6.png","images/7.png","images/8.png","images/9.png"],
+        length=num.length;
+    var n = 0;
+    setInterval(function () {
+        var  now = new Date(),
+                HH = now.getHours(),
+                MM = now.getMinutes(),
+                SS = now.getSeconds();
+        hh = toTwo(HH);
+        mm = toTwo(MM);
+        ss = toTwo(SS);
+        // 将时间数字变成数组
+        ahh = hh.toString().split("");
+        amm = mm.toString().split("");
+        ass = ss.toString().split("");
+
+        // 调用函数 将时间数组变成图片
+        imgUrl(ahh);
+        imgUrl(amm);
+        imgUrl(ass);
+
+        //把时间显示在页面中
+        oBox.innerHTML = "<img src='"+ahh[0]+"'><img src='"+ahh[1]+"'><img class='dot' src='images/d.png'><img src='"+amm[0]+"'><img src='"+amm[1]+"'><img class='dot' src='images/d.png'><img src='"+ass[0]+"'><img src='"+ass[1]+"'>";
+
+        // 判断图片是否运动
+        var aImg = oBox.getElementsByTagName("img");
+        // 从秒开始 每秒都要运动
+        aImg[7].style.top = 60+"px";
+        move(aImg[7],"top",0,6);
+        //这里的判断必须嵌套 当秒的个位为0 秒的十位数运动
+        if(ass[1]==num[0]){
+            aImg[6].style.top = 60+"px";
+            move(aImg[6],"top",0,6);
+            //  当秒的个位和十位都为0 分钟的个位数运动
+            if(ass[0]==num[0]){
+                aImg[4].style.top = 60+"px";
+                move(aImg[4],"top",0,6);
+                //  当秒的个位和十位，分钟的个位都为0 分钟的十位数运动
+                if(amm[1]==num[0]){
+                    aImg[3].style.top = 60+"px";
+                    move(aImg[3],"top",0,6);
+                    //  当秒的个位和十位，分钟的个位和十位都为0 时的个位数运动
+                    if(amm[0]==num[0]){
+                        aImg[1].style.top = 60+"px";
+                        move(aImg[1],"top",0,6);
+                        //  当秒的个位和十位，分钟的个位和十位都为0，时的个位为0的时候 时的十位数运动
+                        if(ahh[1]==num[0]){
+                            aImg[0].style.top = 60+"px";
+                            move(aImg[0],"top",0,6);
+                        }
+                    }
+                }
+            }
+
+        }
+
+    },1000);
+
+    // 封装函数使1位数变2位数
+    function toTwo(n) {
+        n = n<10?"0"+n:n;
+        return n;
+    }
+    //封装函数将时间数字变成图片
+    function imgUrl(arr) {
+        for (var i=0;i<arr.length;i++){
+            for (var j=0;j<length;j++){
+                if(arr[i]==j){
+                    arr[i]=num[j]
+
+                }
+            }
+        }
+    }
+
+    //速度版运动框架
+    function move( obj , attr , end , speed ) {
+        window.requestAnimationFrame = window.requestAnimationFrame || function (fn) {return setTimeout(fn , 1000/60)};
+        window.cancelAnimationFrame = window.cancelAnimationFrame || clearTimeout;
+        var cssJson = obj.currentStyle || getComputedStyle(obj);
+        var start = parseFloat(cssJson[attr]);
+        var flag = start > end;
+        if ( flag )speed = -speed;
+        (function fn(){
+            start += speed;
+            (flag?start <= end:start >= end)?start = end:requestAnimationFrame(fn);
+            obj.style[attr] = start+'px';
+        })();
+    }
+
+</script>
+</body>
+</html>
