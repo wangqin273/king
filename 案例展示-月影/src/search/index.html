@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查找替换</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color: #ababab;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #ababab;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #ababab;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #ababab;
+    }
+    li {
+        list-style: none
+    }
+    .box {
+        position: relative;
+        width: 800px;
+        margin:50px auto;
+        padding: 20px;
+        border: 1px solid #f2f3f7;
+    }
+    .tab{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 30px;
+    }
+    .tab li{
+        padding:5px;
+    }
+    input[type='text']{
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 5px;
+        border:1px solid #dfdfdf;
+        outline: none;
+        color: #3d92e3;
+    }
+    input[type='text']:focus{
+        border:1px solid #3d92e3;
+    }
+    #replaceText{
+        color: #ff8967;
+    }
+     #replaceText:focus{
+        border:1px solid #ff8967;
+    }
+    button{
+        font-size: 14px;
+        border-radius: 5px;
+        background-color: #3d92e3;
+        color: #fff;
+        padding: 5px 20px;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+    }
+    #replaceBtn{
+        background-color: #ff8967;
+    }
+    #completetn{
+        background-color: #333;
+    }
+    #content{
+        border: 1px solid #dfdfdf;
+        padding: 10px;
+    }
+    #content p{
+        text-indent:32px;
+        padding: 12px;
+    }
+    #content .blue{
+        font-style: italic;
+        font-weight: bold;
+        color: #3d92e3;
+
+    }
+    #content .red{
+        font-style: italic;
+        font-weight: bold;
+        color: #ff8967;
+    }
+
+</style>
+<body>
+<div class="box">
+    <ul class="tab">
+        <li>
+            <input id="searchText" type="text" value="" placeholder="你想找啥？">
+            <button id="searchBtn">查找</button>
+        </li>
+        <li>
+            <input id="replaceText" type="text" value="" placeholder="替换成啥？">
+            <button id="replaceBtn">替换</button>
+        </li>
+        <li>
+            <button id="completetn">完成</button>
+        </li>
+    </ul>
+
+    <div id="content">
+        <p>
+            长沙是中国历史上历经三千年地址仍然未变的城市，古称潭州,潭州教育就坐落于此。湖湘教育源远流长，潭州作为一家在线教育企业，遵循传统文化，继往开来。潭州教育致力于继承与发扬其文化精髓，故使用湘楚地区的古地名——潭州命名。
+        </p>
+        <p>
+            早在宋朝之前“潭州书院”已经存在，在南宋时期，大批著名理学家云集潭州，长沙成为政法学风之重地，而“潭州书院”代表了整个湖湘教育的精髓。
+        </p>
+        <p>
+            通过全体潭州人的不懈坚持与努力，潭州教育开始成为一家跨品类的综合性在线教育企业！
+        </p>
+    </div>
+
+</div>
+<script>
+    var con=document.getElementById('content');
+    var str=con.innerHTML;
+    var searchBtn=document.getElementById('searchBtn');
+    var replaceBtn=document.getElementById('replaceBtn');
+    var completetn=document.getElementById('completetn');
+    var searchText = document.getElementById('searchText');
+    var replaceText = document.getElementById('replaceText');
+    // 查找
+    searchBtn.onclick = function () {
+        // 获取输入值
+        var val = searchText.value;
+        // 根据输入值 设置分隔符
+        strSpan = '<span class="blue">'+val+'</span>';
+        // 以输入值为分隔符 将字符串划分为数组
+        arr = str.split(val)
+        //  以 自己设置的分隔符 为拼接符 将数组重新拼接成字符串
+        strNew = arr.join(strSpan)
+        // 判断 输入框的值是否为空，在文章中查找输入值 ，找不到 str.indexOf(val) 为-1
+        if(val){
+            str.indexOf(val)<0?alert('本文没有您要找的:'+val):con.innerHTML = strNew;
+        } else{
+            alert('请输入您想找的文字')
+        }
+    }
+    replaceBtn.onclick = function () {
+        var val = searchText.value;
+        var value = replaceText.value;
+        if(val){
+            switch (str.indexOf(val)){
+                case -1:
+                    alert(val+'不存在')
+                    break
+                case 0:
+                    alert(val+'替换为啥？')
+                    break;
+                default:
+                    if(value) {
+                        arr = str.split(val);
+                        strSpan = '<span class="red">' + value + '</span>';
+                        strNew = arr.join(strSpan);
+                        con.innerHTML = strNew;
+                        str = arr.join(value);
+                    }else {
+                        alert(val+'替换为啥？')
+                    }
+                    break;
+            }
+
+        } else{
+            alert('请输入您想找的文字？！');
+        }
+
+    }
+
+    completetn.onclick = function () {
+        con.innerHTML = str;
+    }
+
+
+</script>
+</body>
+</html>

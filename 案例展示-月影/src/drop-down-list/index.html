@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉列表</title>
+    <style>
+        *{padding: 0; margin: 0; border: 0}
+        li{list-style: none}
+        #box {
+            position: relative;
+            width: 200px;
+            margin: 50px auto;
+            border:1px solid #ccc;
+            border-bottom:none;
+            background: #fff;
+            box-sizing: border-box;
+        }
+        #box div{
+            box-sizing: border-box;
+            width: 100%;
+            line-height: 40px;
+            color: #333;
+            box-sizing: border-box;
+            white-space: nowrap ;
+            font-size: 16px;
+            text-indent: 16px;
+            font-weight: 700;
+            border-bottom: 1px solid #ccc;
+        }
+        #box div p{
+            background-color: #d4f1ff;
+            cursor: pointer;
+        }
+        #box div p.cur{
+            background-color: #03d7f4;
+        }
+        #box div ul{
+            display: none;
+            width: 100%;
+            text-indent: 48px;
+            font-weight: 100;
+            font-size: 16px;
+        }
+        #box div ul.show{
+            display: block;
+        }
+        #box div ul li{
+            width: 100%;
+            border-top: 1px solid #ccc;
+            cursor: pointer;
+        }
+        #box div ul li.on{
+            background-color: #ffd48f;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div>
+        <p>北京</p>
+        <ul>
+            <li>东城区</li>
+            <li>朝阳区</li>
+            <li>丰台区</li>
+
+        </ul>
+    </div>
+    <div>
+        <p>上海</p>
+        <ul>
+            <li>长宁区</li>
+            <li>黄浦区</li>
+            <li>徐汇区</li>
+            <li>静安区</li>
+
+
+        </ul>
+    </div>
+    <div>
+        <p>广州</p>
+        <ul>
+            <li>天河区</li>
+            <li>白云区</li>
+            <li>番禺区</li>
+        </ul>
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    var oBox = document.getElementById('box'),
+        oCity = oBox.querySelectorAll('div p'),
+        oarea = oBox.querySelectorAll('div ul'),
+        oRegion = oBox.querySelectorAll('div ul li'),
+        lens = oCity.length,
+        length = oRegion.length,
+        flag = 0;
+    for (var i = 0; i<lens; i++){
+        oCity[i].index = i;
+        oCity[i].onclick=function () {
+
+            if(this.className == 'cur'){
+                oarea[this.index].className='';
+                this.className = ''
+            }else{
+                oarea[this.index].className='show';
+                this.className = 'cur'
+            }
+        }
+    }
+    for (var j = 0; j<length; j++){
+        oRegion[j].index = j;
+        oRegion[j].onclick = function () {
+            oRegion[flag].className='';
+            this.className = 'on'
+            flag = this.index;
+        }
+
+    }
+</script>
+</body>
+</html>
+

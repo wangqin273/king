@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九宫格</title>
+    <style>
+        *{padding: 0; margin: 0; border: 0}
+        li{list-style: none}
+        #box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            background: #fff;
+            border-bottom:1px solid #ff160a;
+            border-left:1px solid #ff160a;
+        }
+        #box ul{
+            display: flex;
+            flex-flow:row wrap;
+            justify-content:flex-start;
+            align-items: center;
+            align-content:center;
+            width: 100%;
+            height: 100%;
+        }
+        #box ul li{
+            /*flex: 1 1 33%;*/
+            width: 100px;
+            height: 100px;
+            border-top:1px solid #ff160a;
+            border-right:1px solid #ff160a;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+        }
+        #box ul li.black{
+            background-color: black;
+        }
+        #box ul li.yellow{
+            background-color: #ffa700;
+        }
+        #box ul li.orange{
+            background-color: #f60;
+        }
+        #box ul li.pink{
+            background-color: #ff00a0;
+        }
+        #box ul li.red{
+            background-color: #f00;
+        }
+        #box ul li.purple{
+            background-color: #7500ff;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    var oBox = document.getElementById('box'),
+        oLi = oBox.querySelectorAll('ul li'),
+        lens = oLi.length,
+        aCourse = ['第一章','第二章','第三章','第四章','第五章','第六章','第七章','第八章','第九章'];
+    for (var i = 0; i<lens; i++){
+        oLi[i].innerHTML += aCourse[i];
+        //颜色每四个一组
+        var num = i%4;
+        switch(num)
+        {
+            case 0:
+                oLi[i].className = 'yellow';
+                break;
+            case 1:
+                oLi[i].className = 'orange';
+                break;
+            case 2:
+                oLi[i].className = 'pink';
+                break;
+            case 3:
+                oLi[i].className = 'red';
+                break;
+            default:
+                oLi[i].className = 'black';
+        };
+        oLi[i].onmouseenter = function () {
+            //鼠标进入存储原来的className
+            oldClass= this.className
+            //改变当前className
+            this.className = 'purple'
+        }
+        oLi[i].onmouseleave  = function () {
+            //鼠标离开原className
+            this.className = oldClass
+        }
+    }
+</script>
+</body>
+</html>
+

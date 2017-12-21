@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>评论</title>
+
+    <style>
+        *{padding: 0; margin: 0; border: 0}
+        #commentList li:after ,.clearfix:after{ content: " "; display: block; clear: both}
+        .comment{width: 400px; margin:50px auto; font-size: 14px;}
+        .input_area { margin-bottom: 50px; background: #ddd; border:1px solid #ccc; border-radius: 5px; padding: 10px}
+        #inputArea { display:block;width: 100%; box-sizing:border-box;height: 80px; margin:0 auto;  background: #fff; padding: 5px; border:1px solid #ccc; border-radius: 5px;resize:none}
+        .send{padding-top: 10px;}
+        .avatar{float: left}
+        .avatar img{ width: 36px;}
+        .sendBtn{ float: right; }
+        #sendBtn {background-color:#ff6600; color: #fff;  padding: 8px 30px;  border-radius: 5px;cursor: pointer}
+        ul li {list-style: none}
+        #commentList li { width: 100%; border-bottom: 1px solid #ccc; padding: 5px;}
+        #commentList li img{ width: 36px;float: left; margin-right: 10px;}
+    </style>
+</head>
+
+<body>
+<div class="comment">
+<div class="input_area">
+    <textarea name="" id="inputArea" cols="20" rows="10" ></textarea>
+    <div class="send clearfix">
+        <div class="avatar">    <img  id="avatar" src="images/girl.jpg" /></div>
+        <div class="sendBtn"><input type="button" id="sendBtn" value="发表" /></div>
+    </div>
+</div>
+    <ul id="commentList">
+
+    </ul>
+
+</div>
+<script>
+    var inputArea = document.getElementById('inputArea'),
+        avatar = document.getElementById("avatar"),
+
+        sendBtn = document.getElementById('sendBtn'),
+        commentList = document.getElementById('commentList');
+
+    avatar.onclick = function () {
+
+        if(this.getAttribute('src') == "images/girl.jpg"){
+            this.setAttribute('src','images/boy.jpg')
+        }else {
+            this.setAttribute('src','images/girl.jpg')
+        }
+
+    }
+    sendBtn.onclick = function () {
+      console.log(avatar.getAttribute('src'));
+        commentList.innerHTML += "<li><img src="+avatar.getAttribute('src')+ ">" +"<span>"+inputArea.value+"<span>" + "</li>"
+        inputArea.value = ''
+
+    }
+</script>
+</body>
+</html>

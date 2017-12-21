@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            border: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        #box{
+            width: 790px;
+            height: 340px;
+            margin: 50px auto;
+            position: relative;
+            /*background-color: black;*/
+            overflow: hidden;
+        }
+        #imgList, #imgList li{
+            list-style: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+
+        }
+        #imgList {
+            position: absolute;
+        }
+        #imgList li a,#imgList li img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #imgList li{
+            position: absolute;
+            display: none;
+            top:30px;
+            left:30px
+        }
+        #imgList li.cur{
+            display: block;
+            top:0;
+            left:0;
+        }
+        .arrow{
+            display: none;
+        }
+        #box:hover .arrow{
+            display: block;
+        }
+        .arrow a{
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            top:50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.2);
+            z-index: 9;
+            font-size: 24px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .arrow a:hover{
+            background-color: rgba(0,0,0,0.6);
+        }
+        .arrow a:first-child{
+            left:0;
+        }
+        .arrow a:last-child{
+            right:0;
+        }
+        .arrow a img{
+            width: 16px;
+            height: 29px;
+            opacity: 0.7;
+        }
+        .arrow a:hover img{
+            opacity: 1;
+        }
+        .arrow a:first-child img{
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+        .page{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            bottom: 10px;
+            width: 180px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-around;
+            align-items:center;;
+            padding:4px 10px ;
+        }
+        .page a{
+            width: 12px;
+            height:12px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,1);
+        }
+        .page a:hover,.page a.cur{
+            background-color: rgba(255,0,0,1);
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <ul id="imgList">
+        <li><a href="javascript:;"><img src="../img/1.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="../img/2.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="../img/3.jpg" alt=""></a></li>
+        <li><a href="javascript:;"><img src="../img/4.jpg" alt=""></a></li>
+
+    </ul>
+    <div class="page"></div>
+    <div class="arrow">
+        <a href="javascript:;" id="btnPrev"> <img src="arrow_white.png" alt=""></a>
+        <a href="javascript:;" id="btnNext"> <img src="arrow_white.png" alt=""></a>
+    </div>
+</div>
+<p>上一张：backOut</p>
+<p>下一张：elasticOut</p>
+<p>页码：bounceOut</p>
+<p> /*BUG: 两次点击时间间隔小于动画时间就会出错；*/</p>
+<script src="js/Tween.js"></script>
+<script>
+    var oBox = document.getElementById("box"),
+        aLi = oBox.querySelectorAll("#imgList li"),
+        aPage = oBox.querySelector(".page"),
+        btnPrev = document.getElementById("btnPrev"),
+        btnNext = document.getElementById("btnNext"),
+        length = aLi.length,
+        num=0;
+
+    // 按照图片张数 添加对应的页码小圆点，
+    var aPageStr = "";
+    for(var i = 0; i<length;i++){
+        aPageStr += " <a href='javascript:;'> </a>"
+    }
+    aPage.innerHTML = aPageStr;
+    var pageNum = oBox.querySelectorAll(".page a");
+    // 默认显示第一张图片
+    aLi[0].className = "cur";
+    pageNum[0].className = "cur";
+    // 页码 点击事件
+    for(var i=0;i<length;i++){
+        pageNum[i].index=i;
+        pageNum[i].onclick=function () {
+            if(this.className!=="cur"){
+                aLi[num].style.top=100+"px";
+                aLi[num].style.left=100+"px";
+                pageNum[num].className="";
+                aLi[num].className="";
+                /*运动函数BUG，两次点击时间间隔小于动画时间就会出错；*/
+                tMove( aLi[this.index] , {
+                    top : 0,
+                    left : 0
+                } , 1000 , "bounceOut");
+                pageNum[this.index].className ="cur";
+                aLi[this.index].className = "cur";
+                num = this.index; // 关键点 num 等于
+            }
+        }
+    }
+    // 上一张 点击事件
+    btnPrev.onclick = function () {
+
+        aLi[num].style.top=30+"px";
+        aLi[num].style.left=30+"px";
+        aLi[num].className = "";
+        pageNum[num].className = "";
+        if(num ==0){
+            num=length
+        }
+        num--;
+        /*运动函数BUG，两次点击时间间隔小于动画时间就会出错；*/
+        tMove( aLi[num] , {
+            top : 0,
+            left : 0
+        } , 1000 , "backOut");
+        aLi[num].className = "cur";
+        pageNum[num].className = "cur"
+    };
+    // 下一张 点击事件
+    btnNext.onclick = function () {
+
+        aLi[num].style.top=30+"px";
+        aLi[num].style.left=30+"px";
+        aLi[num].className = "";
+        pageNum[num].className = "";
+        num++;
+        num =  num%length;
+
+       /*运动函数BUG，两次点击时间间隔小于动画时间就会出错；*/
+        tMove( aLi[num] , {
+            top : 0,
+            left : 0
+        } , 1000 , "elasticOut");
+        pageNum[num].className = "cur";
+        aLi[num].className = "cur";
+    };
+    //执行自动轮播
+    autoPlay();
+    //封装自动轮播函数
+    function autoPlay() {
+       /*
+            play = setInterval(function () {
+                btnNext.onclick();  // 向左自动轮播相当于循环点击下一张按钮
+                //  btnPrev.onclick(); // 向右自动轮播相当于循环点击上一张按钮
+            },3000)
+        */
+        play = setInterval(btnNext.onclick,3000)
+    }
+    oBox.onmouseenter = function () {
+        clearInterval(play)//中止自动轮播
+    };
+    oBox.onmouseleave=function () {
+        autoPlay()//执行自动轮播
+    };
+
+
+
+</script>
+</body>
+</html>

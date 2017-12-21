@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js图片切换</title>
+</head>
+<style>
+    *{margin: 0;padding: 0;border: 0}
+    li{list-style: none}
+    .box {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 800px;
+        height: 400px;
+        margin: 50px auto;
+        border: 1px solid #ddd;
+
+    }
+    #box_left {
+        flex: 1 1 25%;
+        height: 100%;
+    }
+    #box_left ul{
+        width: 100%;
+    }
+    #box_left ul li{
+        box-sizing: border-box;
+        background-color: #000;
+        height: 100px;
+        line-height: 100px;
+        border-bottom: 1px solid #fff;
+        color: #fff;
+        font-size: 24px;
+        text-align: center;
+        cursor: pointer;
+    }
+    #box_left ul li:last-child{
+        border-bottom: 1px solid #000;
+    }
+    #box_left ul li:last-child.on{
+        border-bottom: 1px solid #f90;
+    }
+    #box_left ul li.on,  #box_right ul li  p  span.on{
+        background-color: #f90;
+    }
+    #box_right {
+        position: relative;
+        flex: 1 1 75%;
+        height: 100%;
+        background-color: #d9b7ff;
+    }
+    #box_right ul{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #88cdef;
+    }
+    #box_right ul li {
+        position: relative;
+        height: 100%;
+    }
+    #box_right ul li p{
+        position: absolute;
+        width: 100%;
+        height: 35px;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.5);
+        text-align: right;
+    }
+    #box_right ul li  p span{
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        background-color: #dddddd;
+        margin-right: 5px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+</style>
+<body>
+<div class="box">
+    <div id="box_left">
+        <ul>
+            <li class="on">汽车</li>
+            <li>美食</li>
+            <li>游戏</li>
+            <li>旅游</li>
+        </ul>
+    </div>
+
+    <div id="box_right">
+        <ul>
+            <li>
+                <img src="../img/car1.jpg" alt="">
+                <p></p>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    var  aLi = document.querySelectorAll('#box_left ul li'),
+    	 oImg = document.querySelector('#box_right ul li img'),
+    	 oP = document.querySelector('#box_right ul li p'),
+        //  上一个li的索引值，初始为0
+         x = 0,
+        length = aLi.length,
+        //设置数组 保存各组图片的路径
+        car = [
+            "../img/car1.jpg",
+            "../img/car2.jpg",
+            "../img/car3.jpg",
+            "../img/car4.jpg"
+        ],
+        food = [
+            "../img/food1.jpg",
+            "../img/food2.jpg",
+            "../img/food3.jpg",
+            "../img/food4.jpg",
+            "../img/food5.jpg",
+        ],
+        game = [
+            "../img/game1.jpg",
+            "../img/game2.jpg",
+            "../img/game3.jpg",
+            "../img/game4.jpg",
+            "../img/game5.jpg",
+            "../img/game6.jpg",
+        ],
+        tour = [
+            "../img/tour1.jpg",
+            "../img/tour2.jpg",
+            "../img/tour3.jpg"
+        ],
+        // 获取每组图片的张数
+        carlength = car.length,
+        foodlength = food.length,
+        gamelength = game.length,
+        tourlength = tour.length;
+
+        for (var i = 0;i < length; i++) {
+            aLi[i].index = i;                   //  自定义属性 储存 li 的索引值（下标）
+            aLi[i].onmouseenter = function () {
+                aLi[x].className= '';           // 上一个 li 删除class
+                this.className = 'on';          // 当前 li 添加class
+                x = this.index;                 // 改变上一个li的索引值为 当前 li 的索引值
+                switch (this.index){            // 判断移到哪个li显示对应的图片
+                    case 0:
+                        oImg.src = car[0];      // 默认显示图片数组中的第一张
+                        addSpan(car,carlength);
+                        break
+                    case 1:
+                        oImg.src = food[0];
+                        addSpan(food,foodlength)
+                        break
+                    case 2:
+                        oImg.src = game[0]
+                        addSpan(game,gamelength)
+                        break
+                    case 3:
+                        oImg.src = tour[0]
+                        addSpan(tour,tourlength)
+                        break
+                }
+            }
+        }
+        // 定义函数
+        // 设置形参： 图片数组，每组图片张数
+        function addSpan(imgArray,lens) {
+            //  定义一个数组str存放span标签
+            var str=[];
+            //  上一个span的索引值，必须在addSpan函数中定义，每次执行addSpan函数都初始化为0
+            var y = 0;
+            //  根据图片张数 添加 span
+            for (var j=1;j<=lens;j++){
+                str += '<span>'+j+'</span>'
+            }
+            oP.innerHTML = str;
+
+            var aSpan = document.querySelectorAll('#box_right ul li p span'),
+            spanlength = aSpan.length;
+            aSpan[0].className = 'on';
+            for (k=0;k<spanlength;k++){
+                aSpan[k].idx = k;
+                aSpan[k].onmouseenter = function () {
+                    aSpan[y].className=''
+                    this.className='on'
+                    oImg.src = imgArray[this.idx]
+                     y = this.idx
+                }
+            }
+        }
+    //  调用函数
+    addSpan(car,carlength)
+</script>
+</body>
+</html>

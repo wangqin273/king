@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>歌曲列表</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    table{
+
+        position: relative;
+        width: 600px;
+        margin:50px auto;
+        background-color: #ccc;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    table thead td{
+        padding: 5px 0;
+        line-height: 1.5rem;
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+    }
+    table tbody tr td{
+        width: 150px;
+        padding: 5px 0;
+        line-height: 1.5rem;
+        background-color: #fff;
+        text-align: center;
+    }
+    table tbody tr:nth-child(odd) td{
+        background-color: #99fdff;
+    }
+    table tbody tr td:first-child{
+        width: 50px;
+    }
+    table tbody tr td:nth-child(5),table tbody tr td:last-child{
+        width: 50px;
+        cursor: pointer;
+    }
+
+</style>
+<body>
+<table  cellspacing="1" cellpadding="0">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>歌曲</td>
+            <td>歌手</td>
+            <td>专辑</td>
+            <td>价格</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+</table>
+<!--获取json数据-->
+<script src="data.js"></script>
+<script>
+    var oTab = document.getElementsByTagName("table")[0];
+    //table中添加tbody节点
+    oTab.innerHTML+="<tbody></tbody>"
+    var aTbody = oTab.getElementsByTagName("tbody")[0];
+   // console.log(aTbody);
+    // 获取歌曲数组的长度
+    var length = song.length;
+    // 声明一个空字符串 用来保存 要添加的内容
+    var str = "";
+    // 循环歌曲数组获取每一个歌曲的信息
+    for(var i=0;i<length; i++){
+        str += "<tr>"
+        str += "<td>"+(i+1)+"</td>";
+        // 获取每一个歌曲的属性
+        for(var item in song[i]){
+             str += "<td>"+song[i][item]+"</td>";
+        }
+        str += "</tr>"
+    }
+    // 把保存的信息添加到tbody中
+    aTbody.innerHTML = str;
+    // 获取删除操作标签
+    var del = document.querySelectorAll("table tbody tr td:last-child"),
+        lens =del.length;
+    for(var j=0; j<lens;j++){
+       // 点击删除自己的父节点
+        del[j].onclick=function () {
+            //改变this指向
+            delSong.call(this.parentNode)
+//            delSong.apply(this.parentNode)
+        }
+    }
+    function delSong() {
+        this.remove()
+    }
+
+</script>
+</body>
+</html>

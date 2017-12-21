@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addClass removeClass</title>
+    <style>
+        *{
+            border:0;
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 400px;
+            padding: 10px;
+            margin: 10px auto;
+            color: #000;
+            line-height: 2em;
+            font-size: 16px;
+            background-color: #dfdfdf;
+        }
+        p{
+            width: 400px;
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+        }
+        ul{
+            width: 400px;
+            margin: 50px auto;
+        }
+        ul:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        ul li{
+            list-style:none;
+            border:1px solid #ccc;
+            border-radius: 5px;
+            float: left;
+            padding: 5px 10px;
+            margin-left: 5px;
+            background-color: #dfdfdf;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+        ul li:nth-child(1){
+            background-color: #0e93ff;
+            color: #fff;
+        }
+        ul li:nth-child(2){
+            background-color: #0e93ff;
+            color: #fff;
+        }
+        ul li:nth-child(3){
+            background-color: #c1150a;
+            color: #fff;
+        }
+        ul li:nth-child(4){
+            background-color: #c1150a;
+            color: #fff;
+        }
+        .bg{
+            background-color: #8ce0ff;
+        }
+        .on{
+            border:2px solid #ff6600;
+        }
+        .blue{
+            color: #0e93ff;
+        }
+        .big{
+            font-size: 24px;
+        }
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<ul>
+    <li>点我  给所有div添加类名blue</li>
+    <li>点我  给Id为box的元素添加类名blue</li>
+    <li>点我  删除所有div类名blue</li>
+    <li>点我  删除p标签的类名blue</li>
+
+</ul>
+<div id="box">
+    我没有class属性
+</div>
+<div class="bg">
+    我有一个class属性
+</div>
+<div class="bg on">
+    我有两个class属性
+</div>
+<div class="bg on blue">
+    我有三个class属性
+</div>
+<div class="bg on blue big">
+    我有四个class属性
+</div>
+<p class="blue">我是一个P标签段落</p>
+<script>
+//    获取按钮执行函数
+    var btn = document.getElementsByTagName("li");
+
+    btn[0].onclick=function () {
+        //addclass函数调用 多个标签
+        addClass(aDiv,"blue red",lens)
+    }
+
+    btn[1].onclick=function () {
+        //addclass函数调用 唯一标签
+        addClass(oBox,"blue")
+    }
+
+    btn[2].onclick=function () {
+        //removeClass函数调用 唯一标签
+        removeClass(aDiv,"blue",lens)
+    }
+    btn[3].onclick=function () {
+        //removeClass函数调用 唯一标签
+        removeClass(oP,"blue")
+    }
+//    动态方法 获取元素
+//   通过类名获取
+//    var div = document.getElementsByClassName("bg");
+//   通过元素名获取
+    var aDiv = document.getElementsByTagName("div");
+    var lens = aDiv.length;
+
+
+//    静态方法 获取元素
+    var oBox = document.getElementById("box");
+
+    var oP = document.querySelector("p");
+
+//    var div = document.querySelectorAll("div");
+//    var lens = div.length;
+
+    //addclass函数封装
+    function addClass(el,newClass,length) {
+        //判断要添加类名的元素是一个还是多个
+      if(length>1){
+          for (var i = 0; i<length;i++){
+              var strClass = "",
+                  arrClass = [];
+              //获取元素的类名，储存在一个字符串
+              strClass = el[i].className;
+              // 把类名字符串切割为数组
+              arrClass = strClass.split(" ");
+              //判断数组中是否存在新添加的类名
+              if(strClass.indexOf(newClass)<=0){
+                  arrClass.push(newClass);
+              }
+              //把新的数组转化为字符串
+              strClass = arrClass.join(" ")
+              // 把新的字符串添加到元素的class属性
+              el[i].className = strClass;
+          }
+      }else{
+          strClass = el.className;
+          arrClass = strClass.split(" ");
+          if(strClass.indexOf(newClass)<=0){
+              arrClass.push(newClass);
+          }
+          strClass = arrClass.join(" ")
+          console.log(strClass);
+          el.className = strClass;
+      }
+    }
+
+//removeClass  函数封装
+function removeClass(el,oldClass,length) {
+    //判断要添加类名的元素是一个还是多个
+    if(length>1){
+        for (var i = 0; i<length;i++){
+            var strClass = "",
+                arrClass = [];
+            //获取元素的类名，储存在一个字符串
+            strClass = el[i].className;
+            // 把类名字符串切割为数组
+            arrClass = strClass.split(" ");
+            //判断数组中是否存在新添加的类名
+            for(var k = 0;k<arrClass.length;k++){
+               if(arrClass[k]==oldClass){
+                   arrClass.splice(k,1)
+               }
+            }
+            //把新的数组转化为字符串
+            strClass = arrClass.join(" ")
+            // 把新的字符串添加到元素的class属性
+            el[i].className = strClass;
+        }
+    }else{
+        strClass = el.className;
+        arrClass = strClass.split(" ");
+        for(var k = 0;k<arrClass.length;k++){
+            if(arrClass[k]==oldClass){
+                arrClass.splice(k,1)
+            }
+        }
+        strClass = arrClass.join(" ")
+        console.log(strClass);
+        el.className = strClass;
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="register_box ">
+    <div class="header gradient_bg"><span>注册</span></div>
+	<!--注册-->
+    <ul class="register_info">
+        <li>
+            <input id="userName"  type="text"  minlength="5"  maxlength="18" placeholder="请设置用户名"/>
+            <span>6~18个字符，可使用字母、数字、下划线，需以字母开头</span>
+        </li>
+        <li>
+            <input id="pwdNum"  type="password" minlength="5" maxlength="18" placeholder="请设置密码"/>
+            <span>由字母、数字和特殊符号(~!@#$%^*)组成，区分大小写(6~16位)</span>
+        </li>
+        <li>
+            <input id="pwdConfirm" type="password" maxlength="18" placeholder="请确认密码"/>
+            <span>请再次填写密码</span>
+            <div class="pupTips">请先设置密码</div>
+        </li>
+        <li>
+            <input id="phoneNum" type="text" maxlength="11" placeholder="输入手机号"/>
+            <span>忘记密码时，可以通过该手机号码快速找回密码</span>
+        </li>
+        <li>
+            <input id="emailNum" type="text" placeholder="请输入邮箱地址"/>
+            <span>忘记密码时，可以通过该邮箱快速找回密码</span>
+        </li>
+        <li>
+            <input id="idNum"type="text" maxlength="18" placeholder="请输入身份证号"/>
+            <span>确认您的真实身份</span>
+        </li>
+    </ul>
+
+    <div class="register_btn gradient_bg" >
+        <span>注册</span>
+    </div>
+</div>
+<script>
+
+    var reg = {
+        user : /^[a-zA-Z_]\w{5,17}$/,//用户名
+        pwd : /^[\w~!@#%$^&*()+{}:"<>?|`,/\[\]\-\\\.]{6,16}$/,//密码
+        tel : /^1[3-8]\d{9}$/,//手机号
+        mail : /^[1-9a-z_]\w{5,17}@[\da-z]{2,}(\.[a-z]{2,4}){1,2}$/i,//邮箱
+        IDCard : /^[1-9]\d{16}[\dx]$/i//身份证号
+    };
+    var userName = document.getElementById('userName'),
+        pwdNum = document.getElementById('pwdNum'),
+        pwdConfirm = document.getElementById('pwdConfirm'),
+        phoneNum = document.getElementById('phoneNum'),
+        emailNum = document.getElementById('emailNum'),
+        idNum = document.getElementById('idNum'),
+        pupTips = document.querySelector('.pupTips'),
+        regtn = document.querySelector('.register_btn');
+
+    userName.onblur=function () {
+       if(reg.user.test(this.value)){
+           this.className = "correct";
+       }else {
+           this.className = "mistake";
+           this.focus();
+       }
+    };
+    pwdNum.onblur=function () {
+        if(reg.pwd.test(pwdNum.value)){
+            this.className = "correct";
+        }else {
+            this.className = "mistake";
+            this.focus();
+        }
+    };
+    pwdConfirm.onfocus=function () {
+        if(!pwdNum.value){
+            pwdNum.className = "mistake";
+            pwdNum.focus();
+            pupTips.style.display='block';
+            setTimeout(function() {
+                    pupTips.style.display='none';
+                }
+                ,1500)
+        }
+    };
+    pwdConfirm.onblur=function () {
+        if(this.value!==pwdNum.value){
+            this.focus();
+            this.parentNode.querySelector('span').innerHTML="两次密码不一致，请重新输入！";
+            this.className = "mistake";
+        }else{
+            this.parentNode.querySelector('span').innerHTML="请再次填写密码";
+            this.className = "correct";
+        }
+
+    };
+
+
+    phoneNum.onblur=function () {
+        if(reg.tel.test(this.value)){
+            this.className = "correct";
+            this.parentNode.querySelector('span').innerHTML="忘记密码时，可以通过该手机号码快速找回密码";
+        }else {
+            this.className = "mistake";
+            this.focus();
+            this.parentNode.querySelector('span').innerHTML="请输入正确的手机号！";
+        }
+    };
+
+
+    emailNum.onblur=function () {
+        if(reg.mail.test(this.value)){
+            this.className = "correct";
+            this.parentNode.querySelector('span').innerHTML="忘记密码时，可以通过该邮箱快速找回密码";
+        }else {
+            this.className = "mistake";
+            this.focus();
+            this.parentNode.querySelector('span').innerHTML="请输入正确的邮箱地址！";
+        }
+    };
+
+    idNum.onblur=function () {
+        if(reg.IDCard.test(this.value)){
+            this.className = "correct";
+            this.parentNode.querySelector('span').innerHTML="确认您的真实身份";
+        }else {
+            this.className = "mistake";
+            this.focus();
+            this.parentNode.querySelector('span').innerHTML="请输入正确的身份证号！";
+        }
+    };
+
+    regtn.onclick = function () {
+       var inputVal= document.querySelectorAll('input'), i;
+       for (var i= 0,length=inputVal.length; i<length;i++){
+           if(!inputVal[i].value){
+               inputVal[i].focus();
+               return i
+           }
+       }var
+    }
+
+</script>
+</body>
+</html>

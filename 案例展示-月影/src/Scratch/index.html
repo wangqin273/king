@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>刮刮乐 </title>
+    <style>
+        *{padding: 0; margin: 0; border: 0}
+        li{list-style: none}
+        #box {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            background: #000;
+            border:1px solid #aaa;
+            color: #ff160a;
+            font-size: 24px;
+            line-height: 200px;
+            text-align: center;
+        }
+        #box ul{
+            position: absolute;
+            top:0;
+            left: 0;
+            display: flex;
+            flex-flow:row wrap;
+            justify-content:flex-start;
+            align-items: center;
+            align-content:center;
+            width: 100%;
+            height: 100%;
+        }
+        #box ul li{
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ccc;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    谢谢参与！
+    <ul>
+
+    </ul>
+</div>
+
+<script type="text/javascript">
+    var oBox = document.getElementById('box'),
+        oUl = oBox.querySelectorAll('ul'),
+        str = "";
+
+    for(var i=0;i<20;i++){
+        for(var j=0;j<20;j++){
+          str += '<li style="top:'+10*i+'px;left:'+10*j+'px;"> </li>'
+        }
+    }
+    /* 声明str储存循环出的标签，再渲染，页面渲染只一次 */
+   oUl[0].innerHTML = str
+    var oLi = oUl[0].querySelectorAll('li');
+    lens = oLi.length;
+
+    for(var j = 0; j<lens;j++){
+        index = j;
+        oLi[index].onmouseover = function(){
+            this.style.backgroundColor = 'transparent';
+        }
+    }
+</script>
+</body>
+</html>
+

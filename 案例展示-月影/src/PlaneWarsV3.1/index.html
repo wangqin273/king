@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>飞机大战-v3.1</title>
+    <style>
+        *{margin: 0; padding:0;border:0;}
+        html,body{background-color: #000}
+        li{
+            list-style: none;
+        }
+        #sky{
+            position: relative;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            text-align: center;
+            color:#fff;
+            width: 360px;
+            height: 640px;
+            margin:50px auto;
+            background: #fff url("image/bg.jpg") repeat-y;
+            background-size: cover;
+            background-position: 0 0;
+            overflow: hidden;
+        }
+        #sky.sky_bg0{
+            background: url("image/bg1.jpg") repeat-y;
+            animation:  bgMove 15s linear infinite  ;
+            -webkit-animation: bgMove 15s linear infinite
+        }
+        #sky.sky_bg1{
+            background: url("image/bg2.jpg") repeat-y;
+            animation:  bgMove 15s linear infinite  ;
+            -webkit-animation: bgMove 15s linear infinite
+        }
+        #sky.sky_bg2{
+            background: url("image/bg3.jpg") repeat-y;
+            animation:  bgMove 15s linear infinite  ;
+            -webkit-animation: bgMove 15s linear infinite
+        }
+        #sky.sky_bg3{
+            background: url("image/bg4.jpg") repeat-y;
+            animation:  bgMove 15s linear infinite  ;
+            -webkit-animation: bgMove 15s linear infinite
+        }
+
+        .title{
+            font-family: "Microsoft yahei", serif;
+            font-size: 32px;
+            font-weight: bold;
+            padding-top: 80px;
+            color: #000;
+            -webkit-animation: colorTwinkle 2s ease-in-out infinite alternate;
+            -moz-animation: colorTwinkle 2s ease-in-out infinite alternate;
+            animation: colorTwinkle 2s ease-in-out infinite alternate;
+             }
+        .degree{
+            width: 200px;
+            margin: 50px auto;;
+
+        }
+        .degree li{
+            padding: 10px;
+            margin-bottom: 50px;
+            cursor: pointer;
+            color: #fff;
+            border-radius: 20px;
+        }
+        .degree li:nth-child(1){
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid #999;
+        }
+        .degree li:nth-child(2){
+            background-color: rgba(0,0,0,0.5);
+            border: 1px solid #aaa;
+        }
+        .degree li:nth-child(3){
+            background-color: rgba(0,0,0,0.7);
+            border: 1px solid #ddd;
+        }
+        .degree li:nth-child(4){
+            background-color: rgba(0,0,0,0.9);
+            border: 1px solid #fff;
+        }
+        .degree li:hover{
+            background-color: #000;
+            color: #52FEFF;
+            border: 1px solid #52FEFF;
+            -webkit-animation: borderTwinkle 2s ease-in-out infinite alternate;
+            -moz-animation: borderTwinkle 2s ease-in-out infinite alternate;
+            animation: borderTwinkle 2s ease-in-out infinite alternate;
+        }
+        .army,.bullet,.enemy,.boom, .score,.over{position: absolute}
+        .tips{
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            position: absolute;
+            background-color: rgba(0,0,0,0.7);
+            width: 100%;
+            height: 40px;
+            line-height: 25px;
+            color: #fff;
+            text-shadow:  0 0 10px rgba(0,0,0,0.5);
+            z-index: 9999;
+            bottom:0;
+            left: 0;
+            cursor: pointer;
+            transition: all 1s;
+            padding: 0 50px;
+            font-size: 14px;
+            text-align: left;
+            overflow: hidden;
+        }
+        .tips h4{
+            font-size: 16px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .tips:hover{
+            padding: 50px;
+            height: 75%;
+        }
+        .score{
+            top:10px;
+            left: 10px;
+            width: 100px;
+            line-height: 30px;
+            background-color: transparent;
+            text-align: left;
+            padding: 0 10px;
+            color: #e33100;
+            font-size: 18px;
+            z-index: 9999;
+        }
+        .over{
+            background-color: rgba(255,255,255,0.5);
+            width: 100%;
+            height: 100%;
+            color: #333;
+            text-shadow:  0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .overTitle{
+           color: #e33100;
+            font-size: 42px;
+            text-align: center;
+            padding: 80px 0  50px 0;
+        }
+
+       .showScore{
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+           	padding: 20px 0 10px 0;
+
+        }
+       .scoreTxt{
+            text-align: center;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+       .scoreTxt span{
+            font-size: 24px;
+            color: #e33100;
+            padding: 0 10px;
+        }
+
+         .scoreText{
+            text-align: center;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+       .reStart{
+            position: absolute;
+            left: 50%;
+            bottom: 80px;
+            width: 200px;
+            padding: 10px;
+            margin-left: -100px;
+            text-align: center;
+
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 20px;
+           color: #e33100;
+            border:2px solid #e33100;
+            background-color: rgba(0,0,0,0.6);
+            -webkit-animation: borderTwinkle 2.5s ease-in-out infinite alternate;
+            -moz-animation: borderTwinkle 2.5s ease-in-out infinite alternate;
+            animation: borderTwinkle 2.5s ease-in-out infinite alternate;
+        }
+       .boss{
+           display: none;
+       }
+        .on .boss{
+            display: block;
+        }
+        .on .overTitle{
+            color: #52FEFF;
+            font-size: 42px;
+            text-align: center;
+            padding: 80px 0 20px 0;
+        }
+
+        .on .scoreTxt span{
+            font-size: 24px;
+            color: #52FEFF;
+            padding: 0 10px;
+        }
+       .on .reStart{
+           color: #52FEFF;
+           border:2px solid #52FEFF;
+           -webkit-animation: bluePulse 2.5s ease-in-out infinite alternate;
+           -moz-animation: bluePulse 2.5s ease-in-out infinite alternate;
+           animation: bluePulse 2.5s ease-in-out infinite alternate;
+        }
+
+        @-webkit-keyframes bluePulse {
+            from {   -webkit-box-shadow: 0 0 9px #333; }
+            50% {  -webkit-box-shadow: 0 0 18px #52FEFF; }
+            to {   -webkit-box-shadow: 0 0 9px #333; }
+        }
+
+        @keyframes borderTwinkle {
+            from {   -webkit-box-shadow: 0 0 20px #333; }
+            50% {   -webkit-box-shadow: 0 0 50px #e33100; }
+            to {   -webkit-box-shadow: 0 0 20px #333; }
+        }
+
+        @keyframes colorTwinkle {
+            from {
+                text-shadow: 0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #fff,
+                0 0 40px #e33100,
+                0 0 60px #e33100,
+                0 0 80px #e33100,
+                0 0 100px #e33100,
+                0 0 120px #e33100;
+            }
+            to {
+                text-shadow: 0 0 0 #fff,
+                0 0 10px #fff,
+                0 0 15px #fff,
+                0 0 20px #e33100,
+                0 0 30px #e33100,
+                0 0 40px #e33100,
+                0 0 50px #e33100,
+                0 0 60px #e33100;
+            }
+        }
+
+        @keyframes bgMove {
+            from { background-position: 0 0  }
+            to { background-position: 0 640px  }
+        }
+    </style>
+</head>
+<body>
+    <div id="sky"></div>
+    <script>
+        var oSky = document.getElementById('sky');
+        var count =[]; // 初始计分
+        init();
+       // 初始化界面
+        function init() {
+            //创建开始界面
+            oSky.className = "";
+            oSky.innerHTML = "";
+            var oTitle = document.createElement('div');
+            oTitle.className = 'title';
+            oTitle.innerHTML = "飞机大战 v3.0";
+            oSky.appendChild(oTitle);
+            var oTips = document.createElement('div');
+            oTips.className = 'tips';
+            oTips.innerHTML = "<h4>游戏规则</h4><div>1.  四种游戏模式 由上到下 难度加大</div><div>2. 选择不同模式进入不同场景地图， 敌军出现速度不同。敌军飞行速度随机。我军发射子弹的速度不同</div><div>3.  军功：<p>击毁1架战斗机计100分，</p><p>击毁1架护卫舰计400分，</p><p>击毁1架母舰计900分</p></div><div>4.  军衔：  <p>军功小于5000为列兵，</p><p>军功大于5000为少尉，</p><p>军功大于10000为少校，</p><p>军功大于50000为少将，</p><p>军功大于100000为上将</p></div>";
+
+            oSky.appendChild(oTips);
+            var oUl = document.createElement('ul');
+            oUl.className = 'degree';
+            oSky.appendChild(oUl);
+            var oLi, i;
+            var degreeTxt = ["丘陵模式", "森林模式", "城市模式", "地狱模式"];
+            for (i = 0; i < 4; i++) {
+                oL = document.createElement('li');
+                oL.innerHTML = degreeTxt[i];
+                oUl.appendChild(oL);
+                oL.index = i;
+                oL.onclick = function () {
+                    start(this.index)
+                }
+            }
+        }
+        // 游戏开始
+        function start(index){
+            oSky.className = "sky_bg"+index;  // 改变oSky的背景（换地形）
+            oSky.innerHTML = "";             // 清空oSky的内容
+            // army(index);                 // 执行生成我军的函数
+            enemyMove(index,army(index));   // 执行生成敌军的函数
+            score();                        // 计分
+        }
+
+        //生成我军+子弹
+        function army(index) {
+            // 创建我军
+            var oArmy = document.createElement('img');
+                oArmy.src = "image/army.png";
+                oArmy.width = 66;
+                oArmy.height = 80;
+                oArmy.className = 'army';
+            // 生成我军飞机的位置固定在底部中间
+            oArmy.style.left = oSky.offsetWidth/2 - oArmy.width/2 + 'px';
+            oArmy.style.top =  oSky.offsetHeight - oArmy.height + 'px';
+            oSky.appendChild(oArmy);
+
+            // 飞机位置的边界
+            var leftMax,leftMin,topMax,topMin;
+            leftMin = -oArmy.width/2;
+            leftMax = oSky.offsetWidth - oArmy.width/2;
+            topMin = 0;
+            topMax = oSky.offsetHeight - oArmy.height/2;
+            var  oSkyLeft = getOffset(oSky).left,oSkyTop = getOffset(oSky).top;
+
+            // 鼠标移动到飞机位置后，飞机跟随鼠标
+            oArmy.onmousemove = function (e) {
+                e=e||window.event;
+                document.onmousemove = function (e) {
+                    var left = e.pageX - oSkyLeft - oArmy.width/2 ,
+                        top = e.pageY  - oArmy.height ;
+                    left = Math.max(left , leftMin);
+                    left = Math.min(left , leftMax);
+                    top = Math.max(top , topMin);
+                    top = Math.min(top , topMax);
+                    oArmy.style.left = left + 'px';
+                    oArmy.style.top = top + 'px';
+                }
+            };
+
+            //  创建子弹
+            //  生成子弹速度
+            var bSpeed = [100 , 150 , 200 , 20];
+            oArmy.bTimer = setInterval(function () {
+                var oBullet = new Image();
+                oBullet.src = "image/bullet.png";
+                oBullet.width = 7;
+                oBullet.height = 15;
+                oBullet.className = "bullet";
+                oBullet.style.left = oArmy.offsetLeft + oArmy.width/2 - oBullet.width/2 + 'px';
+                oBullet.style.top = oArmy.offsetTop - oBullet.height  + 'px';
+                oSky.appendChild(oBullet);
+                function mUp(){
+                    oBullet.style.top = oBullet.offsetTop -10  + 'px';
+                    if ( oBullet.offsetTop <= -oBullet.height/2 ){
+                        oSky.removeChild(oBullet);
+                    }else{
+                        oBullet.parentNode && (oBullet.timer = requestAnimationFrame(mUp));
+                    }
+                }
+                oBullet.timer = requestAnimationFrame(mUp);
+            },bSpeed[index]);
+            return oArmy
+        }
+
+        //生成敌军
+        function enemyMove(index,oArmy) {
+            // 敌军生成时间间隔  不同敌军生成时间不同
+            var eTime = [[500,400,300,200],[2000,1500,1000,500],[5000,4000,3000,2000],[6000,6000,6000,6000] ];
+            //生成战斗机
+            oSky.timer1 = setInterval(function () {
+                enemy(index,oArmy,1,34,34);
+            },eTime[0][index]);
+            //生成中护卫舰
+            oSky.timer2 = setInterval(function () {
+                enemy(index,oArmy,2,46,60);
+            },eTime[1][index]);
+            //生成母舰
+            oSky.timer3 = setInterval(function () {
+                enemy(index,oArmy,3,110,164);
+            },eTime[2][index]);
+
+            // 生成Boss 只出现一次，延迟 多少 毫秒后出现 自己设定 eTime[3] 中的值 60000
+            oSky.timerBoss = setTimeout(function () {
+                enemy(index,oArmy,4,200,200)
+            },eTime[3][index])
+        }
+
+        /* 生成敌军 参数：
+        *   index：游戏模式索引
+        *   oArmy：我军飞机
+        *       n: 数字，敌军编号 敌军生命值 生敌军飞行速度，计分 的根据
+        *       w：敌军宽度
+        *       h: 敌军高度
+        * */
+        function enemy(index,oArmy,n,w,h) {
+            var oEnemy = new Image();
+            oEnemy.src = "image/enemy"+n+".png";
+            oEnemy.width = w;
+            oEnemy.height = h;
+            oEnemy.life = n*n; // 敌军初始生命值
+            oEnemy.className = "enemy";
+            oEnemy.style.top = -oEnemy.height + 'px';
+            oEnemy.style.left = Math.random()*oSky.offsetWidth - oEnemy.width/2 + 'px';
+            oEnemy.speed = Math.random()*4/n+index; // 随机生成 敌军飞行速度 不同模式不同飞机速度区间不同
+
+            // BOSS出现 规定BOSS的下降速度和生命值
+            if(n===4){
+                oEnemy.speed=0.5;
+                oEnemy.life =40;
+            }
+            oSky.appendChild( oEnemy );
+            function mDown(){
+                oEnemy.style.top = oEnemy.offsetTop +  oEnemy.speed  + 'px';
+                if ( oEnemy.offsetTop > oSky.offsetHeight ){
+                    // BOSS 冲入底部同归于尽 我军失,！
+                    if(n===4){
+                        removeAll(oEnemy,oArmy,9);
+                        gameOver()
+                    }else{
+                        oSky.removeChild(oEnemy);
+                    }
+                }else{
+                    // 与子弹的碰撞检测
+                    var aBullet = document.querySelectorAll('.bullet'),
+                        length =aBullet.length,
+                        j;
+                    for ( j = 0; j < length; j++) {
+                        // 遍历所有子弹，碰撞情况
+                        if ( coll(oEnemy , aBullet[j]) ){
+                            // 清除该子弹向上移动的定时器 ，并且移除子弹
+                            cancelAnimationFrame(aBullet[j].timer);
+                            aBullet[j].parentNode && oSky.removeChild(aBullet[j]);
+                            oEnemy.life--;
+                            // BOSS 被击中
+                            if(oEnemy.life===20){
+                                //生成爆炸图片
+                                oEnemy.src = "image/boom"+n+".png";
+                            }else{
+                                // 敌军生命值为0的时候爆炸
+                                if(oEnemy.life===0){
+                                    if(n===4){
+                                        //生成爆炸图片
+                                        createBoom(oEnemy , "1");
+                                        setTimeout(function () {
+                                            removeAll(oEnemy,oArmy,9);
+                                            gameOver()
+                                        },1000);
+
+                                        //计分
+                                        count[0] = count[0]+n*n*100;
+                                        count[n]++;
+                                        document.querySelector('.score').innerHTML = "军功"+count[0];
+
+                                    }else{
+                                        //生成爆炸图片
+                                        createBoom(oEnemy , "1");
+                                        //移除敌军
+                                        oSky.removeChild(oEnemy);
+                                        //计分
+                                        count[0] = count[0]+n*n*100;
+                                        count[n]++;
+                                        document.querySelector('.score').innerHTML = "军功"+count[0];
+                                    }
+                            }
+                            }
+                        }
+                    }
+                    //和我军的碰撞
+                    if ( oArmy.parentNode && coll( oEnemy , oArmy ) ){
+                        removeAll(oEnemy,oArmy,1);
+                        return;
+                    }
+                    oEnemy.parentNode &&   requestAnimationFrame(mDown);
+                }
+
+            }
+            requestAnimationFrame(mDown);
+        }
+        //元素到浏览器窗口的位置
+        function getOffset(obj) {
+            var json = {left : 0, top : 0};
+            while (obj !== document.body){
+                json.left += obj.offsetLeft;
+                json.top += obj.offsetTop;
+                obj = obj.offsetParent;
+            }
+            return json;
+        }
+        //碰撞检测
+        function coll(obj1 , obj2){
+            var T1 = obj1.offsetTop,
+                B1 = T1 + obj1.offsetHeight,
+                L1 = obj1.offsetLeft,
+                R1 = L1 + obj1.offsetWidth;
+
+            var T2 = obj2.offsetTop,
+                B2 = T2 + obj2.offsetHeight,
+                L2 = obj2.offsetLeft,
+                R2 = L2 + obj2.offsetWidth;
+            return !(R1 < L2 || B1 < T2 || L1 > R2 || T1 > B2);
+        }
+
+        //生成爆炸图片
+        function createBoom( obj , i ) {
+            var oBoom = new Image();
+            oBoom.src = "image/boom"+i+".png";
+            oBoom.width = obj.width;
+            oBoom.height = obj.height;
+            oBoom.className = "boom";
+            oBoom.style.top = obj.offsetTop + 'px';
+            oBoom.style.left = obj.offsetLeft + 'px';
+            oSky.appendChild(oBoom);
+            setTimeout(function () {
+                oBoom.parentNode && oSky.removeChild(oBoom);
+                i || gameOver();
+            },i?500:2000);
+        }
+
+        //计分
+        function score(){
+            count =[0,0,0,0,0];
+            var oSpan = document.createElement("span");
+            oSpan.className = "score";
+            oSpan.innerHTML = "军功 "+ count[0] ;
+            oSky.appendChild(oSpan);
+        }
+
+        // 清空所有  BOSS被击杀 或者 我军阵亡 时调用
+        function removeAll(oEnemy,oArmy,k) {
+            clearInterval(oArmy.bTimer); //停止子弹发射
+            clearInterval(oSky.timer1); //停止敌军1生成
+            clearInterval(oSky.timer2); //停止敌军2生成
+            clearInterval(oSky.timer3); //停止敌军3生成
+            clearInterval(oSky.timerBoss); //停止敌军Boss生成
+            //生成爆炸图片
+            createBoom(oEnemy , k);
+            createBoom(oArmy , "");//  内部调用over函数
+            //移除敌军/我军
+            oSky.removeChild(oEnemy);
+            oSky.removeChild(oArmy);
+            //解除鼠标移动事件
+            document.onmousemove = null;
+        }
+
+        //游戏结束
+        function gameOver() {
+            oSky.innerHTML = "";
+            var oDiv = document.createElement("div");
+            oDiv.className = "over";
+            var level="";
+             if(count[0]>100000){
+            	level = "上将";
+            }else if(count[0]>50000){
+				level = "少将";
+             }else if(count[0]>10000){
+				level = "少校";
+             }else if(count[0]>5000){
+				level = "少尉";
+            }else{
+            	level = "列兵";
+            }
+
+            oDiv.innerHTML = "<div class='overTitle'>Game Over</div>" +
+                    "<p class='scoreTxt'>击毁<span>"+ count[1] +"</span> 架战斗机</p>"+
+                    "<p class='scoreTxt'>击毁<span>"+ count[2] +"</span> 架轰炸</p>"+
+                    "<p class='scoreTxt'>击毁<span>"+ count[3]+"</span> 架护卫舰</p>"+
+                    "<p class='scoreTxt boss'><span>成功击毁敌军母舰</span></p>"+
+                    "<p class='showScore'>您的最终军功是：</p>" +
+                    "<p class='scoreTxt'><span>"+ count[0] +"</span> </p>" +
+                   "<p class='scoreTxt'>您的军衔是<span>"+ level+ "</p>";
+
+            // 如果 BOSS被击杀
+            if (count[4]){
+                var overTitle =oDiv.querySelector(".overTitle");
+                oDiv.className = "over on"
+                overTitle.innerHTML="闯关成功"
+            }else {
+                oDiv.className = "over"
+            }
+
+            // 添加 重新开始 按钮
+            var oBtn = document.createElement("div");
+            oBtn.className = "reStart";
+            oBtn.innerHTML = "重新开始";
+            oBtn.onclick = init;
+            oDiv.appendChild(oBtn);
+            oSky.appendChild(oDiv);
+
+        }
+        </script>
+</body>
+</html>

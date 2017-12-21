@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+            li{ list-style-type: none;}
+            #box{
+                position: relative;
+                width: 400px;
+                height: 500px;
+                margin: 100px;
+                border: 1px solid #ddd;
+            }
+            #show{
+                position: relative;
+                width: 400px;
+                height: 400px;
+                background: #dbffed;
+                overflow: hidden;
+            }
+            #pic{
+                display: none;
+                position: absolute;
+                top: 1px;
+                right: -410px;
+                width: 400px;
+                height: 400px;
+            }
+            #show .pic{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+            #show .pic img{
+                width: 100%;
+                height: 100%;
+            }
+            #show .cover{
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 150px;
+                height: 150px;
+                background: url("cover.png");
+                cursor: move;
+            }
+            #tab{
+                width: 100%;
+                height: 100px;
+                overflow: hidden;
+            }
+            #tab ul{
+                width: 2000px;;
+                height: 100%;
+            }
+            #tab ul li{
+                overflow: hidden;
+                position: relative;
+                float: left;
+                width: 50px;
+                height: 50px;
+                border: 2px solid #fff;
+                margin: 23px 13px;
+                cursor: pointer;
+            }
+            #tab ul li.on{
+                border-color: #f60;
+            }
+            #tab ul li img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="box">
+
+            <!--左上中图-->
+            <div id="show">
+                <div class="pic">
+                    <img src="" alt="">
+                    <div class="cover"></div>
+                </div>
+
+            </div>
+
+            <!--右边的大图-->
+            <div id="pic"></div>
+
+            <!--小图-->
+            <div id="tab">
+                <ul>
+                    <li class="on">
+                        <img src="../img/1.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="../img/2.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="../img/3.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="../img/4.jpg" alt="">
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+
+            (function(){
+
+                var $tabLi = $("#tab").find("ul li"),
+                    $pic = $("#pic"),
+                    pW = $pic.width(),
+                    pH = $pic.height(),
+                    $show = $("#show"),
+                    sW = $show.width(),
+                    sH = $show.height(),
+                    $showPic = $show.find(".pic"),
+                    $showImg = $showPic.find("img"),
+                    $cover = $showPic.find(".cover"),
+                    length = $tabLi.length,
+                    liWidth = $tabLi.width(),
+                    propArr = [];
+
+                //设置小图图片的样式
+                $tabLi.each(function (i) {
+                    var $img = $(this).find("img");
+                    var width = $img.width();
+                    width?imgLoad.call($img[0]):($img[0].onload = imgLoad);
+                    function imgLoad() {
+                        var width = $(this).width();
+                        var height = $(this).height();
+                        propArr[i] = width/height;
+                        this[width>height?"width":"height"] = liWidth;
+                        for (var j = 0; j < length; j++)if ( !propArr[j] )return;
+                        afterLoad();//全部length个图片加载完之后才执行
+                    }
+                });
+
+                function afterLoad() {
+
+                    //移入事件
+                    $tabLi.mouseenter(enter.call($tabLi[0]));
+                    function enter() {
+                        var prop = propArr[$(this).index()];
+                        $showPic.width(prop<1?sW*prop:sW);
+                        $showPic.height(prop>1?sH/prop:sH);
+                        $showImg.prop("src" , $(this).find("img").prop("src"));
+                        return enter;
+                    }
+                    
+                    //遮盖层移动事件
+                    $show.hover(function () {
+                        $cover.show();
+                        $pic.show();
+                        var coverW = $cover.width(),
+                            coverH = $cover.height(),
+                            picW = $showPic.width(),
+                            picH = $showPic.height(),
+                            topMax = Math.max(0,picH - coverH),
+                            leftMax = Math.max(0 , picW-coverW),
+                            picTop = $showPic.offset().top,
+                            picLeft = $showPic.offset().left,
+                            src = $showImg.prop("src"),
+                            size = pW*picW/coverW+'px '+pH*picH/coverH+"px";
+                        $(this).mousemove(function (e) {
+                            var x = e.pageX - picLeft,
+                                y = e.pageY - picTop;
+                            var cX = x - coverW/2,
+                                cY = y - coverH/2;
+
+                            cX = Math.max(0,cX);
+                            cX = Math.min(leftMax , cX);
+                            cY = Math.max(0,cY);
+                            cY = Math.min(topMax , cY);
+
+                            $cover.css({
+                                left : cX+'px',
+                                top : cY+'px'
+                            });
+
+                            $pic.css({
+                                backgroundImage : "url("+src+")",
+                                backgorundRepeat : "no-repeat",
+                                backgroundSize : size,
+                                backgroundPosition : -cX*pW/coverW+'px '+ -cY*pH/coverH+"px"
+                            })
+                        });
+                    },function () {
+                        $(this).off("mousemove");
+                        $cover.hide();
+                        $pic.hide();
+                    });
+                }
+            })();
+
+
+
+            /*if ( width > height ){
+                this.width = liWidth;
+            }else if ( width <= height ){
+                this.height = liWidth;
+            }*/
+
+            /*if ( prop === 1 ){
+                $showPic.width(400);
+                $showPic.height(400);
+            }else if ( prop > 1 ){
+                $showPic.width(400);
+                $showPic.height(400/prop);
+            }else{
+                $showPic.height(400);
+                $showPic.width(400*prop);
+            }*/
+
+
+
+
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

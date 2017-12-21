@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圆周运动</title>
+    <style>
+        #box{
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 20px auto;
+            background-color: #f2f2f2;
+        }
+        #dot{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color:rgba(0,0,0,0.5);
+            border-radius: 50%;
+            -webkit-transform: translate(-50%,50%);
+            -moz-transform: translate(-50%,50%);
+            -ms-transform: translate(-50%,50%);
+            -o-transform: translate(-50%,50%);
+            transform:translate(-50%,50%);
+
+        }
+        .rim{
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            display: block;
+            background-color: black;
+            /*border-radius: 50%;*/
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="box">
+        <div id="dot">
+        </div>
+
+    </div>
+
+
+    <script>
+        var oBox = document.getElementById("box");
+        /*
+         * var oDot = document.getElementById("dot");
+         * 注意在定时器外面获取这个画笔 画笔不会沿线滚动
+         *
+         */
+
+        /*
+         *  Math.sin（弧度），Math.cos（弧度）；  一角度 = π/180弧度；
+         *  获取弧线上的x轴 y轴坐标
+         *  console.log( Math.cos(60*Math.PI/180) );
+         */
+
+        //  设置初始角度 半径 原点坐标
+        var degree = 0, r = 100,oX=200,oY=200;
+        //  设置定时器
+        var draw = setInterval(function () {
+            //  在定时器 中获取画笔
+            var oDot = document.getElementById("dot");
+            //  画笔的 x轴 y轴坐标
+            var x = Math.cos(degree*Math.PI/180)*r;
+            var y = Math.sin(degree*Math.PI/180)*r;
+
+            oDot.style.left = oX+x+"px";
+            oDot.style.top = oY+y+"px";
+            // 画过留痕
+            var rim = "<p class='rim' style='left:"+(oX+x)+"px;top:"+(oY+y)+"px;'> </p>";
+            oBox.innerHTML += rim
+            degree++
+            if(degree===360){
+                clearInterval(draw)
+                //画个圈圈诅咒你
+                oBox.innerHTML += "<div style='position: absolute;top: 200px;left:100px; width: 200px; text-align: center'>画个圈圈诅咒你</div> "
+            }
+        },20)
+
+    </script>
+</body>
+</html>

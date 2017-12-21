@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>king</title>
+</head>
+<style>
+    *{margin:0;padding:0;}
+    li,ol,ul{list-style:none;}
+    a{color:#555;text-decoration:none;}
+    a:hover{color:#0380FF;text-decoration:none;}
+    #header{position:fixed;top:0;left:0;z-index:99;display:flex;width:100%;height:100px;background-color:rgba(255,255,255,.3);justify-content:center;align-items:center;}
+    .nav{position:relative;display:flex;box-sizing:border-box;width:100%;height:40px;flex-direction:row;align-items:center;}
+    .nav li{z-index:99;display:flex;margin-right:10px;flex:1;align-items:center;justify-content:center;}
+    .nav li a{padding:0 10px;white-space:nowrap;font-size:18px;}
+    .nav li a.cur{color:#0380FF;}
+    .nav_focus{position:absolute;width:100px;height:40px;border:1px solid #0380FF;border-radius:20px;box-shadow:0 0 10px rgba(0,0,0,.5);}
+    .container{margin-top:100px;}
+    .container>div{height:800px;}
+    #con_1{background-color:#ddf8ff;}
+    #con_2{background-color:#f3ddff;}
+    #con_3{background-color:#75b46f;}
+    #con_4{background-color:#cfe053;}
+    #con_5{background-color:#54ade0;}
+    #footer{position:fixed;bottom:0;left:0;z-index:99;display:flex;width:100%;height:100px;background-color:rgba(255,255,255,.3);justify-content:center;align-items:center;}
+</style>
+<body>
+<!--顶部导航栏-->
+<div  id="header">
+    <ul class="nav">
+        <li><a href="#con_1">Features</a></li>
+        <li><a href="#con_2">Product Center</a></li>
+        <li><a href="#con_3">Showcase</a></li>
+        <li><a href="#con_4">Service & Support</a></li>
+        <li><a href="#con_5">Contact Us</a></li>
+        <div class="nav_focus"></div>
+    </ul>
+</div>
+<!--内容区-->
+<div class="container">
+    <div id="con_1">111111</div>
+    <div id="con_2">22222</div>
+    <div id="con_3">333333</div>
+    <div id="con_4">44444</div>
+    <div id="con_5">55555</div>
+</div>
+<!--底部-->
+<div id="footer">footer</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="./navScroll.js"></script>
+<script>
+    $(function() {
+        // 获取重要节点
+        var $header = $('#header'),
+            $nav = $header.find('.nav'),
+            $nava =$nav.find('li > a'),
+            $navFocus = $nav.find('.nav_focus');
+        navScroll($nav,$nava,$navFocus,'cur');
+    })
+</script>
+
+</body>
+</html>

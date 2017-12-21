@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>移动商城</title>
+<link rel="stylesheet" href="css/swiper.min.css">
+<link rel="stylesheet" href="css/mobilemall.css">
+</head>
+<body>
+<div class="container">
+<header>
+  <form action="" method="get" id="search">
+  </form>
+  <ul class="head_search">
+    <li>
+      <select name="city_select" id="city_select" form="search">
+        <option value="zhz">郑州</option>
+        <option value="chs">长沙</option>
+        <option value="shh" >上海</option>
+        <option value="gzh" selected>乌鲁木齐</option>
+      </select>
+    </li>
+    <li>
+      <input class="search_text" type="search" value=""  form="search" placeholder="请输入商品名、品类、或商圈...">
+      <input type="submit" class="search_sbt"  form="search" value="">
+    </li>
+    <li><a class='scan_qr' href="#"> <img src="images/saoma.png" alt=""> </a></li>
+  </ul>
+</header>
+<div id="wrapper">
+  <div class="scrollper" id="scrollper"> 
+    <!-- Swiper -->
+    <div class="swiper-container" id="swiper_banner">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="images/banner-1.png" /></div>
+        <div class="swiper-slide"><img src="images/banner-2.png" /></div>
+        <div class="swiper-slide"><img src="images/banner-3.png" /></div>
+        <div class="swiper-slide"><img src="images/banner-4.png" /></div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination swiper-pagination-white"></div>
+    </div>
+    <div class="bg_white pad15 clearfix">
+      <div class="swiper-container swiper_col4" id="swiper_server">
+        <ul class="swiper-wrapper ">
+          <li class="swiper-slide"> <a href="#"> <img src="images/banner1.png" alt=""> </a>
+            <p>美食1</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/banner8.png" alt=""> </a>
+            <p>美食2</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/banner3.png" alt=""> </a>
+            <p>美食3</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/banner4.png" alt=""> </a>
+            <p>美食4</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/banner5.png" alt=""> </a>
+            <p>美食5</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/banner5.png" alt=""> </a>
+            <p>美食6</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/banner7.png" alt=""> </a>
+            <p>美食7</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/banner8.png" alt=""> </a>
+            <p>美食8</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/server1.png" alt=""> </a>
+            <p>娱乐1</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/server2.png" alt=""> </a>
+            <p>娱乐2</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/server3.png" alt=""> </a>
+            <p>娱乐3</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/server4.png" alt=""> </a>
+            <p>娱乐4</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/server5.png" alt=""> </a>
+            <p>娱乐5</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/server6.png" alt=""> </a>
+            <p>娱乐6</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/server7.png" alt=""> </a>
+            <p>娱乐7</p>
+          </li>
+          <li class="swiper-slide"> <a href="#"> <img src="images/server8.png" alt=""> </a>
+            <p>娱乐8</p>
+          </li>
+        </ul>
+        <div class="swiper-pagination "></div>
+      </div>
+    </div>
+    <div class="bg_white mt_10  pad15">
+      <ul class="padv15 column_3 clearfix">
+        <li> <span class="tit_tips">免费体验区</span>
+        <li class="font12"> <span>距离开始</span> <i class='  color_blue'>02</i>: <i class='  color_blue'>25</i>: <i class='  color_blue'>59</i> </li>
+        <li class="font12"> <span> 查看更多</span><i class='font14 color_black'>&gt;</i> </li>
+      </ul>
+      <div class="swiper-container swiper_col4" id="swiper_exp">
+        <ul class="swiper-wrapper ">
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-1.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-2.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-3.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class='swiper-slide fl-l t-a-c pad-special2'> <a  href="#"> <img src="images/free-4.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-5.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-6.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-7.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class='swiper-slide fl-l t-a-c'> <a  href="#"> <img src="images/free-8.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-1.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-2.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-3.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class='swiper-slide fl-l t-a-c pad-special2'> <a  href="#"> <img src="images/free-4.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-5.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-6.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+          <li class="swiper-slide"> <a  href="#"> <img src="images/free-7.png" alt=""> </a>
+            <p>冰激凌</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg_white mt_10  pad15">
+      <ul class="padv15 column_3 clearfix">
+        <li> <span class="tit_tips">玖邦尼创富</span>
+        <li class="font12"> <span>邦尼币购物，超值超划算！</span> </li>
+        <li class="font12"> <span> 查看全部</span><i class='font14 color_black'>&gt;</i> </li>
+      </ul>
+      <div class="swiper-container swiper_col4" id="swiper_feature">
+        <ul class="swiper-wrapper ">
+          <li class='swiper-slide bg_1'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-1.png" alt=""> </li>
+          <li class='swiper-slide bg_2'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-2.png" alt=""> </li>
+          <li class='swiper-slide bg_3'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-3.png" alt=""> </li>
+          <li class='swiper-slide bg_4'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-4.png" alt=""> </li>
+          <li class='swiper-slide bg_4'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-8.png" alt=""> </li>
+          <li class='swiper-slide bg_3'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-6.png" alt=""> </li>
+          <li class='swiper-slide bg_2'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-7.png" alt=""> </li>
+          <li class='swiper-slide bg_1'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-8.png" alt=""> </li>
+          <li class='swiper-slide bg_1'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-1.png" alt=""> </li>
+          <li class='swiper-slide bg_2'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-2.png" alt=""> </li>
+          <li class='swiper-slide bg_3'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-3.png" alt=""> </li>
+          <li class='swiper-slide bg_4'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-4.png" alt=""> </li>
+          <li class='swiper-slide bg_4'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-8.png" alt=""> </li>
+          <li class='swiper-slide bg_3'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-6.png" alt=""> </li>
+          <li class='swiper-slide bg_2'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-7.png" alt=""> </li>
+          <li class='swiper-slide bg_1'>
+            <div class="title clearfix"> <span>养生</span> <span>强身保健</span> </div>
+            <img src="images/feature-8.png" alt=""> </li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg_white mt_10  pad15 ">
+      <ul class="padv15   clearfix">
+        <li> <span class="tit_tips">猜你喜欢</span></li>
+       
+      </ul>
+      <div class="favorite_info ">
+        <ul>
+          <li><img src="images/Recommend-1.png" alt=""> </li>
+          <li>
+            <ul class="favorite_txt">
+              <li class="favorite_tit clearfix"> <span class="fl_l">香贝贝蛋糕/蛋挞</span><span class='fl_r color_666'>&lt;1 Km</span></li>
+              <li>【高皇寨花都莲郡小区门向西30米】</li>
+              <li class="clearfix">
+                <p class="fl_l color_red">￥<span class="color_red">49.00</span>元</p>
+                <p class='fl_r'>月销量：<span class=' '>1352</span>份</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li><img src="images/Recommend-2.png" alt=""> </li>
+          <li>
+            <ul class="favorite_txt">
+              <li class="favorite_tit clearfix"> <span class="fl_l">香贝贝蛋糕/蛋挞</span><span class='fl_r color_666'>&lt;1 Km</span></li>
+              <li>【高皇寨花都莲郡小区门向西30米】</li>
+              <li class="clearfix">
+                <p class="fl_l color_red">￥<span class="color_red">49.00</span>元</p>
+                <p class='fl_r'>月销量：<span class=' '>1352</span>份</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li><img src="images/Recommend-3.png" alt=""> </li>
+          <li>
+            <ul class="favorite_txt">
+              <li class="favorite_tit clearfix"> <span class="fl_l">香贝贝蛋糕/蛋挞</span><span class='fl_r color_666'>&lt;1 Km</span></li>
+              <li>【高皇寨花都莲郡小区门向西30米】</li>
+              <li class="clearfix">
+                <p class="fl_l color_red">￥<span class="color_red">49.00</span>元</p>
+                <p class='fl_r'>月销量：<span class=' '>1352</span>份</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="     align_center"> <a class="font16  " href="#">查看全部团购</a> </div>
+    </div>
+  </div>
+  <footer>
+    <ul class="clearfix">
+      <li class="fl_l"> <a href="#"> <img src="images/home.png" alt=""> </a>
+        <p>商城首页</p>
+      </li>
+      <li class="fl_l"> <a href="#"> <img src="images/cooperation.png" alt=""> </a>
+        <p>商家合作</p>
+      </li>
+      <li class="fl_l"> <a href="#"> <img src="images/noteread.png" alt=""> </a>
+        <p>订单列表</p>
+      </li>
+      <li class="fl_l"> <a href="#"> <img src="images/user.png" alt=""> </a>
+        <p>会员中心</p>
+      </li>
+    </ul>
+  </footer>
+</div>
+<!-- Iscroll JS --> 
+<script type="text/javascript" src="js/iscroll.js"></script> 
+<script type="text/javascript">
+ window.onload = function() {
+ var myScroll = new IScroll("#wrapper",{
+	mouseWheel: true,           /*鼠标滚轮*/
+    scrollbars: true,           /*滚动条*/
+    fadeScrollbars:false,        /*滚动条淡入淡出 设置此属性为false以便节省资源*/
+    interactiveScrollbars:true,	/*用户是否可以拖动滚动条*/
+	shrinkScrollbars:"scale",	/*滚动超出滚动边界时，是否收缩滚动条。
+								 ‘clip’：裁剪超出的滚动条
+								 ‘scale’: 按比例的收缩滚动*/
+  });
+}
+</script> 
+<!--Banner Swiper JS --> 
+<script src="js/swiper.min.js"></script> 
+<!-- Initialize Swiper --> 
+<script>
+	var swiper = new Swiper('#swiper_banner', {
+		pagination: '.swiper-pagination',
+		paginationClickable: true
+	});
+ var mySwiper = new Swiper('#swiper_server',{
+        pagination: '.swiper-pagination',
+		slidesPerGroup : 4,
+		slidesPerView : 4,
+		slidesPerColumn : 2,
+		slidesPerColumnFill : 'column',
+	})
+	var mySwiper = new Swiper('#swiper_exp',{
+		slidesPerGroup : 1,
+		slidesPerView : 4,
+		slidesPerColumn : 2,
+		slidesPerColumnFill : 'column',
+		autoplay:4000,
+      spaceBetween:5,
+	})
+	var mySwiper = new Swiper('#swiper_feature',{
+		slidesPerGroup : 1,
+		slidesPerView : 4,
+		slidesPerColumn : 2,
+		slidesPerColumnFill : 'column',
+		spaceBetween:5,
+	})
+
+</script>
+</body>
+</html>

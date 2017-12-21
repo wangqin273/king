@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>改变盒子大小</title>
+    <style>
+        *{margin: 0;padding: 0;}
+       #box{
+           position: absolute;
+           left:200px;
+           top:200px;
+            width: 100px;
+            height: 100px;
+            background-color: #99fdff;
+           min-height: 10px;
+           min-width: 10px;
+        }
+        [class^="site"]{
+           position: absolute;
+           width: 100%;
+           height: 100%;
+        }
+        .site_0,.site_1{
+            left:0;
+            height: 4px;
+            background-color: #3ea540;
+            cursor: ns-resize;
+        }
+        .site_0{
+            top:0;
+        }
+        .site_1{
+            bottom:0;
+        }
+        .site_2,.site_3{
+            top:0;
+            width: 4px;
+            background-color: #f60;
+            cursor: ew-resize;
+        }
+        .site_2{
+            left:0;
+        }
+        .site_3{
+            right:0;
+        }
+        .site_4, .site_5{
+            top:0;
+            width: 4px;
+            height: 4px;
+            background-color: #000;
+            cursor: nesw-resize;
+            z-index: 1;
+        }
+        .site_4{
+            left: 0;
+            cursor: nwse-resize;
+        }
+        .site_5{
+            right: 0;
+        }
+        .site_6,.site_7{
+            bottom:0;
+            width: 4px;
+            height: 4px;
+            background-color: #000;
+            cursor: nwse-resize;
+            z-index: 1;
+        }
+        .site_6{
+            left: 0;
+            cursor: nesw-resize;
+        }
+        .site_7{
+            right: 0;
+        }
+    </style>
+
+</head>
+<body>
+<div id="box">
+</div>
+    <script>
+       var oBox = document.getElementById("box");
+
+
+        /***
+        oTop = document.createElement("div");
+        oBottom = oTop.cloneNode(true);
+        oTop.id = "borderTop";
+        oBottom.id = "BorderBottom";
+        oBox.appendChild(oTop);
+        oBox.appendChild(oBottom);
+         ***/
+        // 循环添加个Div
+        for(var i = 0;i<8; i++){
+            addElement(oBox,"div",i);
+
+        }
+        // 封装添加的函数 obj规定在哪个节点下添加，e规定添加什么标签，i用来区分添加标签的类名
+       function addElement(obj,e,i) {
+            el = document.createElement(e);
+            el.className = "site site_"+i;
+            obj.appendChild(el);
+       }
+       //
+       var arrDiv = oBox.querySelectorAll(".site"),
+           length = arrDiv.length;
+
+       for(var i = 0;i<8; i++){
+           resize(i)
+       }
+
+       function resize(i) {
+           arrDiv[i].onmousedown = function (e) {
+               e = e || window.event;
+               var sX = e.clientX; //获取鼠标初始x位置
+               var sY = e.clientY;
+               var sL = oBox.offsetLeft; //获取盒子的初始left
+               var sT = oBox.offsetTop;
+               var sW = oBox.offsetWidth; //获取盒子的初始width
+               var sH = oBox.offsetHeight;
+
+               document.onmousemove = function (e) {
+                   e = e || window.event;
+                   var nX = e.clientX; //获取鼠标当前的X位置
+                   var nY = e.clientY;
+                   var cx = nX - sX; //鼠标位置的变化量
+                   var cy = nY - sY;
+                   var left = sL + cx;// 计算盒子的当前位置 = 初始位置 + 变化量；
+                   var top = sT + cy;
+
+                   if(top<=0){top=0}
+                   if(left<=0){left=0}
+                   switch (i){
+                       case 0:
+                           var height = sH - cy;
+                           oBox.style.top = top + 'px';
+                           oBox.style.height = height + 'px';
+                           break;
+                       case 1:
+                           var height = sH + cy;
+                           oBox.style.height = height + 'px';
+                           break;
+                       case 2:
+                           var width = sW - cx;
+                           oBox.style.left = left + 'px';
+                           oBox.style.width = width + 'px';
+                           break;
+                       case 3:
+                           var width = sW + cx;
+                           oBox.style.width = width + 'px';
+                           break;
+                       case 4:
+                           var width = sW - cx;
+                           var height = sH - cy;
+                           oBox.style.top = top + 'px';
+                           oBox.style.left = left + 'px';
+                           oBox.style.width = width + 'px';
+                           oBox.style.height = height + 'px';
+                           break;
+                       case 5:
+                           var width = sW + cx;
+                           var height = sH - cy;
+                           oBox.style.width = width + 'px';
+                           oBox.style.height = height + 'px';
+                           oBox.style.top = top + 'px';
+                           break;
+                       case 6:
+                           var width = sW - cx;
+                           var height = sH + cy;
+                           oBox.style.left = left + 'px';
+                           oBox.style.width = width + 'px';
+                           oBox.style.height = height + 'px';
+                           break;
+                       case 7:
+                           var width = sW + cx;
+                           var height = sH + cy;
+                           oBox.style.width = width + 'px';
+                           oBox.style.height = height + 'px';
+                           break;
+                   }
+               };
+               document.onmouseup = function () {
+                   document.onmousemove = null;
+               };
+           };
+       }
+
+
+
+
+       /*
+
+              arrDiv[0].onmousedown = function (e) {
+                  e = e || window.event;
+                  var sX = e.clientX; //获取鼠标初始x位置
+                  var sY = e.clientY;
+
+                  var sL = oBox.offsetLeft; //获取盒子的初始left
+                  var sT = oBox.offsetTop;
+
+                  var sW = oBox.offsetWidth; //获取盒子的初始width
+                  var sH = oBox.offsetHeight;
+
+                  var that = this;
+
+                  document.onmousemove = function (e) {
+                      //console.log( "move" );
+                      e = e || window.event;
+
+                      var nX = e.clientX; //获取鼠标当前的X位置
+                      var nY = e.clientY;
+
+                      var cx = nX - sX; //鼠标位置的变化量
+                      var cy = nY - sY;
+
+                      var left = sL + cx;// 计算盒子的当前位置 = 初始位置 + 变化量；
+                      var top = sT + cy;
+
+                      var width = sW + cx;
+                      var height = sH - cy;
+
+                      if(top<=0){top=0}
+                      oBox.style.top = top + 'px';
+                      oBox.style.height = height + 'px';
+
+                  };
+                  document.onmouseup = function () {
+                      document.onmousemove = null;
+                  };
+              };
+
+       */
+
+
+
+
+    </script>
+</body>
+</html>

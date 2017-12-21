@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box1,#box2,#box3,#box4 {
+            position: relative;
+        }
+        #box1 div, #box2 div, #box3 div, #box4 div{
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            border:1px solid #03d7f4;
+            background: #d4f1ff;
+            padding:0 10px;
+            color: #000;
+            box-sizing: border-box;
+            position: absolute;
+            white-space: nowrap ;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box1"></div>
+<div id="box2"></div>
+<div id="box3"></div>
+<div id="box4"></div>
+<script type="text/javascript">
+    var i,
+        k,
+        oBox1 = document.getElementById('box1'),
+        oBox2 = document.getElementById('box2'),
+        oBox3 = document.getElementById('box3'),
+        oBox4 = document.getElementById('box4'),
+        lens = 9;
+        // 设置wLens和hLens是为了合并边框
+        wLens = 99,
+        hLens = 39;
+    oBox1.style.height=lens*40+'px';
+    oBox2.style.height=lens*40+'px';
+    oBox3.style.height=lens*40+'px';
+    oBox4.style.height=lens*40+'px';
+    for (i=1;i<=lens;i++) {
+        for (k=1;k<=i;k++) {
+            var aLeft = wLens*(k-1),
+                aTop  = hLens*i,
+                bLeft = wLens*(i-k),
+                bTop  = hLens*(k),
+                cLeft = wLens*(lens-i),
+                cTop  = hLens*k,
+                dLeft = wLens*(lens-i),
+                dTop  = hLens*(lens+1-k);
+            oBox1.innerHTML += '<div style="left:'+aLeft+'px;top:'+aTop+'px">'+i+'×'+k+' = '+i*k+'</div>';
+            oBox2.innerHTML += '<div style="left:'+bLeft+'px;top:'+bTop+'px">'+k+'×'+i+' = '+i*k+'</div>';
+            oBox3.innerHTML += '<div style="left:'+cLeft+'px;top:'+cTop+'px">'+i+'×'+k+' = '+i*k+'</div>';
+            oBox4.innerHTML += '<div style="left:'+dLeft+'px;top:'+dTop+'px">'+i+'×'+k+' = '+i*k+'</div>';
+        }
+       }
+</script>
+</body>
+</html>
+
