@@ -1,0 +1,91 @@
+.profile_box{
+    padding: 60px;
+}
+.profile_box_title{
+    font-size: 20px;
+    color: #000000;
+    padding-bottom: 50px;
+}
+
+.profile_list{
+    font-size: 16px;
+}
+.profile_list >li{
+    height: 80px;
+}
+
+.profile_title{
+    width: 120px;
+    height: 35px;
+    line-height: 35px;
+    color: #000000;
+}
+.profile_info{
+    position: relative;
+    height: 35px;
+    line-height: 35px;
+    color: #333;
+    align-items: center;
+    cursor: pointer;
+}
+.profile_info > span{
+    height: 35px;
+}
+.profile_info input{
+    font-size: 16px;
+    color: #333;
+    padding: 5px;
+}
+.btn_edit{
+    color: #115AD5;
+    padding: 0 10px;
+    align-items: center;
+}
+.ico_edit{
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+}
+.profile_tips{
+    height: 30px;
+    padding-top: 6px;
+    font-size: 12px;
+    color: #F92A29;
+}
+
+.select_box{
+
+    width: 335px;
+    padding: 0 20px;
+    height: 35px;
+    border: 1px solid #D7D7D7;
+    border-radius: 2px;
+    align-items: center;
+    justify-content: space-between;
+}
+.arrow_select{
+    width: 12px;
+    height: 7px;
+}
+
+.option_box{
+    /*padding: 5px 0;*/
+    position: absolute;
+    top:35px;
+    left:0px;
+    /*width: 100%;*/
+    width: 335px;
+    border: 1px solid #D7D7D7;
+    border-top: none;
+    background-color: #fff;
+    z-index: 999;
+}
+.option_box li{
+    padding: 5px 20px;
+    cursor: pointer;
+}
+.option_box li:hover{
+    background-color:#f5f5f5 ;
+    color: #1F91F1;
+}
+

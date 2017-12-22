@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>个人资料</title>
+</head>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/my_profile.css">
+<body>
+<div class="vueBox" @click="hideSelect">
+    <div class="mt_20 container">
+        <div class="profile_box flex_column container bg_white">
+            <div class="profile_box_title">
+                账号基本信息
+            </div>
+            <ul class="profile_list flex_column">
+                <li>
+                    <div class="profile_title">
+                        手机号：
+                    </div>
+                    <div class="flex_column">
+                        <div class="profile_info">
+                            <span v-show="!mobileEdit" v-text="user.mobile"> </span>
+                            <input v-show="mobileEdit" type="number" value="" maxlength="11"  v-model="user.mobile">
+                            <a class="btn_edit" @click.stop="editmobile">
+                                <span v-text="mobileEdit?'保存':'修改'"></span>
+                                <img  v-show="!mobileEdit" class="ico_edit" src="images/ico_edit.png" alt="">
+                            </a>
+                        </div>
+                        <div class="profile_tips">
+                            <transition name="fade">
+                                <span v-show="mobileEdit">  *限制11位手机号</span>
+                            </transition>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="profile_title">
+                        用户昵称：
+                    </div>
+                    <div class="flex_column">
+                        <div class="profile_info" >
+                            <span v-show="!id_nameEdit" v-text="user.id_name"> </span>
+                            <input v-show="id_nameEdit" type="text" value="" maxlength="18" v-model="user.id_name">
+                            <a class="btn_edit" @click.stop="editid_name">
+                                <span v-text="id_nameEdit?'保存':'修改'"></span>
+                                <img  v-show="!id_nameEdit" class="ico_edit" src="images/ico_edit.png" alt="">
+                            </a>
+                        </div>
+                        <div class="profile_tips">
+                            <transition name="fade">
+                                 <span v-show="id_nameEdit"> *限制18个字</span>
+                            </transition>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="profile_title">
+                        身份证：
+                    </div>
+                    <div class="flex_column">
+                        <div class="profile_info">
+                            <span v-show="!id_noEdit" v-text="user.id_no"> </span>
+                            <input v-show="id_noEdit" type="text" maxlength="18"  value="" v-model="user.id_no">
+                            <a class="btn_edit" @click.stop="editid_no">
+                                <span v-text="id_noEdit?'保存':'修改'"></span>
+                                <img  v-show="!id_noEdit" class="ico_edit" src="images/ico_edit.png" alt="">
+                            </a>
+                        </div>
+                        <div class="profile_tips" >
+                            <transition name="fade">
+                                <span v-show="id_noEdit"> *限制18位身份证号</span>
+                            </transition>
+                        </div>
+                    </div>
+                </li>
+                <li v-for="(key,index) in myProfile">
+                    <div class="profile_title" v-text="key.title +'：'"> </div>
+                    <div class="flex_column">
+                        <div class="profile_info" >
+                            <div class="select_box" @click.stop="showSelect(index)">
+                                <span v-text="key.value"></span>
+                                <img class="arrow_select" src="images/arrow_select.png" alt="">
+                            </div>
+                            <transition name="fade">
+                                <ul class="option_box flex_column" v-show="key.showOption">
+                                    <li class="option_list" v-for="item in key.dataFiled" :data-val="item"  v-text="item" @click.stop="setSelectVal(index,item)"></li>
+                                </ul>
+                            </transition>
+                        </div>
+
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div> 
+
+    </div>
+
+</div>
+
+<script src="js/vue.min.js" type="text/javascript"></script>
+<script src="js/my_profile.js" type="text/javascript"></script>
+</body>
+</html>
