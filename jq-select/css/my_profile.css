@@ -1,0 +1,71 @@
+.my_profile {
+    margin-top: .2rem;
+}
+
+.select_list {
+    display: -webkit-flex;
+    display: flex;
+    display: -webkit-flex;
+    width: 100%;
+    height: 1rem;
+    border-bottom: 0.01rem solid #D7D7D7;
+    background-color: #fff;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+.select_list span.select_title {
+    margin-left: .3rem;
+    color: #7B7B7B;
+    font-size: .3rem;
+}
+
+.select_area{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-right: .3rem;
+    padding-right: 0.05rem;
+    border: none;
+    background: url(../images/arrow_down_blue.png) right center no-repeat;
+    background-size: .24rem .24rem;
+    color: #999;
+    text-align: right;
+    font-size: .3rem;
+}
+.select_area select{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+.select_value{
+    color: #999;
+    text-align: right;
+    font-size: .3rem;
+    padding-right: .3rem;
+}
+
+
+.select_right {
+    display: -webkit-flex;
+    display: flex;
+    margin-right: .3rem;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+
+.select_right input {
+    width: 4rem;
+    height: .8rem;
+    color: #393939;
+    text-align: right;
+    font-size: .3rem;
+}

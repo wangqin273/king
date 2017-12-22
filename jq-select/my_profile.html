@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的资料</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="css/apple.css">
+	<link rel="stylesheet" href="css/my_profile.css">
+
+</head>
+<body>
+	<!--title-->
+	<div class="header gradient_bg">
+		<div class="header_logo">
+			<a href="personal.html" class="header_back"></a>
+			<span>我的资料</span>
+		</div>
+	</div>
+	<div class="height_1rem"></div>
+	<!--我的资料-->
+	<div class="my_profile">
+		<div class="select_list">
+			<span class="select_title">姓名</span>
+			<div class="select_right">
+				<input placeholder="请输入" type="text"  maxlength="9">
+			</div>
+		</div>
+		 
+		<div class="select_list">
+			<span class="select_title">职业身份</span>
+			<div class="select_area">
+				<label for="select_work" class="select_value"></label>
+				<select id="select_work">
+					<option value="上班族" selected="selected">上班族</option>
+					<option value="企业主">企业主</option>
+					<option value="自由者">自由者</option>
+					<option value="其他">其他</option>
+				</select>
+			</div>
+		</div>
+		<div class="select_list">
+			<span class="select_title">有无信用卡</span>
+			<div class="select_area">
+				<label for="select_credit" class="select_value"></label>
+				<select id="select_credit">
+					<option value="有" selected="selected">有</option>
+					<option value="没有">没有</option>
+				</select>
+			</div>
+
+		</div>
+		<div class="select_list">
+			<span class="select_title">手机使用时间</span>
+			<div class="select_area">
+				<label for="select_phone" class="select_value"></label>
+				<select id="select_phone">
+					<option value="1-5个月" selected="selected">1-5个月</option>
+					<option value="6个月以上">6个月以上</option>
+				</select>
+			</div>
+		</div>
+        <div class="gradient_btn gradient_bg">
+            <span>保存</span>
+        </div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/index.js"></script>
+	<script>
+        selectArea('.select_area','.select_value')
+	</script>
+
+</body>
+</html>
