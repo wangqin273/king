@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding: 100px;
+        }
+
+        *{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="tj-checkbox">
+    <input id="selectAll" name="selectAll" type="checkbox" ><label class="label" for="selectAll">条件全选</label>
+</div>
+
+<div class="item">
+    <input name="select" type="checkbox" id="s1"><label for="s1">多选1</label>
+    <input name="select" type="checkbox" id="s2"><label for="s2">多选2</label>
+    <input name="select" type="checkbox" id="s3"><label for="s3">多选3</label>
+    <input name="select" type="checkbox" id="s4"><label for="s4">多选4</label>
+    <input name="select" type="checkbox" id="s5"><label for="s5">多选5</label>
+    <input name="select" type="checkbox" id="s6"><label for="s6">多选6</label>
+    <input name="select" type="checkbox" id="s7"><label for="s7">多选7</label>
+
+</div>
+<!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script>
+    var $selectAll = $("#selectAll"),
+        $select = $(".item ").find("input[name=select]"),
+        len = $select.length;
+    $selectAll.click(function () {
+        var checkAll =this.checked;
+        $select.each(function(){
+            this.checked = checkAll;
+        });
+    });
+    $select.click(function () {
+        var checklen = $(".item").find("input[name=select]:checked").length;
+
+        if(checklen < len){
+            $selectAll[0].checked=false;
+        }else{
+            $selectAll[0].checked=true;
+        }
+    })
+
+</script>
+</body>
+</html>
