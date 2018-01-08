@@ -1,0 +1,77 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,li,form,input,button,h1,h2,h3,h4,h5,h6,p{margin: 0 auto;padding:0;font-family:"微软雅黑";}
+ul,li,dl,dt,dd{display:block;list-style:none;}
+a{text-decoration:none;outline:none;}
+.fl{float:left;}
+.fr{float:right;}
+.none{display:none;}
+.loan_jm1{width:94%;margin:0 auto;}
+.loan_jm_spa1{width:39%;height:40px;line-height:40px;font-size:1em;color:#666;display:block;float:left;}
+.loan_jm_l1{margin-top:10px;margin-bottom:15px;height:40px;}
+.wbk_srn{width:57%;height:40px;border:1px solid #ccc;background:#FFF;float:left;padding-left:3%;line-height:40px;color:#ADADAD;
+font-size:1.1em; background-size:45%;background-position:center;background:#fff;}
+.wbk_srn b{width:30px;height:40px;border:1px solid #ccc;background:#FFF;float:left;padding-left:3%;line-height:40px;color:#ADADAD;
+font-size:1.1em;}
+
+/*显示点击是哪个字母*/
+.showLetter{
+    position: fixed;
+    color:#828ddb;
+    width: 48px;
+    height:48px;
+    top:50%;
+    left: 50%;
+    border-radius: 50%;
+    border: #828ddb 1px solid;
+    text-align: center;
+    display: none;
+    margin-top: -24px;
+    margin-left: -24px;
+
+}
+.showLetter span{
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 24px;
+}
+.select_cur{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 96px;
+    background-color: #fff;
+    border-bottom:1px solid #e8ecf1;
+}
+.cur_city{
+    padding: 0 20px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 18px;
+    background-color: #f1f0f4;
+}
+.select_city{
+    padding: 0 20px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 24px;
+    color: #828ddb;
+}
+/*城市弹层*/
+.container{width:100%;margin-top: 96px}
+.letter{width:auto;position:fixed;top:10%;padding:5px;right:0;border-radius:10px 0 0 10px;text-align:center;background-color: #f1f0f4;}
+.letter ul{list-style-type:none;}
+.letter ul li a{text-decoration:none;color:#828ddb;font-size: 18px}
+.city{width:100%;overflow:hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;}
+.city-list{width:100%;}
+.city-list .city-letter{font-size:20px;display:inline-block;padding:15px 15px 5px 15px;border-bottom:1px solid #e8ecf1;width:100%;background-color: #f2f2f2; color:#828ddb;}
+.city-list p{color:#afafaf;width:100%;height:48px;padding:0 15px;line-height:48px;border-bottom:1px solid #e8ecf1;cursor:pointer;}
+.UISelect{margin-top:5px}
+
+.city-list p.unknown{
+    border-bottom:none;
+}
