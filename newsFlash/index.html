@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>蚂蚁期货快讯</title>
+   <link href="css/mui.min.css" rel="stylesheet"/> 
+   <link href="css/news.css" rel="stylesheet"/> 
+</head>
+<body>
+	<div class="vuebox">
+        <div v-show="!showNews">
+            <!--图文列表-->
+            <header class="mui-bar mui-bar-nav">
+                <h1 class="mui-title">蚂蚁期货快讯</h1>
+            </header>
+            <div class="mui-content">
+                <ul class="mui-table-view">
+                    <li class="mui-table-view-cell mui-media" v-for="(item,index) in newsList" @click="showNewsInfo(index)">
+                        <a class="mui-navigate-right">
+                            <img class="mui-media-object mui-pull-left" :src="item.ico" v-if="item.ico">
+                            <div class="mui-media-body">
+                                <div class="mui-ellipsis news_tit" v-text="item.tit"></div>
+                                <p class="mui-ellipsis" v-text="item.time"> <span v-text="item.from"></span></p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div v-show="showNews">
+            <!--详情页-->
+            <header class="mui-bar mui-bar-nav">
+                <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"  @click="showList"></a>
+                <h1 class="mui-title" v-text="newsInfo.tit"></h1>
+            </header>
+           <div class="mui-content news_content">
+                <div class="news_title" v-text="newsInfo.tit"></div>
+                <div class="news_time" v-text="newsInfo.time"> <span class="news_from" v-text="newsInfo.from"></span></div>
+                <div class="news_main" v-html="newsInfo.content"> </div>
+                <div class="news_footer" v-text="proName">  </div>
+            </div>
+        </div>
+
+    </div>
+     <script src="js/mui.min.js"></script>
+     <script src="js/vue.min.js"></script>
+     <script src="js/vue-resource.min.js"></script>
+	  <script src="js/index.js"> </script>
+</body>
+</html>
