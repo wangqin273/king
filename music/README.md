@@ -17,4 +17,5 @@
 6. Js基础知识运用 
 
 # 演示地址：
-http://www.intizar.cc/mp3/
+<a href="http://www.intizar.cc/mp3/">http://www.intizar.cc/mp3/</a>
+
