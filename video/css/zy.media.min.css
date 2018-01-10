@@ -1,0 +1,184 @@
+html,body {font-size:calc( 100vw / 7.5 )}
+.zy_media {
+    position: relative;
+    background: #000;
+}
+.zy_media video,.zy_media audio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+}
+.zy_fullscreen {
+    overflow: hidden;
+}
+
+.zy_fullscreen .zy_media {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.zy_fullscreen .zy_wrap,.zy_fullscreen video {
+    width: 100%;
+    height: 100%;
+}
+
+.zy_controls {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: -webkit-box;
+    display: box;
+    display: -webkit-flex;
+    display: flex;
+    height: 0.88rem;
+    background: rgba(0,0,0,.55);
+    -webkit-transition: bottom .5s;
+    transition: bottom .5s;
+}
+
+.zy_playpause_btn {
+    position: relative;
+    margin-right: 0.08rem;
+    padding: 0.26rem 0 0 0.28rem;
+    width: 0.52rem;
+    height: 0.6rem;
+}
+
+.zy_play::before {
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent transparent #cbcbcb;
+    border-style: solid;
+    border-width: 0.16rem 0.24rem;
+    content: '';
+}
+
+.zy_pause::before,.zy_pause::after {
+    position: absolute;
+    top:  0.26rem;
+    left:  0.28rem;
+    width: 0.06rem;
+    height:  0.28rem;
+    background: #cbcbcb;
+    content: '';
+}
+
+.zy_pause::after {
+    left: 0.44rem;
+}
+
+.zy_timeline {
+    margin-right: 0.2rem;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.zy_timeline_slider {
+    position: relative;
+    top: 0.42rem;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #D8D8D8;
+}
+
+.zy_timeline_buffering {
+    position: absolute;
+    top: -0.14rem;
+    width: 100%;
+    height: 0.3rem;
+    background-image: -webkit-gradient(linear,0 100%,100% 0,color-stop(.25,rgba(255,255,255,.15)),color-stop(.25,transparent),color-stop(.5,transparent),color-stop(.5,rgba(255,255,255,.15)),color-stop(.75,rgba(255,255,255,.15)),color-stop(.75,transparent),to(transparent));
+    background-image: -webkit-linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    background-image: linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    background-size: 0.3rem 0.3rem;
+    -webkit-background-size: 0.3rem 0.3rem;
+    -webkit-animation: ani_buffering 2s linear infinite;
+    animation: ani_buffering 2s linear infinite;
+}
+
+@-webkit-keyframes ani_buffering {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0.6rem 0;
+    }
+}
+
+@keyframes ani_buffering {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0.6rem 0;
+    }
+}
+
+.zy_timeline_loaded {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 0;
+    height: 0.02rem;
+    background: #e5e5e5;
+}
+
+.zy_timeline_current {
+    position: relative;
+    z-index: 2;
+    width: 0;
+    height:0.02rem;
+    background: #01C5AD;
+}
+
+.zy_timeline_handle {
+    position: absolute;
+    top: -0.1rem;
+    left: -0.1rem;
+    z-index: 3;
+    width: 0.24rem;
+    height: 0.24rem;;
+    border-radius: 50%;
+    background-image: url(../img/video_dot.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.zy_time {
+    margin-right: 0.1rem;
+    width: auto;
+    height: 0.88rem;
+    color: #999;
+    text-align: center;
+    font-size: 0.24rem;
+    line-height: 0.88rem;
+}
+
+.zy_time .zy_currenttime {
+    color: #e5e5e5;
+}
+.zy_fullscreen_btn{
+    width:0.78rem;
+    height:0.88rem;
+    background-image: url(../img/zy_fullscreen.png);
+    background-repeat:no-repeat;
+    background-position:center;
+    -webkit-background-size:0.32rem;
+    background-size:0.32rem
+}
+.zy_unfullscreen{
+    background-image: url(../img/zy_unfullscreen.png);
+}
+
