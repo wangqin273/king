@@ -16,6 +16,4 @@
 5. JQ动画及jquery.rotate旋转动画插件 
 6. Js基础知识运用 
 
-# 演示地址：
-<a href="http://www.intizar.cc/mp3/" target="_blank">http://www.intizar.cc/mp3/</a>
 
