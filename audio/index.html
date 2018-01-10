@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=eage,chrome=1"/>
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title></title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+</head>
+<body>
+<audio src="http://other.web.ra01.sycdn.kuwo.cn/resource/n3/192/19/57/297064714.mp3" controls></audio>
+<audio src="http://other.web.rf01.sycdn.kuwo.cn/resource/n2/66/79/3849065227.mp3" controls></audio>
+<audio src="http://other.web.rb01.sycdn.kuwo.cn/resource/n3/28/23/4233584092.mp3" controls></audio>
+<audio src="http://other.web.ra01.sycdn.kuwo.cn/resource/n2/192/11/54/2132876119.mp3" controls></audio>
+
+<script type="text/javascript">
+    // 获取所有audios
+    var audios = document.getElementsByTagName("audio");
+    // 暂停函数
+    function pauseAll() {
+        var self = this;
+        [].forEach.call(audios, function (i) {
+            // 将audios中其他的audio全部暂停
+            i !== self && i.pause();
+        })
+    }
+    // 给play事件绑定暂停函数
+    [].forEach.call(audios, function (i) {
+        i.addEventListener("play", pauseAll.bind(i));
+    })
+
+</script>
+</body>
+</html>
