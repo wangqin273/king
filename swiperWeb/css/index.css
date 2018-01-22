@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    border: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -76,7 +77,7 @@ a:hover {
 }
 
 .nav li a:hover,.nav li a.cur {
-    color: #fc4a20;
+    color: #f35816;
 }
 
 .nav_focus {
@@ -98,7 +99,6 @@ a:hover {
     min-width: 1200px;
 }
 .banner_img{
-    /*position: absolute;*/
     width: 100%;
     top:0;
     left: 0;
@@ -107,56 +107,79 @@ a:hover {
     position: absolute;
     top:88%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%,0);
     z-index: 999;
-    animation:mymove 2s infinite;
+
 }
 .banner_more:hover{
     opacity:0.8;
-
 }
+.more_move{
+    animation:mymove 1.5s infinite;
+}
+
 @keyframes mymove
 {
-    0% { transform: translateY(0);}
-    50% {transform: translateY(50%);}
-    100% {transform: translateY(0);}
+    0% { transform: translate(-50%,0); opacity: 1}
+    100% {transform: translate(-50%,50%);opacity: 0}
 }
 
 .banner_left{
     position: absolute;
     top:0;
     left: 10%;
-    width: 5%;
-    padding-top: 9.5%;
+    width: 110px;
+    transition: all 1s;
 }
 .banner_left_bg{
     position: absolute;
     top:0;
     width: 100%;
 }
-.banner_left_top{
-    display: block;
-    margin-left: 13%;
-    width: 74%;
-    position: relative;
-}
 .banner_left_download{
-    width: 100%;
+    position: relative;
+    margin-top: 210px;
+    transition: all 1s;
+}
+.banner_left_top{
+    margin-left: 15px;
+    margin-bottom: 10px;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    background-image: url("../images/banner_left_download_bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    transition: all 1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.banner_left_top:hover{
+    /*transform:scale(1.1,1.1);*/
 }
 .banner_left_text{
-    position: absolute;
-    width: 100%;
-    top:5px;
-    font-size: 12px;
     color: #FFFFFF;
-    text-align: center;
+    white-space: nowrap;
 }
-.banner_left_text img{
-    width: 20px;
+.banner_left_txt{
+    color: #aaa;
+    white-space: nowrap;
+}
+.fz12{
+     font-size: 12px;
+ }
+.fz14{
+    font-size: 14px;
 }
 
-
-
+.banner_left_ios{
+     opacity: 0.7;
+    margin-bottom: 5px;
+}
 
 
 #footer {
@@ -207,8 +230,6 @@ a:hover {
     display: none;
 }
 
-
-
 .swiper-slide{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -222,11 +243,24 @@ a:hover {
     .swiperTab{
         top:78%;
     }
-}
+    .banner_left{
+        width: 100px;
+    }
+    .banner_left_download{
+        position: relative;
+        margin-top: 185px;
+    }
+    .banner_left_top{
+        width: 76px;
+        height: 76px;
+        margin-left: 12px;
+    }
+    }
 @media only screen and (max-width: 1280px) {
     .swiperTab{
         top:75%;
     }
+
 }
 
 .about_box{
@@ -249,7 +283,6 @@ a:hover {
     right:5%;
 }
 .menu_top{
-
     position: absolute;
     width: 100%;
     text-align: center;
