@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>邀请卡</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no"/>
+    <style>
+        body,div,a,p,img {
+            margin:0;
+            padding:0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        html,body {width:100%;}
+        html {
+            font-size:calc(100vw / 7.5);
+            background-image: linear-gradient(-180deg, #323232 0%, #323232 99%);
+        }
+        /*****推广页******/
+
+        .vueBox{
+
+            position: relative;
+            width: 100%;
+            /*height: 100%;*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+
+        }
+        .card_box{
+            position: relative;
+            width: 6.4rem;
+            height: 11rem;
+            background-color: #4F4F4F;
+            border-radius: 10px;
+            box-shadow: 0 0 60px rgba(0,0,0,1);
+            padding: 0.4rem;
+        }
+        .card_box_pic{
+            height: 10.24rem;
+            width: 5.6rem;
+            border-radius: 10px;
+        }
+
+        .card_bg{
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width:5.6rem;
+            position:absolute;
+            top:0.4rem;
+            left: 0.4rem;
+        }
+        .banner{
+            position: relative;
+            background-color: red;
+            width: 100%;
+            height: 3rem;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+        }
+        .banner_img{
+            width: 100%;
+            height: 3rem;
+        }
+        .user_box{
+            position: relative;
+            width:100%;
+            text-align: center;
+            padding-top: 0.4rem;
+        }
+        .user_icon{
+            position: absolute;
+            left: 50%;
+            top:-0.4rem;
+            margin-left: -0.4rem;
+            width: 0.8rem;
+            height: 0.8rem;
+            border-radius: 50%;
+        }
+        .user_avatar{
+            position: absolute;
+            left: 0;
+            top:0;
+            width: 0.8rem;
+            height: 0.8rem;
+            border-radius: 50%;
+        }
+        .user_name{
+            position: relative;
+            font-size: 0.28rem;
+            color: #2E2528;
+        }
+        .user_info{
+            position: relative;
+            font-size: 0.24rem;
+            color: #666666;
+        }
+        .book_box{
+            position: relative;
+            width: 100%;
+            height: 2rem;
+            margin-top: 1.6rem;
+            padding: 0 0.7rem;
+        }
+        .book_tit{
+            position: relative;
+            font-size: 0.28rem;
+            color: #2E2528;
+
+        }
+        .book_inf{
+            padding-top: 0.06rem;
+            position: relative;
+            font-size: 0.24rem;
+            color: #666666;
+            height: 0.72rem;
+            line-height: 0.32rem;
+            overflow : hidden;
+            text-overflow: ellipsis;
+            /*display: -webkit-box;*/
+            /*-webkit-line-clamp: 2;*/
+            /*-webkit-box-orient: vertical;*/
+        }
+        .book_time{
+            font-size: 0.24rem;
+            color: #FF6C00;
+            padding-top: 0.06rem;
+        }
+        .qrcode_box{
+            position: relative;
+            width: 100%;
+            height: 1.9rem;
+            padding: 0 0.7rem;
+        }
+
+        .qrcode_box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .qr_left{
+            width: 1.46rem;
+            height: 1.46rem;
+            border: 0.04rem solid #444444;
+            border-radius: 0.08rem;
+            margin-right:0.75rem ;
+        }
+        .qr_img{
+            width: 1.16rem;
+            height: 1.16rem;
+            margin-top: 0.1rem;
+            margin-left: 0.1rem;
+            border-radius: 0.06rem;
+        }
+        .qr_right{
+            width: 1.4rem;
+            height: 1.4rem;
+        }
+        .finger_img{
+            width: 1.4rem;
+            height: 1.4rem;
+        }
+        .ico_tips{
+            position: absolute;
+            top:-0.7rem;
+            right:0;
+            width: 2.96rem;
+            height: 0.94rem;
+        }
+        .footer{
+            position: relative;
+            font-size: 0.24rem;
+            color: #666666;
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 320px), only screen and (max-device-width:320px) {
+
+            .card_box{
+                width: 6.6em;
+                height: 11.4rem;
+            }
+            .card_box_pic{
+                width: 5.8em;
+                height: 10.6rem;
+            }
+            .card_bg{
+                width: 5.8em;
+            }
+            .book_box{
+                margin-top:1.7rem;
+                margin-bottom: 0.2rem;
+            }
+            .book_inf{
+                height: 0.68rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="vueBox">
+    <div class="card_box">
+        <div class="card_box_pic" id="screenshots">
+            <img class="card_bg" src="images/card_bg.png" alt="">
+            <div class="banner">
+                <img class="banner_img" src="images/banner.jpg" alt="">
+            </div>
+            <div class="user_box">
+                <div class="user_icon">
+                    <img class="user_avatar" src="images/banner.jpg" alt="">
+                </div>
+                <div class="user_name">小美</div>
+                <div class="user_info">给你推荐一节好课</div>
+            </div>
+            <div class="book_box">
+                <div class="book_tit">小嘟嘟教授：</div>
+                <div class="book_inf">【视频课】林志玲、马苏造型师:20节课教你穿出优势，用美赢得机会用美赢得机会用美赢得机会</div>
+                <div class="book_time">时间： 12月3号9:00开课</div>
+            </div>
+            <div class="qrcode_box">
+                <div class="qr_left">
+                    <img class="qr_img" src="images/banner.jpg" alt="">
+                </div>
+                <div class="qr_right">
+                    <img class="finger_img" src="images/finger.png" alt="">
+                </div>
+            </div>
+            <div class="footer">长按图片识别二维码查看课程</div>
+            <img  class="ico_tips" src="images/ico_tips.png" alt="">
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/html2canvas.min.js"></script>
+
+<script  type="text/javascript" >
+    //调用截图方法
+    screenshotsImg()
+    
+    //  封装截图方法
+    function screenshotsImg(){
+        // document.getElementById('ico_tips').style.visibility='hidden'
+        // document.getElementById('screenshots').style.backgroundColor='transparent'
+        // document.getElementById('screenshots').style.boxShadow='none'
+        html2canvas(document.querySelector("#screenshots"),{
+            backgroundColor: 'transparent',// 设置背景透明
+        }).then(canvas => {
+            // document.body.appendChild(canvas)
+            canvasTurnImg(canvas)
+        });
+    }
+
+    //转换png图片
+    function canvasTurnImg(canvas){
+        // 图片导出为 png 格式
+        var type = 'png';
+        var imgData = canvas.toDataURL(type);
+        /**
+         * 获取mimeType
+         * @param  {String} type the old mime-type
+         * @return the new mime-type
+         */
+        var _fixType = function(type) {
+            type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+            var r = type.match(/png|jpeg|bmp|gif/)[0];
+            return 'image/' + r;
+        };
+
+        // 加工image data，替换mime type
+        imgData = imgData.replace(_fixType(type),'image/octet-stream');
+
+        /**
+         * 在本地进行文件保存
+         * @param  {String} data     要保存到本地的图片数据
+         * @param  {String} filename 文件名
+         */
+        var saveFile = function(data, filename){
+            var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+            save_link.href = data;
+            save_link.download = filename;
+
+            var event = document.createEvent('MouseEvents');
+            event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            save_link.dispatchEvent(event);
+        };
+
+        // 下载后的文件名
+        var filename = 'screenshots_card_' + (new Date()).getTime() + '.' + type;
+        // download
+        saveFile(imgData,filename);
+        // console.log(filename)
+    }
+</script>
+</body>
+</html>
