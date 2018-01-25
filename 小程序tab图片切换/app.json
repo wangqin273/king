@@ -1,0 +1,11 @@
+{
+  "pages":[
+    "pages/homePage/homePage"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#3D98CB",
+    "navigationBarTitleText": "选择",
+    "navigationBarTextStyle":"white"
+  }
+}

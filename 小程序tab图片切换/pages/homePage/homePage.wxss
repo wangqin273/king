@@ -1,0 +1,22 @@
+.box {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 20rpx;
+}
+.box_list{
+	display: flex;
+	flex-direction: column;
+  align-items: center;
+	justify-content: space-around;
+	margin-top: 20rpx;
+}
+.box-image{
+	height: 84rpx;
+	width: 84rpx;
+	margin-bottom: 10rpx;
+}
+.box-text{
+	font-size: 28rpx;
+}

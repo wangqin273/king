@@ -1,0 +1,8 @@
+  <view class='box'>
+    <view  class='box_list' wx:for="{{listInfo}}"  data-current="{{index}}" wx:key="this" bindtap="chooseImg">
+        <image class="box-image" hidden='{{}}' src="{{curIdx===index?item.curUrl:item.imgUrl}}"></image>
+        <text class="box-text">{{item.title}}{{index}}</text>
+    </view>
+  </view>
+ 
+
