@@ -1,0 +1,6 @@
+.circle_box,.circle_draw{
+  position: relative; 
+}
+.circle_bg{
+  position: absolute;   
+}

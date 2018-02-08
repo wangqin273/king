@@ -1,0 +1,11 @@
+
+ <view class="container">
+     <view class='progress_box'>
+        <canvas class="progress_bg"   canvas-id="canvasProgressbg">  </canvas> 
+        <canvas class="progress_canvas"   canvas-id="canvasProgress">  </canvas> 
+        <view class="progress_text">
+            <view class="progress_dot"></view> 
+            <text class='progress_info'> {{progress_txt}}</text>
+        </view>     
+    </view>
+</view>
