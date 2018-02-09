@@ -259,4 +259,4 @@ this.countInterval()
 [3]: https://mp.weixin.qq.com/debug/wxadoc/dev/framework/custom-component/component.html
 [4]: https://mp.weixin.qq.com/debug/wxadoc/dev/framework/custom-component/
 [5]: https://mp.weixin.qq.com/debug/wxadoc/dev/framework/custom-component/
-[6]: /img/bV3Dny
+[6]: https://segmentfault.com/a/1190000013219501
