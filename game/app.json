@@ -1,8 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/matching/matching"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

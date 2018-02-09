@@ -1,3 +1,4 @@
+/* circle.wxss */
 .circle_box,.circle_draw{
   position: relative; 
 }
