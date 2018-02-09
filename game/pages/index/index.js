@@ -16,10 +16,10 @@ Page({
   },
   stepInterval:function(){
     // 设置倒计时 定时器
-  
+    var n = this.data.num / 2
     this.stepTimer = setInterval(() => {
       if (this.data.num >= 0) {
-        this.data.step = this.data.num / 50;
+        this.data.step = this.data.num / n;
         // 绘制彩色圆环进度条
         this.circle.drawCircle('circle_draw', 40, 4, this.data.step)
         if ((/(^[1-9]\d*$)/.test(this.data.num / 10))) {
