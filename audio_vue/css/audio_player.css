@@ -1,0 +1,148 @@
+html, body, div, span, input, audio {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+.vueBox{
+    padding: 20px;
+}
+.audio_box{
+  position: relative;
+  margin-top: 10px;
+}
+.audio_box .check_box,.audio_box .iconfont ,.audio_box .music-nav ,.time_cur,.time_line,.time_long{
+    float: left;
+}
+input[type="checkbox"]{
+    font-family:"iconfont" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+}
+input[type="checkbox"]:before{
+    font-size: 16px;
+    content: "\e686";
+    color: #999;
+    opacity:1;
+}
+input[type="checkbox"]:checked:before{
+    content: "\e685";
+    color: #00A6FF;
+}
+.audio_box .iconfont {
+    margin-top: -5px;
+}
+.audio_box:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.audio_box .music-nav {
+  position: relative;
+  width: 200px;
+  height: 14px;
+}
+.audio_progress {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  -webkit-appearance: none;
+
+}
+.audio_progress input{
+  position: absolute;
+  width: 100%;
+  height: 14px;
+  left: 0;
+  top:0;
+  -webkit-appearance: none;
+  opacity:0;
+  cursor: move;
+}
+
+.audio_progress input::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  background-color: #0d0d0d;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.audio_line{
+  position: absolute;
+  left:0 ;
+  top:50%;
+  margin-top:-1px;
+  width: 100%;
+  height: 2px;
+  background-color: #D8D8D8;
+}
+.audio_blue{
+  position: absolute;
+  left:0 ;
+  top:50%;
+  margin-top:-1px;
+  width: 0;
+  height: 2px;
+  background-color:#00A6FF;
+}
+.audio_dot{
+  position: absolute;
+  top:0;
+  left:0 ;
+  width: 14px;
+  height: 14px;
+  background-color: #00A6FF;
+  border-radius: 50%;
+
+}
+.audio_dot:after{
+  position: absolute;
+  top:4px;
+  left:4px;
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+.time{
+  width:60px;
+  color: #999;
+  font-size: 14px;
+}
+.time_cur{
+  text-align: right;
+  color: #00A6FF
+}
+.time_line{
+  color: #999;
+  padding: 0 5px;
+}
+.audio_box .btn_play:before {
+  font-size: 24px;
+  content: "\e6a5";
+  color: #00A6FF
+}
+.audio_box .btn_pause:before  {
+  font-size: 24px;
+  content: "\e6a4";
+  color: #00A6FF
+}
+
+
+
+
+.all_checked{
+  padding: 10px 0;
+}
+.all_checked input{
+  margin-right: 10px;
+}

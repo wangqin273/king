@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--音频播放器-->
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/audio_player.css">
+</head>
+<body>
+<div class="vueBox">
+
+    <div class="audio_box" v-for="(item,index) in music_list">
+        <!--复选框-->
+        <input type="checkbox" class="check_box" :id="'id'+item.id" :value="item.id" v-model="checkedNames">
+        <label :for="'id'+item.id"></label>
+        <!--播放/暂停按钮-->
+        <div :class="['iconfont',{ 'btn_play': item.isPlay }  ,{'btn_pause': !item.isPlay }]" @click="audioPlay($event,index)"></div>
+        <!--模拟音频进度条-->
+        <div class="music-nav">
+            <!--进度条-->
+            <div class="audio_progress">
+                <span class="audio_line"></span>
+                <span class="audio_blue" :style="{width: item.leftDot+item.wDot + 'px'}"></span>
+                <span class="audio_dot" :style="{left: item.leftDot+ 'px'}"></span>
+                <input type="range" min="0" :max="Math.round(item.duration)" step="0.4"  class="scale" @change="scaleChange($event,index)" >
+            </div>
+            <!--HTML5音频标签 不设置控制属性使其不显示-->
+            <audio class="music" :src="item.voi" >
+                Your browser does not support HTML5 audio.
+            </audio>
+        </div>
+        <!--当前时间-->
+        <div class="time time_cur">{{toTwo(item.currentTime)}}</div>
+        <div class="time_line">/</div>
+        <!--歌曲时长-->
+        <div class="time time_long">{{toTwo(item.duration)}}</div>
+    </div>
+
+    <!--以下是全选测试-->
+    <div class="footer">
+        <div class="all_checked">
+            <input type="checkbox" id="allChecked" :checked="checkedNames.length===music_list.length"  @click="allChecked">
+            <label for="allChecked">全选/全不选</label>
+        </div>
+        <div class="checked_list">
+         已选择的ID {{checkedNames}}
+        </div>
+    </div>
+</div>
+
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-resource.min.js"></script>
+<script src="js/vue.audio.js"></script>
+
+
+</body>
+</html>
