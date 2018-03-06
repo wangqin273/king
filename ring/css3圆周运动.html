@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>精英实验班</title>
+		<meta name="description" content="描述" />
+		<meta name="author" content="潭州教育-阿飞老师" />
+		
+		<style>
+			body{font-family:"Microsoft yahei";}
+			body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+			ol,ul,li{margin:0;padding:0;list-style:none;}
+			img{border:none;}
+			a{text-decoration:none;}
+			
+			#wrap{
+				position:relative;
+				width:500px;
+				height:500px;
+				border:1px solid #bbb;
+				margin: 100px auto;
+			}
+			#wrap .middle{
+				position:absolute;
+				top:0;
+				bottom:0;
+				left:0;
+				right:0;
+				width:350px;
+				height:350px;
+				border-radius:50%;
+				/*background:transparent;*/
+				border: 1px solid #eee;
+				margin:auto;
+			}
+			#wrap .line{
+				position:absolute;
+				top:0;
+				bottom:0;
+				left:0;
+				right:0;
+				width:100px;
+				height:100px;
+				border-radius:50%;
+				background:pink;
+				margin:auto;
+			}
+			#wrap .round{
+				position:absolute;
+				top:100px;
+				left:100px;
+				width:50px;
+				height:50px;
+				border-radius:50%;
+				background:#00ccff;
+				transform-origin:150px 150px; /* 旋转中心 */
+				animation:round 5s linear infinite;
+			}
+			@keyframes round{
+				from{transform:rotate(0deg);}
+				to{transform:rotate(360deg);}
+			}
+		</style>
+	</head>
+	<body>
+		
+		
+		<div id="wrap">
+			<p class="line"></p>
+			<p class="middle"></p>
+
+			<p class="round"></p>
+
+		</div>
+
+
+
+	</body>
+</html>
