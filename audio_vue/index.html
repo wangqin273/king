@@ -21,9 +21,9 @@
             <!--进度条-->
             <div class="audio_progress">
                 <span class="audio_line"></span>
-                <span class="audio_blue" :style="{width: item.leftDot+item.wDot + 'px'}"></span>
+                <span class="audio_blue" :style="{width: item.leftDot + 'px'}"></span>
                 <span class="audio_dot" :style="{left: item.leftDot+ 'px'}"></span>
-                <input type="range" min="0" :max="Math.round(item.duration)" step="0.4"  class="scale" @change="scaleChange($event,index)" >
+                <!--<input type="range" min="0" :max="Math.round(item.duration)" step="0.4"  class="scale" @change="scaleChange($event,index)" >-->
             </div>
             <!--HTML5音频标签 不设置控制属性使其不显示-->
             <audio class="music" :src="item.voi" >
@@ -35,6 +35,9 @@
         <div class="time_line">/</div>
         <!--歌曲时长-->
         <div class="time time_long">{{toTwo(item.duration)}}</div>
+        <div class="time ">{{item.duration}}</div>
+        <div class="time ">{{item.leftDot}}</div>
+        <div class="time ">{{item.currentTime}}</div>
     </div>
 
     <!--以下是全选测试-->
@@ -49,9 +52,10 @@
     </div>
 </div>
 
-
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/vue.min.js"></script>
-<script src="js/vue-resource.min.js"></script>
+<!--<script src="js/vue.min.2.5.13.js"></script>-->
+<!--<script src="js/vue-resource.min.js"></script>-->
 <script src="js/vue.audio.js"></script>
 
 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社——http://www.zhinengshe.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .scroll{
+            margin:100px;
+            width: 500px;
+            height: 5px;
+            background: #ccc;
+            position: relative;
+        }
+        .bar{
+            width: 10px;
+            height: 20px;
+            background: #369;
+            position: absolute;
+            top: -7px;
+            left: 0;
+            cursor: pointer;
+        }
+        .mask{
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #369;
+            width: 0;
+            height: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="scroll" id="scroll">
+    <div class="bar" id="bar"> </div>
+    <div class="mask" id="mask"></div>
+</div>
+<p></p>
+<script>
+    var scroll = document.getElementById('scroll');
+    var bar = document.getElementById('bar');
+    var mask = document.getElementById('mask');
+    var ptxt = document.getElementsByTagName('p')[0];
+    var barleft = 0;
+    bar.onmousedown = function(event){
+        var event = event || window.event;
+        var leftVal = event.clientX - this.offsetLeft;
+        var that = this;
+        // 拖动一定写到 down 里面才可以
+        document.onmousemove = function(event){
+            var event = event || window.event;
+            barleft = event.clientX - leftVal;
+            if(barleft < 0)
+                barleft = 0;
+            else if(barleft > scroll.offsetWidth - bar.offsetWidth)
+                barleft = scroll.offsetWidth - bar.offsetWidth;
+            mask.style.width = barleft +'px' ;
+            that.style.left = barleft + "px";
+            ptxt.innerHTML = "已经走了" + parseInt(barleft/(scroll.offsetWidth-bar.offsetWidth) * 100) + "%";
+
+            //防止选择内容--当拖动鼠标过快时候，弹起鼠标，bar也会移动，修复bug
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+        }
+
+    }
+    document.onmouseup = function(){
+        document.onmousemove = null; //弹起鼠标不做任何操作
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

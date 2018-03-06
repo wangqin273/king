@@ -26,19 +26,28 @@ input[type="checkbox"]{
     -moz-appearance: none;
     appearance: none;
     outline: none;
+    visibility: hidden;
 }
-input[type="checkbox"]:before{
+input[type="checkbox"]+label{
+    float: left;
+    font-family:"iconfont" !important;
+    font-size:16px;
+    font-style:normal;
+    cursor: pointer;
+}
+input[type="checkbox"]+label:before{
     font-size: 16px;
     content: "\e686";
     color: #999;
-    opacity:1;
+    visibility: visible;
 }
-input[type="checkbox"]:checked:before{
+input[type="checkbox"]:checked+label:before{
     content: "\e685";
     color: #00A6FF;
 }
 .audio_box .iconfont {
     margin-top: -5px;
+    cursor: pointer;
 }
 .audio_box:after{
     content: "";
@@ -47,17 +56,16 @@ input[type="checkbox"]:checked:before{
 }
 .audio_box .music-nav {
   position: relative;
-  width: 200px;
+  width: 140px;
   height: 14px;
 }
 .audio_progress {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 14px;
-  -webkit-appearance: none;
 
 }
-.audio_progress input{
+/*.audio_progress input{
   position: absolute;
   width: 100%;
   height: 14px;
@@ -66,6 +74,7 @@ input[type="checkbox"]:checked:before{
   -webkit-appearance: none;
   opacity:0;
   cursor: move;
+    display: none;
 }
 
 .audio_progress input::-webkit-slider-thumb {
@@ -74,7 +83,7 @@ input[type="checkbox"]:checked:before{
   background-color: #0d0d0d;
   -webkit-appearance: none;
   -moz-appearance: none;
-}
+}*/
 .audio_line{
   position: absolute;
   left:0 ;
