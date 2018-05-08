@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>swiperTab-vue</title>
+    <meta name="keywords" content="vue选项卡,vue+css3,swiper选项卡,vue+swiper选项卡,"/>
+    <meta name="author" content="月影(https://segmentfault.com/u/yueying_5930c010d678d)"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="https://cdn.bootcss.com/Swiper/4.2.6/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="vueBox">
+    <ul class="swiperTab">
+        <li v-for="(item,index) in dataList" :class="{'active':curIdx==index}" @click="selectTab(index)">
+            <span v-text="item.title"></span>
+            <span class="border"></span>
+        </li>
+    </ul>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="slide in dataList">
+                <ul class="list">
+                    <li v-for="(item,index) in slide.list">
+                        <img class="user_avatar" :src="item.ico" alt="">
+                       <div class="list_info">
+                           <div class="user_info">
+                               <p class="user_name" v-text="item.name"></p>
+                               <span class="list_time" v-text="item.time"></span>
+                           </div>
+                           <div class="list_reward">
+                               <span v-text="'奖励＋'+item.num"></span>
+                               <img class="icon" :src="slide.icon" alt="">
+                           </div>
+                       </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="js/resize.js"></script>
+<script src="https://cdn.bootcss.com/Swiper/4.2.6/js/swiper.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el: ".vueBox",
+        data: {
+            curIdx:0,
+            dataList:[
+                {
+                    title:'月影',
+                    icon:'images/ico_diamond.png',
+                    list:[
+                        {
+                            ico:'images/ico_qq.png',
+                            name:'月影1号',
+                            time:'2018/4/25',
+                            num:'20',
+                        },
+                        {
+                            ico:'images/ico_qq.png',
+                            name:'月影2号',
+                            time:'2018/4/25',
+                            num:'200',
+                        }
+                    ],
+                },
+                {
+                    title:'秦王',
+                    icon:'images/ico_coin.png',
+                    list:[
+                        {
+                            ico:'images/ico_weiChat.png',
+                            name:'秦王1',
+                            time:'2018/4/25',
+                            num:'210',
+                        },
+                        {
+                            ico:'images/ico_weiChat.png',
+                            name:'秦王2',
+                            time:'2018/4/25',
+                            num:'220',
+                        },
+                        {
+                            ico:'images/ico_weiChat.png',
+                            name:'秦王3',
+                            time:'2018/4/25',
+                            num:'320',
+                        }
+                    ],
+                }
+            ],
+
+
+        },
+        created() {},
+        methods: {
+            selectTab(index){
+                this.curIdx=index;
+                tabSwiper.slideTo(index);/*滑动到对应的滑块*/
+            },
+        },
+    });
+
+    var tabs = document.querySelectorAll('.swiperTab li');
+    /*Swiper实例化*/
+    var tabSwiper = new Swiper('.swiper-container',{
+        initialSlide: vm.curIdx, // 设定初始化时slide的索引
+        effect : 'flip',//切换效果 默认为"slide"，可设置为"fade，cube，coverflow，flip"。
+        speed : 500, //滑动速度，单位ms
+        autoHeight: true, // 高度随内容变化
+        on: {
+            /* Swiper4.x与 Swiper3.x版本中的回调函数有所不同。*/
+            slideChange: function(){
+                /*类数组遍历*/
+                [].forEach.call(tabs, function(tab) {
+                    tab.className = "";
+                });
+                tabs[this.activeIndex].className='active';
+            },
+        },
+    })
+
+
+</script>
+</body>
+</html>
