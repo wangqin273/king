@@ -1,0 +1,28 @@
+
+/* css reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0;border: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;}
+html,body{
+    width: 100%;
+}
+
+.swiper-container{
+    position: relative;
+    width: 100%;
+    height: 300px
+
+}
+.swiper-wrapper{
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide{
+    width: 100%;
+    height: 100%;
+}
+ .swiper-slide img{
+     width: 100%;
+     height: 100%;
+ }

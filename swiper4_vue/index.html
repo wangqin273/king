@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>swiperTab-vue</title>
+    <meta name="keywords" content="vue选项卡,vue+css3,swiper选项卡,vue+swiper选项卡,"/>
+    <meta name="author" content="月影(https://segmentfault.com/u/yueying_5930c010d678d)"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="https://cdn.bootcss.com/Swiper/4.2.6/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="vueBox">
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" v-for="item in bannerImg">
+                <img :src="item.imageUrl" alt="">
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+</div>
+<script src="js/resize.js"></script>
+<script src="https://cdn.bootcss.com/Swiper/4.2.6/js/swiper.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+<script>
+
+    var bannerImg = [
+        {
+            imageUrl: 'images/1.jpg',
+        },
+        {
+            imageUrl: 'images/2.jpg',
+        },
+        {
+            imageUrl: 'images/3.jpg',
+        },
+        {
+            imageUrl: 'images/4.jpg',
+        },
+        {
+            imageUrl: 'images/5.jpg',
+        },
+    ];
+    var vm = new Vue({
+        el: ".vueBox",
+        data: {
+            bannerImg: [],
+        },
+        created() {
+            this.bannerImg = bannerImg;
+        },
+        methods: {},
+    });
+    /*Swiper实例化*/
+    var tabSwiper = new Swiper('.swiper-container', {
+        effect: 'slide',//切换效果 默认为"slide"，可设置为"fade，cube，coverflow，flip"。
+        speed: 500, //滑动速度，单位ms
+        init: false,
+        pagination: {
+            el: '.swiper-pagination',
+        },
+//        autoHeight: true, // 高度随内容变化
+    })
+
+    tabSwiper.init();//现在才初始化
+
+
+</script>
+</body>
+</html>
