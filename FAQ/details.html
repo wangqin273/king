@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="css/apple.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="vueBox">
+    <div class="faq_box">
+        <ul class="faq_list">
+            <li v-for="(faq,index) in showList" @click="showFaq(index)">
+                <div  :class="['faq_q',showIdx==index?'faq_q_show':''] ">
+                    <span v-text="faq.q"></span>
+                    <!--<span class="arrow arrow_down"></span>-->
+                    <span :class="['arrow',showIdx==index?'arrow_up':'arrow_down']"></span>
+                </div>
+                <div :class="['faq_a',showIdx==index?'show':'hide'] ">
+                    <p v-html="faq.a"></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="js/resize.js"></script>
+<script src="js/vue.min.2.5.13.js"></script>
+<script src="js/vue.details.js"></script>
+</body>
+</html>
