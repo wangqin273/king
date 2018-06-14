@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+     <meta name="Anthor" content="月影-253737688" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="vueBox">
+      <div class="count_down" v-show="!clock">
+            <span> 剩余时间： </span>
+            <div class="time">
+                <span v-text="day"></span>
+                <span> 天 </span>
+                <span v-text="hr"></span>
+                <span>:</span>
+                <span v-text="min"></span>
+                <span>:</span>
+                <span v-text="sec"></span>
+            </div>
+        </div>
+</div>
+<script src="js/resize.js"></script>
+<script src="js/vue.min.2.5.13.js"></script>
+<script src="js/countdown.js"></script>
+<script src="js/vue.index.js"></script>
+</body>
+</html>
