@@ -47,56 +47,54 @@
         <tbody>
         <tr>
             <td>1</td>
-            <td>2</td>
+            <td>点我点我点我</td>
             <td>3</td>
             <td>4</td>
             <td>5</td>
         </tr>
         <tr>
             <td>1</td>
-            <td>2</td>
+            <td>点我点我点我</td>
             <td>3</td>
             <td>4</td>
             <td>5</td>
         </tr>
         <tr>
             <td>1</td>
-            <td>2</td>
+            <td>点我点我点我</td>
             <td>3</td>
             <td>4</td>
             <td>5</td>
         </tr>
         </tbody>
     </table>
-
-
 </div>
-
+<p>直接绑定的点击事件，第二行背景变色</p>
+<p>疏忽委托的点击事件，第二行文字变色</p>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
 $(function () {
 
-    /*事件绑定 --on前面的元素必须在页面加载的时候就存在DOM里面*/
-    $('table tbody tr td:nth-child(2)').on('click',function () {
-        $(this).css({
-            color:'red'
-        })
-    });
-
     $('.btn').on('click',function () {
-        var $tr = $("<tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>")
+        var $tr = $("<tr><td>1</td><td>继续点我啊</td><td>3</td><td>4</td><td>5</td></tr>")
         var $tbody = $("table tbody");
         $tbody.append($tr);
     });
 
+
+    /*事件绑定 --on前面的元素必须在页面加载的时候就存在DOM里面*/
+    $('table tbody tr td:nth-child(2)').on('click',function () {
+        $(this).css({
+            backgroundColor:'green'
+        })
+    });
+
     /*事件委托 -- 适用于动态创建的元素*/
-/*
     $('table tbody ').on('click','tr td:nth-child(2)',function () {
         $(this).css({
             color:'red'
         })
     });
-*/
 
 })
 
