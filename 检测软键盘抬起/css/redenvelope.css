@@ -1,0 +1,137 @@
+
+.redenvelope_list{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 6.8rem;
+    background: #FFFFFF;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    border-radius: 0.1rem;
+    font-size:0.32rem;
+    color: #1F3149;
+    padding: 0.24rem;
+    margin: 0.3rem auto 0 auto;
+}
+.can_receive{
+    background: #006BFF;
+    color: #fff;
+    -webkit-box-shadow: 0 0 25px 0 rgba(0,75,179,0.49);
+    -moz-box-shadow: 0 0 25px 0 rgba(0,75,179,0.49);
+    box-shadow: 0 0 25px 0 rgba(0,75,179,0.49);
+}
+.redenvelope_info{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.redenvelope_avatar{
+    width: 1.35rem;
+    height: 1.35rem;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+}
+
+.redenvelope_title{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 3.6rem;
+    padding: 0 0.2rem;
+}
+.redenvelope_nickname{
+    font-size: 0.32rem;
+    color: #1F3149;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.redenvelope_message{
+    font-size: 0.28rem;
+    color: #6D7886;
+    padding: 0.1rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.redenvelope_time{
+    font-size: 0.2rem;
+    color: #6D7886;
+}
+
+.redenvelope_state{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 0.24rem;
+    color: #6D7886;
+}
+.moneybag_receive{
+    width: 0.93rem;
+    height: 0.87rem;
+}
+.moneybag_received{
+    width: 0.8rem;
+    height: 1rem;
+}
+.redenvelope_state span{
+    padding-top: 0.1rem;
+}
+.highlight{
+    color: #FF3300;
+}
+.can_receive .redenvelope_nickname,.can_receive  .redenvelope_state{
+    color: #fff;
+}
+.can_receive .redenvelope_message {
+    color: rgba(255,255,255,0.8);
+}
+.can_receive .redenvelope_time {
+    color: rgba(255,255,255,0.5);
+}

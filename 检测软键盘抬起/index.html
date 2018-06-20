@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>发红包</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<div class="vueBox">
+        <div class="redenvelope_head">
+            <span>发红包</span>
+            <a href="history.html" class="redenvelope_record">记录</a>
+        </div>
+        <div class="redenvelope_list">
+            <div class="redenvelope_title">
+                <img  class="redenvelope_ico" :src="icon_dollar" alt="">
+                <span>总金额</span>
+            </div>
+            <div class="redenvelope_dollar">
+                <input class="redenvelope_input" type="number" placeholder="0.00" v-model.number="dollarvalue" @input="dollarVal">
+                <span>元</span>
+            </div>
+        </div>
+        <div class="redenvelope_tip">最少发送100金币或者以上 </div>
+        <div class="redenvelope_list">
+            <div class="redenvelope_title">
+                <img  class="redenvelope_ico" :src="icon_person" alt="">
+                <span>红包个数</span>
+            </div>
+            <div class="redenvelope_text">
+                <input class="redenvelope_input" type="number" placeholder="填写个数" v-model.number="redenvelopenum" @input="redenvelopeNum">
+                <span>个</span>
+            </div>
+        </div>
+        <div class="redenvelope_tip">请输入3-50个数 </div>
+        <div class="redenvelope_list_megs">
+            <div class="redenvelope_title">
+                <img  class="redenvelope_ico" :src="icon_message" alt="">
+                <span>留言</span>
+            </div>
+            <div class="message_textarea">
+                <textarea v-model="message" placeholder="Happy every day!"  @input="messageChange"></textarea>
+
+            </div>
+            <div class="redenvelope_text wordsnumber">
+                <span v-text="wordsnumber"></span>
+                <span>/50</span>
+            </div>
+        </div>
+
+        <div class="btn_send"  @click="sendRedenvelope">
+            <span>发红包</span>
+        </div>
+        <div class="btn_introduce">
+            <a href="introduce.html" >红包说明</a>
+        </div>
+
+
+        <div class="myfooter" v-show="showFooter">
+            <div class="mydollar_info">
+                <img  class="icon_dollar32" :src="icon_dollar"  alt="">
+                <span class="mydollar" v-text="mydollar"></span>
+            </div>
+            <a class="btn_recharge">
+                <span>充值</span>
+            </a>
+        </div>
+
+        <div class="mask" v-show="notenough"  @click.stop="cancel"></div>
+        <div class="recharge_pop" v-show="notenough">
+            <img  class="icon_dollar132" :src="icon_dollar" alt="">
+            <div class="recharge_tip">
+                <span>您的金币余额不足，请充值后再赠送！</span>
+            </div>
+            <div class="recharge_btn">
+                <a href="#" class="btn_cancel" @click.stop="cancel">
+                    <span>取消</span>
+                </a>
+                <a href="#">
+                    <span>充值</span>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="js/vue.min.2.5.13.js"></script>
+    <script src="js/vue.index.js"></script>
+    <script src="js/resize.js"></script>
+</body>
+</html>
