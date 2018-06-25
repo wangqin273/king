@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>编辑简介</title>
+   <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" title="" rel="stylesheet" />
+    <link title="" href="css/style.css" rel="stylesheet" type="text/css"  />
+  
+</head>
+
+<body>
+<div class="vueBox">
+ 
+<div class="down-main">
+    <div class="container-fluid">
+            <div class="info-center" >
+                <!----content-list---->
+                <div class="content-list" >
+                    <!-------信息列表------->
+                    <div class="row newslist" >
+                        <div class="">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                      <span>编辑简介</span>
+                                </div>
+                                <div class="col-md-12 bg-white edit_box">
+                                    <div class="page-title">
+                                        <h4>课程海报</h4>
+                                    </div>
+                                   <div class="page-body">
+                                       <div class="img-border">
+                                           <div class="img_updata_box">
+                                               <img src="" class="img_banner" id="img_preview">
+                                               <div class="img_tips_cover">
+                                                   <span class="btn-change">重新上传</span>
+                                                   <input type="file" name="img_input_file" class="img_input_file" value="" accept="image/jpg,image/jpeg,image/png,image/bmp"  />
+                                               </div>
+                                           </div>
+                                           <div class="img_updata">
+                                               <img src="img/img_default.png" class="img_default">
+                                               <div class="img_updata_tips">点击上传海报图</div>
+                                               <input type="file" name="img_input_file"  class="img_input_file" value="" accept="image/jpg,image/jpeg,image/png,image/bmp"  />
+                                           </div>
+                                       </div>
+                                       <div class="img_updata_tips">
+                                           请选择一张图片，建议比例16:9，如800*450
+                                       </div>
+                                   </div>
+
+                                    <div class="page-title">
+                                        <h4>课程简介</h4>
+                                    </div>
+
+                                    <div class="page-body">
+
+                                           
+                                             <div class="book_info">
+                                            <div class="book_title">课程分类：</div>
+                                           <select class="form-control w50">
+                                                        <option>理财理财理财理财</option>
+                                                        <option>交友交友交友</option>
+                                                        <option>摄影摄影</option>
+                                                        <option>教育</option>
+                                                    </select>
+                                        </div>
+                                        <div class="book_info">
+                                            <div class="book_title">课程介绍</div>
+                                            <textarea name="" id="" cols=60" rows="6" placeholder="300字符以内"></textarea>
+                                        </div>
+                                   
+
+                                        <div class="book_info">
+                                            <div class="btn btn-default">
+                                                <span>上传简介图片</span>
+                                                <input  type="file" name="img_upfile"  class="img_upfile" value="" accept="image/jpg,image/jpeg,image/png,image/bmp" multiple   @change="fileChange($event)"/>
+                                            </div>
+                                            <ul class="img_updata_tips">
+                                                <li>
+                                                    1、建议把过长的图片截短成多张图片后上传，能提高加载速度和清晰度
+                                                </li>
+                                               <li>  2、建议介绍图采用浅色或白色背景，搭配起来更好看</li>
+                                            </ul>
+                                            <ul class="img_updata_list col-md-12" v-show="imgList.length!=0">
+                                                <li class="col-md-3"  v-for="(item,index) of imgList">
+                                                    <span class="glyphicon glyphicon-remove"  @click="fileDel(index)"> </span>
+
+                                                    <img :src="item.file.src">
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="book_info">
+                                            <a href="#" class="btn btn-danger">提交</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+ 
+</div>
+
+</div>
+
+<script src="js/jquery.min.js" type="text/javascript"></script> 
+
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/imgUp.js"></script> 
+<script type="text/javascript" src="js/vue-imgUp.js"></script>
+<!-- 下拉框美化 -->
+<link href="css/jquery.searchableSelect.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.searchableSelect.js"></script>
+<script type="text/javascript">
+    $(function(){
+       console.log(111)
+        $('select').searchableSelect();
+         
+    });
+    </script>
+</body>
+</html>
