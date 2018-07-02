@@ -1,0 +1,8 @@
+<!--pages/banners/banners.wxml-->
+<view class="banner_box" wx:for="{{banners}}" wx:for-item="banner" wx:for-index="idx">
+  <image   class="banner"  src="{{banner.img}}" data-idx="{{idx}}" catchtap="preview" />
+  <view class="thumbnail_box">
+    <image wx:for="{{banner.imgs}}" data-idx="{{idx}}" data-index="{{index}}" class="thumbnail {{banner.index==index?'cur':''}}" src="{{item}}" catchtap="showBanner" />
+    <text> {{banner.index}}</text>
+  </view>
+</view>

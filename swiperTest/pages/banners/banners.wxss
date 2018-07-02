@@ -1,0 +1,26 @@
+/* pages/banners/banners.wxss */
+.banner_box{
+    width: 100%;
+  display: flex;
+  margin-bottom: 10rpx;
+}
+.banner{
+  width: 80%;
+}
+
+.thumbnail_box{
+    width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+.thumbnail{
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 10rpx;
+   border: 2px solid transparent;
+     margin-bottom: 5rpx;
+}
+.cur{
+  border: 2px solid red;
+}

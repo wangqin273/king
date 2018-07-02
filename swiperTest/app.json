@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/swiper/swiper", 
-    "pages/swiperTemplate/swiperTemplate"
+    "pages/swiper/swiper",
+    "pages/swiperTemplate/swiperTemplate",
+    "pages/banners/banners"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -14,7 +14,19 @@ Page({
             duration: 1000,
             circular: true,
         },
+
+   
+    
     },
+
+    bindChange_select: function (ev) {
+      const curindex = ev.target.dataset.current
+      this.data.objArray[curindex].index = ev.detail.value
+      this.setData({
+        objArray: this.data.objArray
+      })
+    },
+
     bindChange_select: function(ev) {
         const curindex = ev.target.dataset.current
         this.data.objArray[curindex].index = ev.detail.value
