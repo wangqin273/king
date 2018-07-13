@@ -1,0 +1,23 @@
+page {
+    box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.checkbox-group  {
+  box-sizing: border-box; 
+  width: 100%;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+ 
+}
+.all_checked{
+  width: 100%;
+  height: 120rpx;
+  background-color: #f00;
+}
+.checked_list{
+  display: flex;
+  flex-direction: column;
+}

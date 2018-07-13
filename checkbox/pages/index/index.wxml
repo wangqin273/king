@@ -1,0 +1,14 @@
+<checkbox-group class="checkbox-group " bindchange="checkboxChange">
+  <label class="checkbox" wx:for="{{items}}" wx:key="items{{index}}">
+    <checkbox value="{{item.name}}"   checked="{{item.checked}}"/>{{item.value}}
+  </label>
+</checkbox-group>
+
+<label class="checkbox"  catchtap="allChecked">
+    <checkbox value="{{allval}}" checked="{{checkedList.length==items.length}}"/>
+      全选/全不选
+</label>
+
+<view class="checked_list">
+  <text  wx:for="{{checkedList}}"  wx:key="checkedList{{index}}">{{item}}</text>
+</view> 
