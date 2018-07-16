@@ -1,0 +1,138 @@
+/* css reset */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    color: #333;
+    font-family: "微软雅黑";
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 100%;
+}
+
+a {
+    color: #555;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    border: none;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+/*****指引******/
+
+html {
+    font-size: calc(100vw / 7.5);
+    background-color: #ebebeb;
+}
+.opt_guide{
+    position: relative;
+    padding-top: 0.84rem;
+}
+.guide_title{
+
+    display:  -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 100%;
+    height: 1.64rem;
+    background-image: url("../images/title_bg.png");
+    background-repeat: no-repeat;
+    background-size: 4.46rem 0.84rem;
+    background-position: center;
+    color: #ffffff;
+    font-size: 0.36rem;
+    letter-spacing: 1px;
+}
+.guide_process{
+    position: relative;
+    width: 100%;
+    padding:0.24rem 0.24rem 0 0.24rem;
+    background-color: #fff;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: wrap;
+    flex-flow: wrap;
+
+}
+
+.process{
+    position: relative;
+    width: 3.38rem;
+    height: 6rem;
+    margin-bottom: 0.24rem;
+}
+.cur_img{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top:0;
+}
+.process:nth-child(odd){
+    margin-right: 0.26rem;
+}
+
+/*图片预览*/
+
+.swiper-container{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top:0;
+    transform: scale3d(0,0,0);
+    transition:transform 0.5s ;
+}
+.swiper-show{
+    left:0;
+    top:0;
+    transform: scale3d(1,1,1);
+    transition:transform 0.5s ;
+}
+
+.swiper-slide{
+    width: 100%;
+}
+.swiper-slide img{
+    width: 100%;
+}
+.close{
+    width: .6rem;
+    height: .6rem;
+    background-color: rgba(255,255,255,0.9);
+    position: absolute;
+    top:0.2rem;
+    right:0.2rem;
+    z-index: 9999;
+    font-size: 0.48rem;
+    border-radius: 50%;
+    line-height: .6rem;
+    text-align: center;
+
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个股期权操作流程</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta name="format-detection" content="telephone=no"/>
+
+    <link rel="stylesheet" href="css/swiper.min.css" >
+	<link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+	 <div class="vueBox">
+         <div class="opt_guide">
+             <div class="guide_list" v-for="(guide,i) in optGuide">
+                 <div class="guide_title">
+                     <span v-text="guide.tit"></span>
+                 </div>
+                 <div class="guide_process">
+                     <img v-for="(process,j) in guide.process" class="process"  :src="process" alt="" @click="enlarge(i,j)">
+                 </div>
+             </div>
+         </div>
+         <!--图片放大显示  @touchmove.prevent 阻止页面滚动-->
+         <!--<img v-show="curImg" class="cur_img" :src="curImg" alt="" @click="reduce()" @touchmove.prevent>-->
+         <div class="swiper-container"  :class="{'swiper-show':isPreview}"   @touchmove.prevent>
+             <div class="swiper-wrapper">
+                 <div class="swiper-slide" v-for="img in preview">
+                     <img   :src="img" alt=""  >
+                 </div>
+             </div>
+
+             <div class="close" @click="reduce()" >×</div>
+         </div>
+
+	</div>
+
+
+     <script src="js/jquery.min.js"></script>
+     <script src="js/swiper.min.js"></script>
+     <script src="js/swiperTab.js"></script>
+
+     <script src="js/vue.min.2.5.13.js"></script>
+     <script src="js/index.vue.js"></script>
+
+</body>
+</html>
