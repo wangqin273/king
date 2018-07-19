@@ -11,8 +11,10 @@
 <body>
 <div class="vueBox">
       <div class="count_down"  v-if="clock">活动已结束</div>
+
       <div class="count_down"  v-if="!clock">
-            <span> 剩余时间： </span>
+            <span> 距离{{isStart?'活动开始':'活动结束'}} ：</span>
+
             <div class="time">
                 <span v-text="day"></span>
                 <span> 天 </span>

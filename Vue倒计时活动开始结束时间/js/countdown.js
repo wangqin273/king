@@ -1,14 +1,19 @@
 
 function countdown(that,i) {
+    // i是时区 以埃及时间为例，东二区 2
+    var sTime = new Date(that.start_time)|| [] ;
     var EndTime = new Date(that.end_time)|| [] ;
     var localTime = new Date().getTime();
-    var localOffset = new Date().getTimezoneOffset()*60000; //获得当地时间偏移的毫秒数
+    var localOffset=new Date().getTimezoneOffset()*60000; //获得当地时间偏移的毫秒数
     var utc = localTime + localOffset; //utc即GMT时间
-    var offset =i;  // i是时区 以埃及时间为例，东二区 2
+    var offset =i; //埃及时间为例，东2区
         localTime = utc + (3600000*i); 
     var NowTime = new Date(localTime); 
 
-    var total_micro_second = EndTime - NowTime || [];
+    var isStart= sTime - NowTime>0;
+
+    var total_micro_second = isStart ? sTime - NowTime : EndTime - NowTime ;
+      
     // 总秒数
     var second = Math.floor(total_micro_second / 1000);
     // 天数
@@ -36,6 +41,8 @@ function countdown(that,i) {
         that.hr= hr;
         that.min= min;
         that.sec= sec;
+        that.isStart = isStart;
+
 
     setTimeout(function () {
         total_micro_second -= 1000;
