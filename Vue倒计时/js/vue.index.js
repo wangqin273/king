@@ -7,7 +7,7 @@ var vm = new Vue({
         min: '',
         sec: '',
         clock: false,
-        end_time:'2018/07/19 18:00',
+        end_time:'2018/08/19 18:00',
   },
     created:function() {
         countdown(this,3)//调用倒计时

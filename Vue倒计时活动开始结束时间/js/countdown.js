@@ -45,7 +45,7 @@ function countdown(that,i) {
 
 
     setTimeout(function () {
-        total_micro_second -= 1000;
+        // total_micro_second -= 1000;
         countdown(that,i)
     }, 1000)
 }
