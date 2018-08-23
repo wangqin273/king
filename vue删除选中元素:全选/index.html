@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="vueBox">
+    <div class="music_list" v-for="(item,index) in music_list">
+        <input type="checkbox" class="check_box" :id="'id'+item.id" :value="item.id" v-model="checkedNames">
+        <label :for="'id'+item.id" class="title">{{item.tit}}</label>
+    </div>
+    <!--以下是全选测试-->
+    <div class="footer">
+        <div class="all_checked">
+            <input type="checkbox" id="allChecked" :checked="checkedNames.length===music_list.length"
+                   @click="allChecked">
+            <label for="allChecked" class="title">全选/全不选</label>
+        </div>
+        <div class="checked_list">
+            已选择的ID {{checkedNames}}
+        </div>
+    </div>
+    <div class="delete"  @click="deleteMusic">删除</div>
+</div>
+<script src="js/vue.min.js"></script>
+<script src="js/vue.index.js"></script>
+</body>
+</html>

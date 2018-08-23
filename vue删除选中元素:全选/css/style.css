@@ -1,0 +1,59 @@
+/* css reset */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, a, input, button, p,img,span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+.music_list ,.all_checked{
+    position: relative;
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    display: flex;
+
+    align-items: center;
+}
+.title{
+    margin-left: 10px;
+}
+.checked_list {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+.delete{
+    width: 200px;
+    text-align: center;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border:1px solid salmon;
+    margin-left:5px;
+    margin-top: 10px;
+    background-color: salmon;
+    color: #fff;
+}
+.delete:hover{
+    background-color: #fc4a20;
+}
