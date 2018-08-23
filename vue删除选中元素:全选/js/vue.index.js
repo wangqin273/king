@@ -78,8 +78,7 @@ var vm = new Vue({
         deleteMusic:function () {
             var music_list = this.music_list;
             var checkedNames = this.checkedNames;
-            console.log(music_list);
-            console.log(checkedNames);
+            /*循环查找选中项*/
             checkedNames.forEach(function (item,index) {
                 music_list.forEach(function (music,i) {
                     if(music.id==item){
