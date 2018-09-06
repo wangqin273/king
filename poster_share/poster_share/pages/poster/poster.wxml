@@ -1,0 +1,79 @@
+<!--pages/poster_share/poster_share.wxml-->
+<view class="poster_box">
+  <view class="poster_head">
+    <!--轮播图-->
+    <view class='poster_swiper'>
+      <swiper bindchange="shareChange" current="{{current}}" circular="{{circular}}" previous-margin="100rpx" next-margin="100rpx" class="swiper_share">
+        <swiper-item class="swiper_item1">
+          <image class="avatar_url" mode='scaleToFill' src="{{avatar_url}}"></image>
+          <text class="nickname">{{nickname}}的小店</text>
+          <image class="thumb_images" mode='aspectFill' src="{{thumb_images[0]}}"></image>
+          <view class="product_name">
+            <text class="product_name_txt">{{pro_name}}</text>
+          </view>
+          <view class="poster_qr">
+            <view class="poster_qrtext">
+              <view class="product_price">
+                <text class="product_rmb">￥</text>
+                <text>{{pro_price}}</text>
+              </view>
+              <text class="qrcode_text">{{poster_qrtext}}</text>
+            </view>
+            <image class="poster_qrcode" mode='scaleToFill' src="{{poster_qrcode}}"></image>
+          </view>
+        </swiper-item>
+        <swiper-item class="swiper_item2" wx:if="{{thumb_images.length>1}}">
+          <view class="avatar_nickname">
+            <image class="avatar_url" mode='scaleToFill' src="{{avatar_url}}"></image>
+            <text class="nickname">{{nickname}}的小店</text>
+          </view>
+          <view class="product_name">
+            <text class="product_name_txt">{{pro_name}}</text>
+            <view class="product_price">
+              <text class="product_rmb">￥</text>
+              <text>{{pro_price}}</text>
+            </view>
+          </view>
+          <view class="product_thumb">
+            <image class="thumb_images" mode='aspectFill' wx:for="{{thumb_images}}" wx:key="thumb{{index}}" wx:if="{{index<2}}" src="{{item}}"></image>
+          </view>
+          <view class="product_slogan">
+            <text>{{slogan1}}</text>
+            <text>{{slogan2}}</text>
+          </view>
+          <view class="poster_qr">
+            <image class="poster_qrcode" mode='scaleToFill' src="{{poster_qrcode}}"></image>
+            <text class="qrcode_text">{{poster_qrtext}}</text>
+          </view>
+        </swiper-item>
+        <swiper-item class="swiper_item3" wx:if="{{thumb_images.length>2}}">
+          <image class="avatar_url" mode='scaleToFill' src="{{avatar_url}}"></image>
+          <text class="nickname">{{nickname}}的小店</text>
+          <view class="product_images">
+            <view class="product_info">
+              <image class="thumb_images" mode='aspectFill' src="{{thumb_images[0]}}"></image>
+              <view class="product_name">
+                <text class="product_name_txt">{{pro_name}}</text>
+                <view class="product_price">
+                  <text class="product_rmb">￥</text>
+                  <text>{{pro_price}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="product_thumb">
+              <image class="thumb_images" mode='aspectFill' wx:for="{{thumb_images}}" wx:key="thumb{{index}}" wx:if="{{index&&index<3}}" src="{{item}}"></image>
+            </view>
+          </view>
+          <view class="poster_qr">
+            <image class="poster_qrcode" mode='scaleToFill' src="{{poster_qrcode}}"></image>
+            <text class="qrcode_text">{{poster_qrtext}}</text>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+  <view class="common_btn" catchtap="savePoster">
+    <text>保存图片</text>
+  </view>
+</view>
+<canvas class='canvas-poster' canvas-id='canvasposter'></canvas>
