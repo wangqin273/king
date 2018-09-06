@@ -1,6 +1,6 @@
 Page({
   data: {
-  curIdx:null,
+  curIdx:0,
   listInfo:[
       {
           title:'效果一',

@@ -1,8 +1,20 @@
-  <view class='box'>
-    <view  class='box_list' wx:for="{{listInfo}}"  data-current="{{index}}" wx:key="this" bindtap="chooseImg">
-        <image class="box-image" hidden='{{}}' src="{{curIdx===index?item.curUrl:item.imgUrl}}"></image>
-        <text class="box-text">{{item.title}}{{index}}</text>
-    </view>
+<view class='box'>
+  <view class='box_list' wx:for="{{listInfo}}" data-current="{{index}}" wx:key="this" bindtap="chooseImg">
+    <image class="box-image" src="{{curIdx===index?item.curUrl:item.imgUrl}}"></image>
+    <text class="box-text">{{item.title}}{{index}}</text>
   </view>
- 
+</view>
 
+<view class='content'>
+  <view wx:if="{{curIdx==0}}">
+    内容一
+</view>
+
+<view wx:if="{{curIdx==1}}">
+  内容二
+</view>
+
+<view wx:if="{{curIdx==2}}">
+  内容三
+</view>
+</view>

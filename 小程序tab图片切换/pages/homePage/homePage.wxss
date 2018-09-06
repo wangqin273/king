@@ -20,3 +20,7 @@
 .box-text{
 	font-size: 28rpx;
 }
+.content{
+  padding: 30rpx;
+  background-color: #f3f3f3
+}
