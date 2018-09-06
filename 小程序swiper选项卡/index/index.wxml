@@ -1,0 +1,21 @@
+<!-- 导航栏开始 -->
+<view class="swiper-tab">
+  <view wx:for="{{tabs}}" wx:key class="swiper-tab-item {{curIdx==index?'swiper-active':''}}" data-current="{{index}}" catchtap="clickTab">
+    <text>{{item}}</text>
+  </view>
+</view>
+<!-- 内容开始 -->
+<swiper class="swiper_content" current="{{curIdx}}"   bindchange="swiperTab" style='height:{{scrollHeight}}px'>
+  <swiper-item>
+    <scroll-view class="scroll-y" scroll-y style='height:{{scrollHeight}}px' bindscrolltolower="onReachBottom">
+    <view wx:for="{{list}}" wx:key>
+      <text> 内容一{{item}}</text>
+    </view>
+        </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <view wx:for="{{list}}" wx:key>
+      <text> 内容二{{item}}</text>
+    </view>
+  </swiper-item>
+</swiper>

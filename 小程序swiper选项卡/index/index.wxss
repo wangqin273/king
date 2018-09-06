@@ -1,0 +1,25 @@
+/*初始化样式*/
+view, text, navigator, picker, input, button, image, cover-image {
+  display: flex;
+  box-sizing: border-box;
+}
+/* 导航样式*/
+.swiper-tab {
+  position: relative;
+  width: 100%;
+  height: 100rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-tab-item {
+  background-color: #f3f3f3;
+  width: 50%;
+  height: 80rpx;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-active{
+  background-color: rgb(129, 190, 247);
+  color: #fff;
+}
