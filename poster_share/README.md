@@ -1,19 +1,19 @@
 ## 需求概要
  电商项目中需要将自己小店的商品带上自己的小程序码生成海报，保存到本地，然后分享到万能的朋友圈，QQ空间，微博等等来广而告之...
 如下图，三种海报格式轮播展示，左滑右滑切换到海报，点击下面保存图片按钮，将当前海报保存到手机相册
-![clipboard.png](/img/bVbgv8D)
+![图片描述][1]
 ## 思路
 * 需要商品信息，用户信息以及小程序码。
-* 使用[swiper][1]组件展示海报，
-* 将当前展示的海报通过[wx.createCanvasContext][2]绘制到画布[canvas][3]组件。
-* 使用[canvasToTempFilePath][4] 将canvas海报保存到本地临时文件路径；
-* 使用[saveImageToPhotosAlbum][5]将图片保存到本地相册
-* 根据swiper组件的current属性判断当前展示的海报
+* 使用[swiper][2]组件展示海报，
+* 将海报通过[wx.createCanvasContext][3]绘制到画布[canvas][4]组件。
+* 使用[canvasToTempFilePath][5] 将canvas海报保存到本地临时文件路径；
+* 使用[saveImageToPhotosAlbum][6]将图片保存到本地相册
+* 根据swiper组件的current属性判断当前保存的海报
 ## 解决方案
 按照思路逐步实现：
 ### 商品信息，用户信息以及小程序码
 1.商品信息通过导航事件传递到海报页，在此我使用的是模拟数据；
-2.用户信息通过本地存储[wx.setStorageSync][6]  到缓存。 
+2.用户信息通过本地存储[wx.setStorageSync][7]  到缓存。 
 
 ```
     // index.js
@@ -38,8 +38,8 @@
 
 
 3.在海报页面onLoad函数的参数中获取商品信息
-4.在海报页面获取本地缓存中的用户信息[wx.getStorageSync][7]
-5.因为canvas绘制图片不支持跨域图片,所以先使用[getImageInfo][8]将网络图片返回图片的本地路径， 
+4.在海报页面获取本地缓存中的用户信息[wx.getStorageSync][8]
+5.因为canvas绘制图片不支持跨域图片,所以先使用[getImageInfo][9]将网络图片返回图片的本地路径， 
 
 ```
 // poster.js
@@ -96,7 +96,7 @@
                   }
                 })
 ```
-### 使用[swiper][9]组件展示海报
+### 使用[swiper][10]组件展示海报
 在这个项目中我是将页面渲染和canvas绘制分开的，因为小程序单位rpx自动适配各种设备屏幕。而canvas绘制单位是px。我没有做px和rpx之间的计算，保存px单位固定大小的图片也不错。
 
 ```
@@ -114,7 +114,7 @@
       </swiper>
     </view>
 ```
-这里要注意的是swiper的几个属性
+这里要用到swiper的几个属性列出来
 <table> 
 <tr>
 <td>current</td>
@@ -135,14 +135,14 @@
 <td>String</td>
 <td>"0px"</td>
 <td>前边距，可用于露出前一项的一小部分，接受 px 和 rpx 值</td>
-<td><a href="../framework/compatibility.html" title="基础库 1.9.0 开始支持，低版本需做兼容处理。">1.9.0</a></td>
+<td><a href="" title="基础库 1.9.0 开始支持，低版本需做兼容处理。">1.9.0</a></td>
 </tr>
 <tr>
 <td>next-margin</td>
 <td>String</td>
 <td>"0px"</td>
 <td>后边距，可用于露出后一项的一小部分，接受 px 和 rpx 值</td>
-<td><a href="../framework/compatibility.html" title="基础库 1.9.0 开始支持，低版本需做兼容处理。">1.9.0</a></td>
+<td><a href="" title="基础库 1.9.0 开始支持，低版本需做兼容处理。">1.9.0</a></td>
 </tr>
 <tr>
 <td>bindchange</td>
@@ -153,7 +153,7 @@
 </tr>
 </table> 
 
-### 将当前展示的海报通过wx.createCanvasContext绘制到画布canvas组件。
+### 将海报通过[wx.createCanvasContext][11]绘制到画布[canvas][12]组件。。
 1.在wxml中添加canvas组件，设置canvas-id以便于wx.createCanvasContext绘制画布
 
 ```
@@ -405,7 +405,7 @@ Page({
     thumb_images: [] // 渲染图片
   },
 ```
-###使用[canvasToTempFilePath][10] 将canvas海报保存到本地临时文件路径；
+###使用[canvasToTempFilePath][13] 将canvas海报保存到本地临时文件路径；
 
 ```
   //获取临时路径
@@ -418,7 +418,7 @@ Page({
     })
   },
 ```
-###使用[saveImageToPhotosAlbum][11]将图片保存到本地相册
+###使用[saveImageToPhotosAlbum][14]将图片保存到本地相册
 ```
   //保存至相册
   saveImageToPhotosAlbum: function(imgUrl) {
@@ -451,7 +451,8 @@ Page({
     }
   },
 ```
-### 根据swiper组件的current属性判断当前展示的海报
+`注意canvas绘制需要时间，所以设置 drawing 防止绘制被打断 `
+### 根据swiper组件的current属性判断当前保存的海报
 1.首先根据 change 事件设置current
 
 ```
@@ -463,9 +464,16 @@ Page({
     }
   },
 ```
-2.//获取相册授权，已获得权限直接绘制，若未获得权限需提示用户前去设置授权
+2.通过点击按钮执行savePoster保存海报到手机相册
+
 ```
- 
+  <view class="common_btn" catchtap="savePoster">
+    <text>保存图片</text>
+  </view>
+```
+
+`判断是否获取相册授权，已获得权限直接绘制，若未获得权限需提示用户前去设置授权`
+```
   /*保存海报到手机相册*/
   savePoster: function(e) {
     var that = this;
@@ -536,21 +544,37 @@ Page({
    
   },
 ```
-`注意canvas绘制需要时间，所以设置 drawing 防止绘制被打断 `
+保存到手机相册的海报如下：
+<table> 
+<tr>
+<td>![图片描述][15]</td>
+<td>![图片描述][16]</td>
+<td>![图片描述][17]</td>
+</tr>
+</table> 
+
 ##备注
-图片来源于[网络][12]若有侵权请通知我立即删除
-以上就是全部内容。思路可能不够清晰，若有不明白之处请留言，需要完整案例请留言。
+图片来源于[网络][18]若有侵权请通知我立即删除
+以上就是全部内容。不足之处请多指教！
+[完整案例][19]
 
 
-  [1]: https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html
-  [2]: https://developers.weixin.qq.com/miniprogram/dev/api/canvas/create-canvas-context.html
-  [3]: https://developers.weixin.qq.com/miniprogram/dev/component/canvas.html
-  [4]: https://developers.weixin.qq.com/miniprogram/dev/api/canvas/temp-file.html
-  [5]: https://developers.weixin.qq.com/miniprogram/dev/api/media-picture.html#wxsaveimagetophotosalbumobject
-  [6]: https://developers.weixin.qq.com/miniprogram/dev/api/data.html#wxsetstoragesynckeydata
-  [7]: https://developers.weixin.qq.com/miniprogram/dev/api/data.html#wxgetstoragesynckey
-  [8]: https://developers.weixin.qq.com/miniprogram/dev/api/media-picture.html#wxgetimageinfoobject
-  [9]: https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html
-  [10]: https://developers.weixin.qq.com/miniprogram/dev/api/canvas/temp-file.html
-  [11]: https://developers.weixin.qq.com/miniprogram/dev/api/media-picture.html#wxsaveimagetophotosalbumobject
-  [12]: https://detail.1688.com/offer/565252317766.html?spm=a261b.2187593.1998088710.53.75471383nnEGsD
+  [1]: /img/bVbgxY1
+  [2]: https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html
+  [3]: https://developers.weixin.qq.com/miniprogram/dev/api/canvas/create-canvas-context.html
+  [4]: https://developers.weixin.qq.com/miniprogram/dev/component/canvas.html
+  [5]: https://developers.weixin.qq.com/miniprogram/dev/api/canvas/temp-file.html
+  [6]: https://developers.weixin.qq.com/miniprogram/dev/api/media-picture.html#wxsaveimagetophotosalbumobject
+  [7]: https://developers.weixin.qq.com/miniprogram/dev/api/data.html#wxsetstoragesynckeydata
+  [8]: https://developers.weixin.qq.com/miniprogram/dev/api/data.html#wxgetstoragesynckey
+  [9]: https://developers.weixin.qq.com/miniprogram/dev/api/media-picture.html#wxgetimageinfoobject
+  [10]: https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html
+  [11]: https://developers.weixin.qq.com/miniprogram/dev/api/canvas/create-canvas-context.html
+  [12]: https://developers.weixin.qq.com/miniprogram/dev/component/canvas.html
+  [13]: https://developers.weixin.qq.com/miniprogram/dev/api/canvas/temp-file.html
+  [14]: https://developers.weixin.qq.com/miniprogram/dev/api/media-picture.html#wxsaveimagetophotosalbumobject
+  [15]: /img/bVbgxZI
+  [16]: /img/bVbgxZZ
+  [17]: /img/bVbgx0e
+  [18]: https://detail.1688.com/offer/565252317766.html?spm=a261b.2187593.1998088710.53.75471383nnEGsD
+  [19]: https://github.com/wangqin273/king/tree/master/poster_share
