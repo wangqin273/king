@@ -10,6 +10,7 @@ function tabs(obj,swiperObj,className,index) {
         initialSlide: index, // 设定初始化时slide的索引
         effect : 'flip',//切换效果
         speed : 500, //滑动速度，单位ms
+          autoplayDisableOnInteraction:false,
         autoHeight: true, // 高度随内容变化
         onSlideChangeStart : function() {
             if(tabSwiper){ /*判断tabSwiper是否存在，否则当哈希值不为0的时候会报错 */

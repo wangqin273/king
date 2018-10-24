@@ -12,6 +12,7 @@ function tabs(obj,swiperObj,className) {
         // effect : 'fade',//切换效果
         speed : 500, //滑动速度，单位ms
         autoHeight: true, // 高度随内容变化
+          autoplayDisableOnInteraction:false,
         autoplay : 2000,
         loop : true, /*oop模式下注意 activeIndex 值会被加上复制的slide数*/
         onSlideChangeStart : function() {

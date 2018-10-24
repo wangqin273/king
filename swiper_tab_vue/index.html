@@ -110,6 +110,7 @@
     var tabSwiper = new Swiper('.swiper-container',{
         initialSlide: vm.curIdx, // 设定初始化时slide的索引
         effect : 'flip',//切换效果 默认为"slide"，可设置为"fade，cube，coverflow，flip"。
+          autoplayDisableOnInteraction:false,
         speed : 500, //滑动速度，单位ms
         autoHeight: true, // 高度随内容变化
         on: {

@@ -10,6 +10,7 @@ function tabs(obj,swiperObj,className) {
     var tabSwiper = new Swiper(swiperObj, {
         effect : 'fade',//切换效果
         speed : 500, //滑动速度，单位ms
+          autoplayDisableOnInteraction:false,
         autoHeight: true, // 高度随内容变化
         onSlideChangeStart : function() {
             $(obj+"."+className).removeClass(className); /*有当前类名的删除类名,给下一个添加当前类名*/
