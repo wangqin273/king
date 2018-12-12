@@ -23,7 +23,7 @@
             <div class="swiper-slide" v-for="slide in dataList">
                 <ul class="list">
                     <li v-for="(item,index) in slide.list">
-                        <img class="user_avatar" :src="item.ico" alt="">
+                        
                        <div class="list_info">
                            <div class="user_info">
                                <p class="user_name" v-text="item.name"></p>
@@ -31,7 +31,7 @@
                            </div>
                            <div class="list_reward">
                                <span v-text="'奖励＋'+item.num"></span>
-                               <img class="icon" :src="slide.icon" alt="">
+                               
                            </div>
                        </div>
                     </li>
@@ -109,7 +109,7 @@
     /*Swiper实例化*/
     var tabSwiper = new Swiper('.swiper-container',{
         initialSlide: vm.curIdx, // 设定初始化时slide的索引
-        effect : 'flip',//切换效果 默认为"slide"，可设置为"fade，cube，coverflow，flip"。
+        effect : 'slide',//切换效果 默认为"slide"，可设置为"fade，cube，coverflow，flip"。
           autoplayDisableOnInteraction:false,
         speed : 500, //滑动速度，单位ms
         autoHeight: true, // 高度随内容变化

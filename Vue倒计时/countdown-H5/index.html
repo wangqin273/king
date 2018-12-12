@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>倒计时</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <div class="vueBox">
+    <div class="tab-box">
+      <span v-for="item,inx in tabs" :class="{'text-tab':true,'select':index==inx}" @click="toTab(inx)">{{item}}</span>
+    </div>
+    <p v-for="item in lists">{{item}}</p>
+  </div>
+  <script src="js/vue.min.2.5.13.js"></script>
+  <script src="js/resize.js"></script>
+  <script src="js/vue.index.js"></script>
+</body>
+
+</html>

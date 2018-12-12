@@ -1,0 +1,25 @@
+.vueBox {
+  width: 100%;
+  font-size: .32rem
+}
+
+.tab-box {
+  width: 100%;
+  height: 1rem;
+  display: flex;
+  /* flex: 4; */
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.text-tab {
+  height: 1rem;
+  flex: 1;
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select {
+  color: #000
+}
