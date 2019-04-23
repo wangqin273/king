@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>举报</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/report.css">
+</head>
+<body>
+    <div class="app">
+        <div class="wrapper">
+            <p class="chooses_title" v-text="chooses_title"></p>
+            <ul class="choose_list">
+                <li class="choose_item" v-for="item,index in chooses "  @click="choose(index)">
+                    <p class="choose_item_text" v-text="item.text"></p>
+                    <div :class="[curIdx==index?'pink_circle':'circle']"></div>
+                </li>
+            </ul>
+            <div class="content">
+                <p class="content_title" v-text="message_title"></p>
+                <div class="area_box">
+                    <textarea @input="messageChange()" v-model="message" class="report_content" maxlength="100" placeholder="填写举报理由，经核实后，会对对方进行处罚"></textarea>
+                    <div class="amount_box"><p class="amount" v-text="len"></p><p class="amount">/100</p></div>
+                </div>
+                <p class="tips" v-text="message_tips"></p>
+            </div>
+            <div class="content_btn">举报</div>
+        </div>
+    </div>
+
+    <script src="js/vue.min.2.5.13.js"></script>
+    <script src="js/resize.js"></script>
+    <script src="js/vue.report.js"></script>
+</body>
+</html>

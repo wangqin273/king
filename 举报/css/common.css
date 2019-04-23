@@ -1,0 +1,14 @@
+a,body,button,dd,div,dl,dt,h1,h2,h3,h4,h5,h6,input,li,ol,p,table,td,textarea,th,tr,ul{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;}
+html{width:100%;}
+body{width:100%;color:#333;font-family:"微软雅黑";}
+h1,h2,h3,h4,h5,h6{font-weight:400;font-size:100%;}
+input,textarea{outline:0;}
+a{color:#555;text-decoration:none;}
+a:hover{text-decoration:none;}
+img{border:none;}
+li,ol,ul{list-style:none;}
+.vueBox{width:100%;}
+::-webkit-input-placeholder{color:#B0B0B0;}
+:-moz-placeholder{color:#B0B0B0;}
+::-moz-placeholder{color:#B0B0B0;}
+:-ms-input-placeholder{color:#B0B0B0;}
