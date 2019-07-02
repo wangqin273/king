@@ -1,0 +1,188 @@
+.vueBox {
+	padding-left: .3rem
+}
+
+.msg-box {
+	width: 100%;
+	height: .85rem;
+	border-bottom: 1px solid #E2E2E2;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	   -moz-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	   -moz-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	margin-top: .35rem;
+	padding-right: .24rem;
+}
+
+.msg-item {
+	width: 100%;
+	height: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	   -moz-box-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
+	   -moz-box-pack: justify;
+	        justify-content: space-between;
+}
+
+.msg-item-tit {
+	width: 2rem;
+	white-space: nowrap;
+	font-size: .32rem;
+	color: #2B2B2B;
+}
+
+.input-right {
+	height: 100%;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	   -moz-box-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	   -moz-box-align: center;
+	        align-items: center;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	   -moz-box-pack: end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end; 
+}
+
+.input-right img {
+	width: .14rem;
+	height: .08rem;
+	margin-left: .1rem
+}
+
+.input-right input {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	   -moz-box-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	height: 100%; 
+	text-align: right;
+	font-size: .28rem;
+	outline: none
+}
+
+.div-btn {
+	width: 100%;
+	padding-right: .3rem;
+	margin-top: .8rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	   -moz-box-pack: center;
+	        justify-content: center;
+}
+
+.btn-submit {
+	width: 6.3rem;
+	height: .9rem;
+	font-size: .36rem;
+	color: #FFFFFF;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	   -moz-box-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	   -moz-box-pack: center;
+	        justify-content: center;
+	background: #ff7458;
+	-webkit-border-radius: 1rem;
+	   -moz-border-radius: 1rem;
+	        border-radius: 1rem;
+}
+.mint-popup{
+	 	width: 100%;
+}
+.mint-popup-head{
+/* 	position: absolute;
+	top: 0;
+	left: 0; */
+	width: 100%;
+	height: .8rem;
+	font-size: .28rem;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	   -moz-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	   -moz-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	color: #999;
+}
+.mint-popup-head li{
+	width: 50%;
+	height: 100%; 
+	padding: 0 .3rem;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex; 
+	-webkit-box-align: center; 
+	-webkit-align-items: center; 
+	   -moz-box-align: center; 
+	    -ms-flex-align: center; 
+	        align-items: center;
+}
+.mint-popup-head li:last-child{
+	color: #4CAF50;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	   -moz-box-pack: end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
+}
+ 

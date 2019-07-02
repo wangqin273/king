@@ -1,0 +1,65 @@
+
+/* css reset */
+body, div, p, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, a, input, button, textarea, table, th, tr, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    color: #333;
+    font-family: "微软雅黑";
+    width: 100%;
+    font-size: 0;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 100%;
+}
+input, textarea{
+    outline: none;
+}
+a {
+    color: #555;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    border: none;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+.vueBox{
+    width: 100%;
+}
+
+/* placeholder 字体颜色*/
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:#B0B0B0;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#B0B0B0;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#B0B0B0;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:#B0B0B0;
+}
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>添加银行卡</title>
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="css/mint-ui.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+		<div class="vueBox">
+			<div class="msg-box">
+				<div class="msg-item">
+					<span class="msg-item-tit">收款银行</span>
+					<div class="input-right" @click="showBankName">
+						<input type="text" :value="bank_name" readonly="" placeholder="请选择收款银行">
+						<img src="images/more.png" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="msg-box">
+				<div class="msg-item">
+					<span class="msg-item-tit">收款银行支行</span>
+					<div class="input-right">
+						<input type="text" placeholder="请输入收款银行支行">
+					</div>
+				</div>
+			</div>
+			<div class="msg-box">
+				<div class="msg-item">
+					<span class="msg-item-tit">银行卡</span>
+					<div class="input-right">
+						<input type="number" placeholder="请输入银行卡号">
+					</div>
+				</div>
+			</div>
+			<div class="msg-box">
+				<div class="msg-item">
+					<span class="msg-item-tit">收款户名</span>
+					<div class="input-right">
+						<input type="text" placeholder="请输入收款户名">
+					</div>
+				</div>
+			</div>
+			<div class="msg-box">
+				<div class="msg-item">
+					<span class="msg-item-tit">收款地区</span>
+					<div class="input-right" @click="showCitys">
+						<input type="text"  :value="city_name" readonly="" placeholder="请选择收款地区">
+						<img src="images/more.png" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="div-btn">
+				<div class="btn-submit">提交</div>
+			</div>
+
+			<mt-popup v-model="bankVisible" position="bottom">
+				<ul class="mint-popup-head">
+					<li @click="selectBank(0)">取消</li>
+					<li @click="selectBank(1)">确认</li>
+				</ul>
+				<mt-picker :slots="banks_list" @change="bankChange" value-key="name"> </mt-picker>
+			</mt-popup>
+
+			<mt-popup v-model="cityVisible" position="bottom">
+				<ul class="mint-popup-head">
+					<li @click="selectCity(0)">取消</li>
+					<li @click="selectCity(1)">确认</li>
+				</ul>
+				<mt-picker :slots="citys_list" @change="cityChange" value-key="name"> </mt-picker>
+			</mt-popup>
+
+		</div>
+		<script src="js/citys.js"></script>
+		<script src="js/vue.min.2.5.13.js"></script>
+		<!-- 引入组件库 -->
+		<script src="js/mint-ui.js"></script>
+		<script src="js/vue.index.js"></script>
+		<script src="js/resize.js"></script>
+	</body>
+</html>
