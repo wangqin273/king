@@ -18,8 +18,9 @@ Page({
     // 设置倒计时 定时器
     var n = this.data.num / 2
     this.stepTimer = setInterval(() => {
+
       if (this.data.num >= 0) {
-        this.data.step = this.data.num / n;
+        this.data.step = this.data.num / n; 
         // 绘制彩色圆环进度条
         this.circle.drawCircle('circle_draw', 40, 4, this.data.step)
         if ((/(^[1-9]\d*$)/.test(this.data.num / 10))) {
@@ -33,6 +34,7 @@ Page({
         this.setData({
           time: 0
         });
+				clearInterval(this.stepTimer);
       }
     }, 100) 
   },
@@ -42,7 +44,7 @@ Page({
     this.countTimer = setInterval(() => {   
       if (this.data.count <= 2 * this.data.maxCount) {        
         // 绘制彩色圆环进度条
-        this.circle.drawCircle('circle_draw1', 100, 8, this.data.count / this.data.maxCount)
+				this.circle1.drawCircle('circle_draw1', 100, 8, this.data.count / this.data.maxCount)
         this.data.count++;
         } else {
         this.setData({
@@ -81,17 +83,17 @@ Page({
     // 绘制背景圆环
     this.circle.drawCircleBg('circle_bg', 40, 4)
     // 绘制彩色圆环
+		// this.circle.drawCircle('circle_draw', 40, 4, 2);
     this.stepInterval()
 
 
     /*进度条 */
    // 获得circle组件
-    this.circle = this.selectComponent("#circle1");
+    this.circle1 = this.selectComponent("#circle1");
     // 绘制背景圆环
-    this.circle.drawCircleBg('circle_bg1', 100, 8);
-    this.circle.drawCircle('circle_draw1', 100, 8, 2);
+		this.circle1.drawCircleBg('circle_bg1', 100, 8);
     // 绘制彩色圆环
-    // this.circle.drawCircle('circle_draw1', 100, 8, 2);
+		// this.circle1.drawCircle('circle_draw1', 100, 8, 2);
     this.countInterval()
 
     

@@ -76,7 +76,7 @@ this.setData({
 size: 2 * x   // 更新属性和数据的方法与更新页面数据的方法类似
 });
 // 使用 wx.createContext 获取绘图上下文 ctx  绘制背景圆环
-var ctx = wx.createCanvasContext(id)
+var ctx =wx.createCanvasContext(id, this)
 ctx.setLineWidth(w / 2);
 ctx.setStrokeStyle('#20183b');
 ctx.setLineCap('round')
@@ -88,7 +88,7 @@ ctx.draw();
 },
 drawCircle: function (id, x, w, step) {
 // 使用 wx.createContext 获取绘图上下文 context  绘制彩色进度条圆环
-var context = wx.createCanvasContext(id);
+var context = wx.createCanvasContext(id, this)
 // 设置渐变
 var gradient = context.createLinearGradient(2 * x, x, 0);
 gradient.addColorStop("0", "#2661DD");
