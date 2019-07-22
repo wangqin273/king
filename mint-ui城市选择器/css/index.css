@@ -185,4 +185,13 @@
 	    -ms-flex-pack: end;
 	        justify-content: flex-end;
 }
- 
+ .picker-item{
+    font-size: .28rem;
+    color: #999;
+
+}
+.picker-selected{
+    font-size: .36rem;
+    height: 1rem;
+    line-height: 1rem;
+}

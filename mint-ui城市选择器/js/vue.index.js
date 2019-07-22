@@ -1,5 +1,3 @@
-var bank_name = "",
-	city_name = "";
 var vm = new Vue({
 	el: ".vueBox",
 	data: {
@@ -79,32 +77,50 @@ var vm = new Vue({
 			}],
 			textAlign: 'center'
 		}],
+		bank_temp: '', //暂作缓存，取消按钮不赋值给bank_name
 		bank_name: '',
 		// 地址
 		citys_list: [{
-			flex: 1,
-			values: [],
-			className: 'citys_list_provinces',
-			textAlign: 'center',
-			className: 'provinces'
-		}, {
-			divider: true,
-			content: '-',
-			className: 'provinces'
-		}, {
-			flex: 1,
-			values: [],
-			className: 'citys_list_cities'
-		}, ],
-		cityVisible: false,
-		city_name: '',
+				flex: 1,
+				values: [],
+				className: 'city_provinces',
+			}, {
+				divider: true,
+				content: '-',
+				className: 'city_divider'
+			}, {
+				flex: 1,
+				values: [],
+				className: 'city_cities'
+			},
+			{
+				divider: true,
+				content: '-',
+				className: 'city_divider'
+			}, {
+				flex: 1,
+				values: [],
+				className: 'city_areas'
+			},
+		],
+		cityVisible: false, //城市选择器弹出框是否可见
+		city_temp: '', // 暂作缓存，取消按钮不赋值给city_name
+		city_name: '', //城市三级地址 省-市-县
+		city_init: false, ////禁止地区选择器自动初始化，picker组件会默认进行初始化，导致一进入页面就会默认选中一个初始3级地址
 	},
+	
 	created: function() {
 		// 已经引入城市数据 citys.js
+		// let provinces = this.getProvinceArr()
+		// let cities = this.getCityArr(provinces[0].name)
+		// let areas = this.getCountyArr(provinces[0].name, cities[0].name)
 		// 设置城市初始值
-		this.citys_list[0].values = citys.provinces
-		this.citys_list[2].values = citys.provinces[0].cities
+		this.citys_list[0].values = citysData.provinces;
+		this.citys_list[2].values = citysData.provinces[0].cities;
+		this.citys_list[4].values = citysData.provinces[0].cities[0].areas;
+
 	},
+	mounted(){},
 	methods: {
 		// 银行弹窗
 		showBankName: function() {
@@ -112,12 +128,12 @@ var vm = new Vue({
 		},
 		bankChange: function(picker, values) {
 			if (picker.getSlotValue(0)) {
-				bank_name = picker.getSlotValue(0).name
+				this.bank_temp = picker.getSlotValue(0).name
 			}
 		},
 		selectBank: function(bool) {
 			// bool 判断 触发的是取消还是确认按钮
-			this.bank_name = bool ? bank_name : this.bank_name
+			this.bank_name = bool ? this.bank_temp : this.bank_name;
 			this.bankVisible = false
 		},
 		// 城市弹窗
@@ -125,27 +141,75 @@ var vm = new Vue({
 			this.cityVisible = true
 		},
 		cityChange: function(picker, values) {
-			// console.log('省变化了', picker.getSlotValue(0), '城市变化了', picker.getSlotValue(1))
-			// 省发生变化时,改变对应城市数组
-			picker.setSlotValues(1, values[0].cities)
-			if (picker.getSlotValue(0)) {
-				if (picker.getSlotValue(1)) {
-					// 省级和城市都发生变化时获取值
-					city_name = picker.getSlotValue(0).name + '-' + picker.getSlotValue(1).name
-				} else {
-					// 只选择省级时 城市默认为第一个
-					city_name = picker.getSlotValue(0).name + '-' + values[0].cities[0].name
+			if (this.city_init) {
+				if (picker.getSlotValue(0)) {
+					this.citys_list[2].values = picker.getSlotValue(0).cities;
+					this.citys_list[4].values = picker.getSlotValue(1).areas;
+					this.city_temp = picker.getSlotValue(0).name + '-' + picker.getSlotValue(1).name + '-' + picker.getSlotValue(2).name
+					 
 				}
+
+				// if (picker.getSlotValue(0)) {
+				//给市、县赋值  有个小bug，市、县选中的部分没有加‘picker-selected’高亮
+				// picker.setSlotValues(1, this.getCityArr(values[0]["name"]));
+				// picker.setSlotValues(2, this.getCountyArr(values[0]["name"], values[1]["name"]));
+				// }
 			} else {
-				// 没有手动选择时默认显示北京
-				city_name = "北京 - 北京"
+				this.city_init = true
 			}
 		},
 		selectCity: function(bool) {
-			console.log('bool', bool)
-			this.city_name = bool ? city_name : this.city_name
+			console.log('bool', bool) //确认按钮、取消按钮
+			this.city_name = bool ? this.city_temp : this.city_name
 			this.cityVisible = false
+		},
+		//遍历json，返回省级对象数组
+		getProvinceArr: function() {
+			let provinceArr = [];
+			citysData.provinces.forEach(function(item) {
+				let obj = {};
+				obj.name = item.name;
+				obj.id = item.id;
+				provinceArr.push(obj);
+			});
+			return provinceArr;
+		},
+		//遍历json，返回市级对象数组
+		getCityArr(province) {
+			let cityArr = [];
+			citysData.provinces.forEach(function(item) {
+				if (item.name === province) {
+					item.cities.forEach(function(args) {
+						let obj = {};
+						obj.name = args.name;
+						obj.id = args.id;
+						cityArr.push(obj);
+					});
+				}
+			});
+			return cityArr;
+		},
+		//遍历json，返回县级对象数组
+		getCountyArr(province, city) {
+			let countyArr = [];
+			citysData.provinces.forEach(function(item) {
+				if (item.name === province) {
+					item.cities.forEach(function(args) {
+						if (args.name === city) {
+							args.areas.forEach(function(param) {
+								let obj = {};
+								obj.name = param.name;
+								obj.id = param.id;
+								countyArr.push(obj);
+							})
+						}
+					});
+				}
+			});
+			return countyArr;
 		},
 
 	}
 });
+
+
