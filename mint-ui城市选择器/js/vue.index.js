@@ -108,7 +108,7 @@ var vm = new Vue({
 		city_name: '', //城市三级地址 省-市-县
 		city_init: false, ////禁止地区选择器自动初始化，picker组件会默认进行初始化，导致一进入页面就会默认选中一个初始3级地址
 	},
-	
+
 	created: function() {
 		// 已经引入城市数据 citys.js
 		// let provinces = this.getProvinceArr()
@@ -120,7 +120,7 @@ var vm = new Vue({
 		this.citys_list[4].values = citysData.provinces[0].cities[0].areas;
 
 	},
-	mounted(){},
+	mounted() {},
 	methods: {
 		// 银行弹窗
 		showBankName: function() {
@@ -145,12 +145,12 @@ var vm = new Vue({
 				if (picker.getSlotValue(0)) {
 					this.citys_list[2].values = picker.getSlotValue(0).cities;
 					this.citys_list[4].values = picker.getSlotValue(1).areas;
-					this.city_temp = picker.getSlotValue(0).name + '-' + picker.getSlotValue(1).name + '-' + picker.getSlotValue(2).name
-					 
+					this.city_temp = picker.getSlotValue(0).name + '-' + picker.getSlotValue(1).name + '-' + picker.getSlotValue(2)
+						.name
 				}
-
+				// 有个小bug，市、县选中的部分没有加‘picker-selected’高亮
 				// if (picker.getSlotValue(0)) {
-				//给市、县赋值  有个小bug，市、县选中的部分没有加‘picker-selected’高亮
+				//给市、县赋值 
 				// picker.setSlotValues(1, this.getCityArr(values[0]["name"]));
 				// picker.setSlotValues(2, this.getCountyArr(values[0]["name"], values[1]["name"]));
 				// }
@@ -164,52 +164,50 @@ var vm = new Vue({
 			this.cityVisible = false
 		},
 		//遍历json，返回省级对象数组
-		getProvinceArr: function() {
-			let provinceArr = [];
-			citysData.provinces.forEach(function(item) {
-				let obj = {};
-				obj.name = item.name;
-				obj.id = item.id;
-				provinceArr.push(obj);
-			});
-			return provinceArr;
-		},
+		// getProvinceArr: function() {
+		// 	let provinceArr = [];
+		// 	citysData.provinces.forEach(function(item) {
+		// 		let obj = {};
+		// 		obj.name = item.name;
+		// 		obj.id = item.id;
+		// 		provinceArr.push(obj);
+		// 	});
+		// 	return provinceArr;
+		// },
 		//遍历json，返回市级对象数组
-		getCityArr(province) {
-			let cityArr = [];
-			citysData.provinces.forEach(function(item) {
-				if (item.name === province) {
-					item.cities.forEach(function(args) {
-						let obj = {};
-						obj.name = args.name;
-						obj.id = args.id;
-						cityArr.push(obj);
-					});
-				}
-			});
-			return cityArr;
-		},
+		// getCityArr(province) {
+		// 	let cityArr = [];
+		// 	citysData.provinces.forEach(function(item) {
+		// 		if (item.name === province) {
+		// 			item.cities.forEach(function(args) {
+		// 				let obj = {};
+		// 				obj.name = args.name;
+		// 				obj.id = args.id;
+		// 				cityArr.push(obj);
+		// 			});
+		// 		}
+		// 	});
+		// 	return cityArr;
+		// },
 		//遍历json，返回县级对象数组
-		getCountyArr(province, city) {
-			let countyArr = [];
-			citysData.provinces.forEach(function(item) {
-				if (item.name === province) {
-					item.cities.forEach(function(args) {
-						if (args.name === city) {
-							args.areas.forEach(function(param) {
-								let obj = {};
-								obj.name = param.name;
-								obj.id = param.id;
-								countyArr.push(obj);
-							})
-						}
-					});
-				}
-			});
-			return countyArr;
-		},
+		// getCountyArr(province, city) {
+		// 	let countyArr = [];
+		// 	citysData.provinces.forEach(function(item) {
+		// 		if (item.name === province) {
+		// 			item.cities.forEach(function(args) {
+		// 				if (args.name === city) {
+		// 					args.areas.forEach(function(param) {
+		// 						let obj = {};
+		// 						obj.name = param.name;
+		// 						obj.id = param.id;
+		// 						countyArr.push(obj);
+		// 					})
+		// 				}
+		// 			});
+		// 		}
+		// 	});
+		// 	return countyArr;
+		// },
 
 	}
 });
-
-
