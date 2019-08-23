@@ -1,0 +1,30 @@
+<view class="section">
+  <picker mode="date" fields="day" value="{{date}}" start="1900-01-01" end="2019-08-23" bindchange="bindDateChange">
+    <text class="picker">
+      微信官方日期选择器: {{date}}
+    </text>
+  </picker>
+</view>
+
+<view class="birthday" bindtap="showBirthday">
+  <text> 自定义日期选择器：</text>
+  <text>{{year}}年{{month}}月{{day}}日</text>
+</view>
+
+<view class="birthday-mask" hidden="{{!birthdayshow}}"></view>
+<view class="birthday-box {{birthdayshow?'birthday-show':''}}">
+  <view class="picker-header">
+    <view class="picker-btn" data-index="{{index}}" wx:for="{{picker_btn}}" wx:key bindtap="selectBirthday">{{item}}</view>
+  </view>
+  <picker-view class="birthday-picker" indicator-class="birthday-indicator" value="{{value}}" bindchange="bindChange">
+    <picker-view-column>
+      <view wx:for="{{years}}" wx:key>{{item}}年</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{months}}" wx:key>{{item}}月</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{days}}" wx:key>{{item}}日</view>
+    </picker-view-column>
+  </picker-view>
+</view>
