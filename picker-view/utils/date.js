@@ -1,7 +1,7 @@
 const date = new Date()
 const nowYear = date.getFullYear()
-const nowMonth = date.getMonth() + 1
-const nowDay = date.getDate()
+const nowMonth = formatNumber(date.getMonth() + 1)
+const nowDay = formatNumber(date.getDate())
 // 每月的天数
 let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -15,8 +15,8 @@ function getDays(year, month) {
 }
  
 // 根据年月日设置当前月有多少天 并更新年月日数组
-function setDate(year, month, day, that) {
-
+function setDate(year, month, day, that) { 
+  
   let daysNum = year === nowYear && month === nowMonth ? nowDay : getDays(year, month)
   day = day > daysNum ? 1 : day
   let monthsNum = year === nowYear ? nowMonth : 12
@@ -37,19 +37,19 @@ function setDate(year, month, day, that) {
   })
   // 重新设置月份列表
   for (let i = 1; i <= monthsNum; i++) {
-    months.push(i)
+    months.push(formatNumber(i))
   }
   months.map((v, idx) => {
-    if (v === month) {
+    if (v === month) { 
       monthIdx = idx
     }
   })
   // 重新设置日期列表
   for (let i = 1; i <= daysNum; i++) {
-    days.push(i)
+    days.push(formatNumber(i))
   }
   days.map((v, idx) => {
-    if (v === day) {
+    if (v === day) { 
       dayIdx = idx
     }
   })

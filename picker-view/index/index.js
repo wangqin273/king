@@ -14,7 +14,7 @@ Page({
     month: date.nowMonth,
     day: date.nowDay,
     value: [], 
-    // date:''
+    date:'',//官方对比
   },
   // 打开选框
   showBirthday:function(){
