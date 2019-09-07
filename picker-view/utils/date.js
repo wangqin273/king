@@ -61,9 +61,12 @@ function setDate(year, month, day, that) {
     year,
     month: formatNumber(month),
     day: formatNumber(day),
-    value: [yearIdx, monthIdx, dayIdx],
+  
   })
-  console.log(year, formatNumber(month), formatNumber(day), that.data.value)
+   // 年月日数组有数据后，重新再设置一下vualue才能跳转到对应位置
+  that.setData({
+    value: [yearIdx, monthIdx, dayIdx],
+  }) 
 }
 
 function formatNumber(n){

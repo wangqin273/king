@@ -46,8 +46,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 这里必须初始化一下，否则打开的不是今天的日期
-    date.setDate(this.data.year, this.data.month, this.data.day, this)
+   
   },
 //  微信官方日期选择器
   bindDateChange: function (e) {
