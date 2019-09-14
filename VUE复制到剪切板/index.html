@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>倒计时</title>
+    <title>复制微信号</title>
     <meta name="Anthor" content="月影-253737688" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta name="format-detection" content="telephone=no"/>
@@ -19,7 +19,7 @@
 <div class="vueBox">
     <div class="conpy">
         <p>微信号：{{message}}</p>
-        <span class="copy"   @click="doCopy()"> 复制微信号 </span>
+        <span class="copy"   @click="doCopy(message)"> 复制微信号 </span>
     </div>
 </div>
 <script src="js/vue.min.2.5.13.js"></script>
@@ -35,17 +35,21 @@
         },
         methods: {
             doCopy: function (val) {
+						 
                 var clipboard = new ClipboardJS('.copy', {
-                    text: ()=> {
-                        return this.message;
+                    text: function () {
+                     
+                        return val;
                     }
                 });
                 clipboard.on('success', function(e) {
-                    console.log(e);
+                console.log(111)
+								alert('成')
                 });
 
                 clipboard.on('error', function(e) {
-                    console.log(e);
+                   console.log(222)
+									 	alert('败')
                 });
             }
 
