@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>特惠券</title>
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+
+	<body>
+		<div class="vueBox" v-cloak>
+			<ul class="coupon-list">
+				<li v-for="item,index in coupon_list" v-if="index<3">
+					<div :class="{'coupon-item':true,'coupon-item-opacity':!item.is_sale_out}">
+						<div class="coupon-img-box">
+							<img :src="item.img" alt="">
+						</div>
+						<div class="coupon-msg-box">
+							<p v-text="item.title"></p>
+							<div class="coupon-price-label">
+								<span>¥{{item.price}}</span>
+								<div class="coupon-label-box" v-text="item.label"></div>
+							</div>
+							<p class="coupon-old-price">
+								<span>市场参考价：</span>
+								<span class="text-old-price">￥{{item.old_price}}</span>
+							</p>
+						</div>
+						
+					</div>
+				</li>
+			</ul>
+			<!-- 吸顶特效 -->
+			<ul class="tab-list" id="wrap">
+				<li :id="'tab_'+index"  :class="{'tab-item':true,'tab-item-cur':tab_inx==index}" v-for="item,index in tab_list"
+				 v-text="item" @click="changeTab(index)"></li>
+			</ul>
+			<ul class="coupon-list">
+				<li v-for="item in coupon_list">
+					<div :class="{'coupon-item':true,'coupon-item-opacity':!item.is_sale_out}">
+						<div class="coupon-img-box">
+							<img :src="item.img" alt="">
+						</div>
+						<div class="coupon-msg-box">
+							<p v-text="item.title"></p>
+							<div class="coupon-price-label">
+								<span>¥{{item.price}}</span>
+								<div class="coupon-label-box" v-text="item.label"></div>
+							</div>
+							<p class="coupon-old-price">
+								<span>市场参考价：</span>
+								<span class="text-old-price">￥{{item.old_price}}</span>
+							</p>
+						</div>
+						
+					</div>
+				</li>
+			</ul>
+
+		</div>
+		<script src="js/vue.min.2.5.13.js"></script>
+		<script src="js/resize.js"></script>
+		<script src="js/index.js"></script>
+	</body>
+
+</html>
