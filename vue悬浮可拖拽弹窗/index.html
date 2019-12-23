@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>vue悬浮可拖拽弹窗</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<style type="text/css">
+			.move,
+			.drag {
+				position: fixed;
+				width: 100px;
+				height: 100px;
+				color: #fff;
+				font-size: 12px;
+				top: 0;
+				left: 0;
+				background: dodgerblue;
+			}
+			.drag {
+				top: 100px;
+				left: 100px;
+				background: darkorange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="move" @touchstart.prevent="move" @touchstart.stop></div>
+			<div class="drag" v-drag>自定义指令</div>
+		</div>
+		<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {},
+				created: function() {},
+				methods: {
+					aa: function() {
+						console.log(1)
+					},
+					move(e) {
+						var that = this;
+						var el = e.currentTarget; //获取目标元素  若用e.target el内不能有子元素;
+						//算出手指相对元素左上角的位置
+						el.style.transition = '';
+						var left, top, oW, oH, disX, disY, dW = window.screen.width,
+							dH = window.screen.height;
+							
+						 oW = el.offsetWidth;
+						 oH = el.offsetHeight;
+						 disX = e.touches[0].clientX - el.offsetLeft;
+						 disY = e.touches[0].clientY - el.offsetTop;
+						function dragMove(e) { // 手指滑动
+								//用手指的位置减去手指相对元素的位置，得到元素的位置
+							left = e.touches[0].clientX - disX;
+							top = e.touches[0].clientY - disY;
+							if (left <= 0) {
+								left = 0
+							} else if (left >= dW - oW) {
+								left = dW - oW
+							}
+							if (top <= 0) {
+								top = 0
+							} else if (top >= dH - oH) {
+								top = dH - oH
+							}
+							// //移动当前元素
+							el.style.left = left + 'px';
+							el.style.top = top + 'px';
+						}
+						function dragEnd(e) { // 手指离开屏幕
+							left = left >= (dW - oW) / 2 ? dW - oW : 0
+							// //移动当前元素
+							el.style.transition = 'left 0.3s'
+							el.style.left = left + 'px';
+							el.style.top = top + 'px';
+							el.removeEventListener('touchmove', el.dragMove)
+							el.removeEventListener('touchend', el.dragEnd)
+						} 
+						el.addEventListener("touchmove", dragMove);
+						el.addEventListener("touchend", dragEnd);
+
+					}
+				},
+				// 指令的定义
+				directives: {
+					drag: {
+						bind: function(el) {
+							console.log(el)
+							var left, top, oW, oH, disX, disY, dW = window.screen.width,
+								dH = window.screen.height;
+							function dragStart(e) { // 手指触摸屏幕
+								e.preventDefault(); // 阻止默认事件
+								//算出手指相对元素左上角的位置
+								el.style.transition = '';
+								left, top;
+								oW = el.offsetWidth;
+								oH = el.offsetHeight;
+								disX = e.touches[0].clientX - el.offsetLeft;
+								disY = e.touches[0].clientY - el.offsetTop;
+							};
+							function dragMove(e) { // 手指滑动
+								//用手指的位置减去手指相对元素的位置，得到元素的位置
+								left = e.touches[0].clientX - disX;
+								top = e.touches[0].clientY - disY;
+								if (left <= 0) {
+									left = 0
+								} else if (left >= dW - oW) {
+									left = dW - oW
+								}
+								if (top <= 0) {
+									top = 0
+								} else if (top >= dH - oH) {
+									top = dH - oH
+								}
+								// //移动当前元素
+								el.style.left = left + 'px';
+								el.style.top = top + 'px';
+							}
+
+							function dragEnd(e) { // 手指离开屏幕
+								left = left >= (dW - oW) / 2 ? dW - oW : 0
+								// //移动当前元素
+								el.style.transition = 'left 0.3s'
+								el.style.left = left + 'px';
+								el.style.top = top + 'px';
+								el.removeEventListener('touchmove', el.dragMove)
+								el.removeEventListener('touchend', el.dragEnd)
+							}
+							el.addEventListener("touchstart", dragStart);
+							el.addEventListener("touchmove", dragMove);
+							el.addEventListener("touchend", dragEnd);
+						}
+					}
+				}
+
+			});
+		</script>
+	</body>
+</html>
