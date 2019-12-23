@@ -36,10 +36,7 @@
 				el: '#app',
 				data: {},
 				created: function() {},
-				methods: {
-					aa: function() {
-						console.log(1)
-					},
+				methods: { 
 					move(e) {
 						var that = this;
 						var el = e.currentTarget; //获取目标元素  若用e.target el内不能有子元素;
@@ -76,8 +73,8 @@
 							el.style.transition = 'left 0.3s'
 							el.style.left = left + 'px';
 							el.style.top = top + 'px';
-							el.removeEventListener('touchmove', el.dragMove)
-							el.removeEventListener('touchend', el.dragEnd)
+							el.removeEventListener('touchmove', dragMove)
+							el.removeEventListener('touchend', dragEnd)
 						} 
 						el.addEventListener("touchmove", dragMove);
 						el.addEventListener("touchend", dragEnd);
@@ -126,8 +123,8 @@
 								el.style.transition = 'left 0.3s'
 								el.style.left = left + 'px';
 								el.style.top = top + 'px';
-								el.removeEventListener('touchmove', el.dragMove)
-								el.removeEventListener('touchend', el.dragEnd)
+								el.removeEventListener('touchmove', dragMove)
+								el.removeEventListener('touchend', dragEnd)
 							}
 							el.addEventListener("touchstart", dragStart);
 							el.addEventListener("touchmove", dragMove);
