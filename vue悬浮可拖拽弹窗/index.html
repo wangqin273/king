@@ -26,6 +26,7 @@
 		</style>
 	</head>
 	<body>
+		
 		<div id="app">
 			<div class="move" @touchstart.prevent="move" @touchstart.stop></div>
 			<div class="drag" v-drag>自定义指令</div>
@@ -44,7 +45,6 @@
 						el.style.transition = '';
 						var left, top, oW, oH, disX, disY, dW = window.screen.width,
 							dH = window.screen.height;
-							
 						 oW = el.offsetWidth;
 						 oH = el.offsetHeight;
 						 disX = e.touches[0].clientX - el.offsetLeft;
@@ -73,8 +73,8 @@
 							el.style.transition = 'left 0.3s'
 							el.style.left = left + 'px';
 							el.style.top = top + 'px';
-							el.removeEventListener('touchmove', dragMove)
-							el.removeEventListener('touchend', dragEnd)
+							// el.removeEventListener('touchmove', dragMove)
+							// el.removeEventListener('touchend', dragEnd)
 						} 
 						el.addEventListener("touchmove", dragMove);
 						el.addEventListener("touchend", dragEnd);
@@ -123,8 +123,8 @@
 								el.style.transition = 'left 0.3s'
 								el.style.left = left + 'px';
 								el.style.top = top + 'px';
-								el.removeEventListener('touchmove', dragMove)
-								el.removeEventListener('touchend', dragEnd)
+								// el.removeEventListener('touchmove', dragMove)
+								// el.removeEventListener('touchend', dragEnd)
 							}
 							el.addEventListener("touchstart", dragStart);
 							el.addEventListener("touchmove", dragMove);
