@@ -14,22 +14,25 @@
 				height: 100px;
 				color: #fff;
 				font-size: 12px;
-				top: 0;
-				left: 0;
-				background: dodgerblue;
-			}
-			.drag {
 				top: 100px;
 				left: 100px;
+				background: dodgerblue;
+			}
+
+			.drag {
+				top: auto;
+				left: auto;
+				right: 100px;
+				bottom: 100px;
 				background: darkorange;
 			}
 		</style>
 	</head>
 	<body>
-		
+
 		<div id="app">
 			<div class="move" @touchstart.prevent="move" @touchstart.stop></div>
-			<div class="drag" v-drag>自定义指令</div>
+			<div class="drag" @click="clickEven" v-drag>自定义指令</div>
 		</div>
 		<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
 		<script>
@@ -37,7 +40,10 @@
 				el: '#app',
 				data: {},
 				created: function() {},
-				methods: { 
+				methods: {
+					clickEven: function() {
+						console.log('clickEven')
+					},
 					move(e) {
 						var that = this;
 						var el = e.currentTarget; //获取目标元素  若用e.target el内不能有子元素;
@@ -45,12 +51,13 @@
 						el.style.transition = '';
 						var left, top, oW, oH, disX, disY, dW = window.screen.width,
 							dH = window.screen.height;
-						 oW = el.offsetWidth;
-						 oH = el.offsetHeight;
-						 disX = e.touches[0].clientX - el.offsetLeft;
-						 disY = e.touches[0].clientY - el.offsetTop;
+						oW = el.offsetWidth;
+						oH = el.offsetHeight;
+						disX = e.touches[0].clientX - el.offsetLeft;
+						disY = e.touches[0].clientY - el.offsetTop;
+
 						function dragMove(e) { // 手指滑动
-								//用手指的位置减去手指相对元素的位置，得到元素的位置
+							//用手指的位置减去手指相对元素的位置，得到元素的位置
 							left = e.touches[0].clientX - disX;
 							top = e.touches[0].clientY - disY;
 							if (left <= 0) {
@@ -67,6 +74,7 @@
 							el.style.left = left + 'px';
 							el.style.top = top + 'px';
 						}
+
 						function dragEnd(e) { // 手指离开屏幕
 							left = left >= (dW - oW) / 2 ? dW - oW : 0
 							// //移动当前元素
@@ -75,7 +83,7 @@
 							el.style.top = top + 'px';
 							// el.removeEventListener('touchmove', dragMove)
 							// el.removeEventListener('touchend', dragEnd)
-						} 
+						}
 						el.addEventListener("touchmove", dragMove);
 						el.addEventListener("touchend", dragEnd);
 
@@ -88,8 +96,8 @@
 							console.log(el)
 							var left, top, oW, oH, disX, disY, dW = window.screen.width,
 								dH = window.screen.height;
-							function dragStart(e) { // 手指触摸屏幕
-								e.preventDefault(); // 阻止默认事件
+
+							function dragStart(e) { // 手指触摸屏幕 
 								//算出手指相对元素左上角的位置
 								el.style.transition = '';
 								left, top;
@@ -98,6 +106,7 @@
 								disX = e.touches[0].clientX - el.offsetLeft;
 								disY = e.touches[0].clientY - el.offsetTop;
 							};
+
 							function dragMove(e) { // 手指滑动
 								//用手指的位置减去手指相对元素的位置，得到元素的位置
 								left = e.touches[0].clientX - disX;
@@ -118,6 +127,9 @@
 							}
 
 							function dragEnd(e) { // 手指离开屏幕
+							if(!left){
+								return
+							}
 								left = left >= (dW - oW) / 2 ? dW - oW : 0
 								// //移动当前元素
 								el.style.transition = 'left 0.3s'
