@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>横向滚动公告</title>
+    <style>
+        body,div,html,img,li,ul{margin:0;padding:0;border:0}
+        li{list-style:none}
+        .advert-top{position:relative;display:flex;width:100%;height:.88rem;background:linear-gradient(270deg,rgba(80,175,255,1) 0,rgba(13,132,248,1) 48%,rgba(55,159,248,1) 86%,rgba(81,176,255,1) 100%);color:#fff;font-size:.26rem;align-items:center}
+        .ico-horn{display:flex;width:.88rem;height:.88rem;justify-content:center;align-items:center}
+        .ico-horn>img{width:.32rem;height:.32rem}
+        .marquee-wrap{position:relative;display:flex;overflow:hidden;width:100%;height:100%}
+        .marquee-box{position:absolute;top:50%;display:flex;white-space:nowrap;transform:translateY(-50%)}
+        .marquee-list{margin-right:10px}
+        .marquee-list span{padding:0 .04rem;color:#ffe17b;font-weight:700}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="advert-top" v-if="message">
+        <div class="ico-horn">
+            <img :src="ico_horn" alt="">
+        </div>
+        <div class="marquee-wrap">
+            <ul class="marquee-box" id="marquee-box">
+                <li class="marquee-list" v-for="i in 3" v-html="message" :id="i==1?'marquee':''"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            ico_horn: 'https://img.alicdn.com/tfs/TB1zwftaPrguuRjy0FeXXXcbFXa-16-16.png',
+            message: "全球新冠肺炎确诊病例超<span>45万</span>，死亡人数破<span>2万</span>！",
+        },
+        mounted: function () {
+            // 延时滚动
+            setTimeout(() => {
+                this.runMarquee()
+            }, 1000)
+        },
+        methods: {
+            runMarquee() {
+                // 获取文字 计算后宽度
+                var width = document.getElementById('marquee').getBoundingClientRect().width,
+                    marquee = document.getElementById('marquee-box'),
+                    disx = 0; // 位移距离
+                //设置位移
+                setInterval(() => {
+                    disx--; // disx-=1; 滚动步长
+                    if (-disx >= width) {
+                        disx = 10; // 如果位移超过文字宽度，则回到起点  marquee-list的margin值
+                    }
+                    // marquee.style.transform = 'translateX(' + disx + 'px)'
+                    marquee.style.left = disx + 'px'
+                }, 30) //滚动速度
+            }
+        }
+    });
+    // JavaScript Document
+    (function px2rem(doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                /*
+                 * 100 -> html,body {  font-size:100px; }
+                 * 750 -> 此处以 iPhone6 两倍设计稿 宽度750px 布局页面
+                 * 根据具体情况改变这两个数值
+                 */
+            };
+        if (!doc.addEventListener) return;
+        // 窗口大小发生变化，初始化
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+        //防止在html未加载完毕时执行，保证获取正确的页宽
+        setTimeout(function () {
+            px2rem(doc, win);
+        }, 200);
+    })(document, window);
+</script>
+</html>
