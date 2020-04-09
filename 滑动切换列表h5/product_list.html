@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>9.9包邮</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/product_list.css">
+</head>
+
+<body>
+    <div class="vueBox" v-cloak>
+        <div class="page-box">
+            <ul class="tab-list" id="tab-list">
+                <li ref="tablist" :class="{'tab-item':true,'tab-item-cur':tab_inx==index}" v-for="item,index in tab_list" v-text="item" @click="changeTab(index)"></li>
+            </ul>
+            <ul class="product-list" id="productList">
+                <li v-for="item in product_list" @click="productDetail">
+                    <div class="product-img-box">
+                        <img :src="item.img"   alt="">
+                    </div>
+                    <p class="text-product-title" v-text="item.title"></p>
+                    <p class="product-coupon">
+                        <span v-text="item.coupon+'元'"></span>
+                        <span>券</span>
+                    </p>
+                    <div class="product-price-label">
+                        <p class="product-price-box">
+                            <span>￥</span>
+                            <span class="text-product-price" v-text="item.price"></span>
+                        </p>
+                        <p class="product-label-box">公爵专享价</p>
+                    </div>
+                    <p>
+                        <span class="text-old-price" v-text="'￥'+item.old_price"></span>
+                        <span v-text="item.source+'参考价'"></span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+		<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/vue.min.2.5.13.js"></script>
+    <script src="js/resize.js"></script>
+    <script src="js/vue.product_list.js"></script>
+</body>
+
+</html>

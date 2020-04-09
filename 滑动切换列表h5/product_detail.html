@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>9.9包邮</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/product_detail.css">
+</head>
+
+<body>
+    <div class="vueBox" v-cloak>
+        <ul :class="{'tab-list':true,'tab-list-show':is_show_tab}">
+            <li :class="{'tab-item':true,'tab-item-cur':tab_inx==index}" v-for="item,index in tab_list" @click="changeTab(index)">
+                <span v-text="item"></span>
+            </li>
+        </ul>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="item in banner_list">
+                    <img :src="item" alt="">
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="page-box">
+            <div class="detail-msg-box">
+                <p class="detail-price-box">
+                    <span>￥</span>
+                    <span class="text-detail-price" v-text="detail.price"></span>
+                </p>
+                <span class="detail-label" v-text="detail.label"></span>
+                <p class="detail-old-price">
+                    <span v-text="detail.source+'参考价：'"></span>
+                    <span class="text-old-price" v-text="'￥'+detail.old_price"></span>
+                </p>
+            </div>
+            <p v-text="detail.title"></p>
+            <p class="text-buy-num" v-text="detail.buy_num+'笔成交'"></p>
+            <div class="detail-coupon-box">
+                <div class="detail-coupon-left">
+                    <p class="detail-coupon-amount">
+                        <span class="text-detail-coupon" v-text="detail.coupon"></span>
+                        <span>元优惠券</span>
+                    </p>
+                    <p v-text="detail.data_time"></p>
+                </div>
+                <p class="btn-receive-detail" @click="receiveCoupon">立即领取</p>
+            </div>
+            <p id="detail" class="detail-title-box">
+                <span>商品详情</span>
+            </p>
+            <div class="detail-detail-box">
+                <p v-html="detail.description"></p>
+            </div>
+            <p id="recommend" class="detail-title-box">
+                <span>相似推荐</span>
+            </p>
+            <ul class="product-list">
+                <li v-for="item in product_list" @click="productDetail">
+                    <div class="product-img-box">
+                        <img :src="ico_logo1" :data-image="item.img" alt="">
+                    </div>
+                    <p class="text-product-title" v-text="item.title"></p>
+                    <p class="product-coupon">
+                        <span v-text="item.coupon+'元'"></span>
+                        <span>券</span>
+                    </p>
+                    <div class="product-price-label">
+                        <p class="product-price-box">
+                            <span>￥</span>
+                            <span class="text-product-price" v-text="item.price"></span>
+                        </p>
+                        <p class="product-label-box">公爵专享价</p>
+                    </div>
+                    <p>
+                        <span class="text-old-price" v-text="'￥'+item.old_price"></span>
+                        <span v-text="item.source+'参考价'"></span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-receive-coupon" @click="receiveCoupon">立即领券</div>
+    </div>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/vue.min.2.5.13.js"></script>
+    <script src="js/resize.js"></script>
+    <script src="js/vue.product_detail.js"></script>
+</body>
+
+</html>
