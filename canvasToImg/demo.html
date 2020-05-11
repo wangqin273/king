@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 将canvas转图片 -->
+		<!-- <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script> -->
+		<!-- 将图片转成canvas -->
+		<script type="text/javascript">
+			// 把image 转换为 canvas对象  
+			function convertImageToCanvas(image, code) {
+				// 创建canvas DOM元素，并设置其宽高和图片一样   
+				var c = document.createElement("canvas");
+				c.width = image.width;
+				c.height = image.height;
+				console.log(image.width, image.height)
+				var ctx = c.getContext("2d");
+				ctx.drawImage(image, 0, 0);
+				ctx.font = "40px 'Arial'"
+				ctx.fillStyle = "#FFFFFF";
+				ctx.textAlign = "center";
+				ctx.fillText(code, 540, 1170);
+				// ctx.stroke();
+				return c;
+			}
+			// 从 canvas 提取图片 image  
+			function convertCanvasToImage(canvas) {
+				//新Image对象，可以理解为DOM  
+				var image = new Image();
+				// canvas.toDataURL 返回的是一串Base64编码的URL
+				// 指定格式 PNG  
+				image.src = canvas.toDataURL("image/png");
+				return image;
+			}
+
+			// 创建图片  
+			var image = new Image();
+			image.onload = function() {
+				var mycans = convertImageToCanvas(image, 'A54B456S');
+				canvasTurnImg(mycans)
+				// var img = convertCanvasToImage(mycans);
+				// $('body').append(img);
+			}
+			image.src = 'images/posterbg.png';
+
+			//转换png图片并保持
+			function canvasTurnImg(canvas) {
+				// 图片导出为 png 格式
+				var type = 'png';
+				var imgData = canvas.toDataURL(type);
+				/**
+				 * 获取mimeType
+				 * @param  {String} type the old mime-type
+				 * @return the new mime-type
+				 */
+				var _fixType = function(type) {
+					type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+					var r = type.match(/png|jpeg|bmp|gif/)[0];
+					return 'image/' + r;
+				};
+
+				// 加工image data，替换mime type
+				imgData = imgData.replace(_fixType(type), 'image/octet-stream');
+
+				/**
+				 * 在本地进行文件保存
+				 * @param  {String} data     要保存到本地的图片数据
+				 * @param  {String} filename 文件名
+				 */
+				var saveFile = function(data, filename) {
+					var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+					save_link.href = data;
+					save_link.download = filename;
+
+					var event = document.createEvent('MouseEvents');
+					event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+					save_link.dispatchEvent(event);
+				};
+
+				// 下载后的文件名
+				var filename = 'card_' + (new Date()).getTime() + '.' + type;
+				// download
+				saveFile(imgData, filename);
+				// console.log(filename)
+			}
+		</script>
+	</body>
+</html>
