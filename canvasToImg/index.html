@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<!-- <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script> -->
+
+		<script type="text/javascript">
+			function createPoster(data) {
+				// 返回 类似 2020/01/01 格式的字符串
+				function formatDate(milliseconds) {
+					var d, YY, MM, DD, day;
+					if (milliseconds) {
+						d = new Date(parseInt(milliseconds));
+					} else {
+						d = new Date();
+					}
+					YY = d.getFullYear();
+					MM = d.getMonth() + 1;
+					DD = d.getDate();
+					MM < 10 && (MM = '0' + MM);
+					DD < 10 && (DD = '0' + DD);
+					switch (d.getDay()) {
+						case 0:
+							day = '日'
+							break;
+						case 1:
+							day = '一'
+							break;
+						case 2:
+							day = '二'
+							break;
+						case 3:
+							day = '三'
+							break;
+						case 4:
+							day = '四'
+							break;
+						case 5:
+							day = '五'
+							break;
+						case 6:
+							day = '六'
+							break;
+					}
+					return '星期' + day + ' ' + YY + '.' + MM + '.' + DD;
+				}
+				//圆角矩形
+				function drawRoundedRect(ctx, x, y, width, height, r) {
+					ctx.save();
+					ctx.beginPath(); // draw top and top right corner 
+					ctx.moveTo(x + r, y);
+					ctx.arcTo(x + width, y, x + width, y + r, r); // draw right side and bottom right corner 
+					ctx.arcTo(x + width, y + height, x + width - r, y + height, r); // draw bottom and bottom left corner 
+					ctx.arcTo(x, y + height, x, y + height - r, r); // draw left and top left corner 
+					ctx.arcTo(x, y, x + r, y, r);
+					ctx.fill();
+					ctx.restore();
+				}
+				
+				// 把image 转换为 canvas对象  
+				function convertImageToCanvas(bg, logo, qrcode, arrow, data) {
+					// 创建canvas DOM元素，并设置其宽高   
+					var c = document.createElement("canvas");
+					c.width = 600;
+					c.height = 880;
+					var ctx = c.getContext("2d");
+					ctx.fillStyle="#ffffff";
+					ctx.fillRect(0,0,600,880);
+					// 绘制背景图
+					ctx.drawImage(bg, 0, 0, 600, 600);
+					ctx.drawImage(logo, 28, 28, 52, 52);
+					// 绘制日期
+					ctx.font = "28px 'Arial'"
+					ctx.fillStyle = "#FFFFFF";
+					ctx.textAlign = "left";
+					ctx.textBaseline = "middle";
+					ctx.fillText(formatDate(data.milliseconds), 100, 55);
+					// ctx.stroke();
+					// 绘制答题信息
+					ctx.font = "24px 'Arial'"
+					ctx.fillStyle = "#999999";
+					ctx.textAlign = "center";
+					ctx.textBaseline = "middle";
+					ctx.fillText('完成答题', 80, 640);
+					ctx.fillText('坚持天数', 240, 640);
+					ctx.font = "48px 'Arial'"
+					ctx.fillStyle = "#2D2D2D";
+					ctx.fillText(data.nums, 80, 700);
+					ctx.fillText(data.days, 240, 700);
+					ctx.font = "24px 'Arial'"
+					ctx.fillStyle = "#606060";
+					ctx.fillText('已经超越了', 90, 760);
+					ctx.fillText('的用户', 250, 760);
+					ctx.fillStyle = "#FF8039";
+					ctx.fillText(data.percent, 180, 760);
+					// 渐变圆角矩形
+					var grd = ctx.createLinearGradient(0, 0, 290, 52);
+					grd.addColorStop(0, "#FF9045");
+					grd.addColorStop(1, "#FF732D");
+					ctx.fillStyle = grd;
+					drawRoundedRect(ctx, 20, 785, 280, 52, 14);
+					ctx.fillStyle = "#FFFFFF";
+					ctx.textAlign = "left";
+					ctx.textBaseline = "middle";
+					ctx.fillText('扫码下载·易考必过', 40, 812, 760);
+					ctx.drawImage(arrow, 250, 796, 28, 28);
+					ctx.drawImage(qrcode, 360, 620, 220, 220);
+					return c;
+				}
+				// 从 canvas 提取图片 image
+				function convertCanvasToImage(canvas) {
+					//新Image对象，可以理解为DOM  
+					var image = new Image();
+					// canvas.toDataURL 返回的是一串Base64编码的URL
+					// 指定格式 PNG  
+					image.src = canvas.toDataURL("image/png");
+					return image;
+				}
+				
+				//转换png图片并保存
+				function canvasTurnImg(canvas) {
+					// 图片导出为 png 格式
+					var type = 'png';
+					var imgData = canvas.toDataURL(type);
+					/**
+					 * 获取mimeType
+					 * @param  {String} type the old mime-type
+					 * @return the new mime-type
+					 */
+					var _fixType = function(type) {
+						type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+						var r = type.match(/png|jpeg|bmp|gif/)[0];
+						return 'image/' + r;
+					};
+					// 加工image data，替换mime type
+					imgData = imgData.replace(_fixType(type), 'image/octet-stream');
+					/**
+					 * 在本地进行文件保存
+					 * @param  {String} data     要保存到本地的图片数据
+					 * @param  {String} filename 文件名
+					 */
+					var saveFile = function(data, filename) {
+						var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+						save_link.href = data;
+						save_link.download = filename;
+						var event = document.createEvent('MouseEvents');
+						event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+						save_link.dispatchEvent(event);
+					};
+
+					// 下载后的文件名
+					var filename = 'card_' + (new Date()).getTime() + '.' + type;
+					// download
+					saveFile(imgData, filename);
+					// console.log(imgData) 
+				}
+				// 创建图片
+				var bg = new Image();
+				var logo = new Image();
+				var qrcode = new Image();
+				var arrow = new Image();
+				// 先加载img再添加src
+				bg.src = data.bg;
+				logo.src = data.logo;
+				qrcode.src = data.qrcode;
+				arrow.src = data.arrow;
+				var count = 0;
+				bg.onload = function() {
+					count++;
+					if (count == 4) {
+						loadImage()
+					}
+					console.log('bg', count)
+				}
+				logo.onload = function() {
+					count++;
+					if (count == 4) {
+						loadImage()
+					}
+					console.log('logo', count)
+				}
+				qrcode.onload = function() {
+					count++;
+					if (count == 4) {
+						loadImage()
+					}
+					console.log('qrcode', count)
+				}
+				arrow.onload = function() {
+					count++;
+					if (count == 4) {
+						loadImage()
+					}
+					console.log('arrow', count)
+				}
+
+				function loadImage() {
+					var mycans = convertImageToCanvas(bg, logo, qrcode, arrow, data);
+					if (data.is_save) {
+						//转换png图片并保存
+						canvasTurnImg(mycans)
+					} else {
+						// 从 canvas 提取图片 image
+						var img = convertCanvasToImage(mycans); 
+						document.getElementsByTagName("body")[0].appendChild(img);
+					}
+				}
+
+			}
+
+			//使用方法
+			var shareData = {
+				milliseconds: 1589335458934,
+				nums: '1000',
+				days: '90',
+				percent: '85%',
+				bg: 'images/posterbg.jpg',
+				logo: 'images/logo.png',
+				qrcode: 'images/ico-qrcode.jpg',
+				arrow: 'images/arrow-qrcode.png',
+				is_save: 0 //是否保存
+			};
+			createPoster(shareData)
+		</script>
+	</body>
+</html>
