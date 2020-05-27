@@ -45,19 +45,18 @@
 
 		</div>
 	</body>
-	<script src="js/jquery.min.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="js/vue.min.2.5.13.js"></script>
 	<!-- 引入组件库 -->
 	<script src="js/mint-ui.js"></script>
-	<script src="js/resize.js"></script>
-	<script src="js/data.js"></script>
+	<script src="js/resize.js"></script> 
 	<script src="js/citys.js"></script>
 	<script type="text/javascript">
 		var vm = new Vue({
 			el: '#app',
 			data: {
 				current_city: '',
-				menu_show: 1,
+				menu_show: 0,
 				cur_idx: 0, //当前
 				menu_tabs: [],
 				menus: [],
@@ -88,7 +87,6 @@
 				},
 				menusSelet: function(item, i, j) {
 					console.log('level', item, i, j);
-					
 					this.not_sub = 0;
 					this.$set(this.menu_tabs, i, item); // 先设置 tabs
 					this.menu_tabs.splice(i + 1, this.menu_tabs.length); //  后清除 tabs
@@ -106,8 +104,7 @@
 						this.not_sub = 1; 
 						this.showMenus(0);
 						console.log('this.menu_tabs',this.menu_tabs)
-						for(var k in this.menu_tabs){
-							console.log('k',k)
+						for(var k in this.menu_tabs){ 
 							this.current_city += this.menu_tabs[k].name
 						}
 					}
