@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>选择考试</title>
+		<link rel="stylesheet" type="text/css" href="css/mint-ui.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/menu-select.css" />
+	</head>
+
+	<body>
+		<div id="app" class="vueBox">
+			<div style="font-size: 18px;" @click="showMenus(1)" v-text="current_city?current_city:'请选择科目'"></div>
+			<div class="menus-mask" v-show="menu_show" @click="showMenus(0)" @touchmove.prevent></div>
+			<div :class="['menus-box',menu_show?'menus-show':'']">
+				<div class="menus-head">
+					<div class="menus-head-title borderbottom">请选择您的考试</div>
+					<ul class="menus-tabs borderbottom">
+						<li :class="{'active':cur_idx==index}" v-for="item,index in menu_tabs" @click="menusTabs(index)">
+							<span v-text="item.name"></span>
+							﻿<i class="mintui mintui-back mintui-arrowright"></i>
+						</li>
+						<li v-if="!not_sub" :class="{'active':cur_idx==menu_tabs.length}" @click="menusTabs(menu_tabs.length)">
+							<span>请选择</span>
+						</li>
+					</ul>
+				</div>
+
+				<ul class="menus-ul" :style="{'left':-cur_index*50+'%'}">
+					<li class="menus-li" :class="['cur'+cur_idx ,{'cur':cur_index==i}]" v-for="menu,i in array">
+						<div class="menus-item borderbottom" v-for="item,j in menu" @click="menusSelet(item,i,j)">
+							<a :class="[values[i]==j?'active':'']">
+								<p class="name">
+									<span class="info-con-lable" v-if="item.is_vip">已购</span><span v-text="item.name"></span>
+								</p>
+								<i v-if="values[i]!==j&&item.areas&&item.areas.length" class="mintui mintui-back mintui-arrowright"></i>
+								<i v-if="values[i]==j" class="mintui mintui-success"></i>
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</body>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/vue.min.2.5.13.js"></script>
+	<!-- 引入组件库 -->
+	<script src="js/mint-ui.js"></script>
+	<script src="js/resize.js"></script>
+	<script src="js/data.js"></script>
+	<script src="js/citys.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				current_city: '',
+				menu_show: 1,
+				cur_idx: 0, //当前
+				menu_tabs: [],
+				menus: [],
+				//以下二维数组
+				array: [],
+				values: [],
+				not_sub: 0,
+			},
+			computed: {
+				cur_index: function() {
+					return this.cur_idx < 1 ? this.cur_idx : this.cur_idx - 1
+				}
+			},
+			created: function() {
+				this.getCity();
+			},
+			methods: {
+				showMenus: function(bool) {
+					this.menu_show = bool
+				},
+				menusTabs: function(index) {
+					this.cur_idx = index;
+					var i = index ? index - 1 : index;
+					this.menus_left = document.querySelectorAll(".menus-tabs > li")[i].offsetLeft;
+					$('.menus-tabs').animate({
+						scrollLeft: this.menus_left
+					});
+				},
+				menusSelet: function(item, i, j) {
+					console.log('level', item, i, j);
+					
+					this.not_sub = 0;
+					this.$set(this.menu_tabs, i, item); // 先设置 tabs
+					this.menu_tabs.splice(i + 1, this.menu_tabs.length); //  后清除 tabs
+					this.array.splice(i + 1, this.array.length);
+					this.values.splice(i + 1, this.values.length);
+					this.$set(this.values, i, j);
+					if (item.cities && item.cities.length) {
+						this.cur_idx = i + 1; //当前 tabs高亮
+						this.$set(this.array, i + 1, item.cities)
+					}else if (item.areas && item.areas.length) {
+						this.cur_idx = i + 1; //当前 tabs高亮
+						this.$set(this.array, i + 1, item.areas)
+					} else {
+						this.current_city='';
+						this.not_sub = 1; 
+						this.showMenus(0);
+						console.log('this.menu_tabs',this.menu_tabs)
+						for(var k in this.menu_tabs){
+							console.log('k',k)
+							this.current_city += this.menu_tabs[k].name
+						}
+					}
+				},
+				getCity: function() {
+					this.menus = citysData.provinces;
+					this.array.push(this.menus);
+					this.$set(this.array, 1, this.menus[0].cities) // 设置 二级
+					this.$set(this.menu_tabs, 0, this.menus[0]); // 设置 tabs
+					this.$set(this.values, 0, 0); //设置一级选中状态
+					this.$set(this.values, 1, 0); //设置二级选中状态
+					console.log(this.array)
+					console.log(this.values)
+				},
+
+			}
+		});
+	</script>
+</html>
