@@ -4,19 +4,18 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>选择考试</title>
-		<link rel="stylesheet" type="text/css" href="css/mint-ui.css" />
+		<title>选择地址</title>
+		<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 		<link rel="stylesheet" type="text/css" href="css/common.css" />
-		<link rel="stylesheet" type="text/css" href="css/menu-select.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
-
 	<body>
 		<div id="app" class="vueBox">
-			<div style="font-size: 18px;" @click="showMenus(1)" v-text="current_city?current_city:'请选择科目'"></div>
+			<div style="font-size: 18px;"  @click="showMenus(1)" v-text="current_city?current_city:'请选择收货地址'"></div>
 			<div class="menus-mask" v-show="menu_show" @click="showMenus(0)" @touchmove.prevent></div>
 			<div :class="['menus-box',menu_show?'menus-show':'']">
 				<div class="menus-head">
-					<div class="menus-head-title borderbottom">请选择您的考试</div>
+					<div class="menus-head-title borderbottom">收货地址</div>
 					<ul class="menus-tabs borderbottom">
 						<li :class="{'active':cur_idx==index}" v-for="item,index in menu_tabs" @click="menusTabs(index)">
 							<span v-text="item.name"></span>
@@ -27,99 +26,126 @@
 						</li>
 					</ul>
 				</div>
-
 				<ul class="menus-ul" :style="{'left':-cur_index*50+'%'}">
-					<li class="menus-li" :class="['cur'+cur_idx ,{'cur':cur_index==i}]" v-for="menu,i in array">
+					<li :class="['menus-li',{'cur':cur_index==i}]" v-for="menu,i in array">
 						<div class="menus-item borderbottom" v-for="item,j in menu" @click="menusSelet(item,i,j)">
 							<a :class="[values[i]==j?'active':'']">
 								<p class="name">
 									<span class="info-con-lable" v-if="item.is_vip">已购</span><span v-text="item.name"></span>
 								</p>
-								<i v-if="values[i]!==j&&item.areas&&item.areas.length" class="mintui mintui-back mintui-arrowright"></i>
+								<i v-if="values[i]!==j&&item.cities||values[i]!==j&&item.areas" class="mintui mintui-back mintui-arrowright"></i>
 								<i v-if="values[i]==j" class="mintui mintui-success"></i>
 							</a>
 						</div>
 					</li>
 				</ul>
 			</div>
-
 		</div>
 	</body>
+	<!-- // 使用jQuery的动画兼容性比较好 -->
 	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="js/vue.min.2.5.13.js"></script>
 	<!-- 引入组件库 -->
-	<script src="js/mint-ui.js"></script>
-	<script src="js/resize.js"></script> 
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- // mint-ui只用到了2个图标，如果项目中没有其他需要完全可以更换掉图标 -->
+	<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+	<!-- 数据源 -->
 	<script src="js/citys.js"></script>
+	<!-- 移动端适配 -->
+	<script src="js/resize.js"></script>
 	<script type="text/javascript">
 		var vm = new Vue({
 			el: '#app',
 			data: {
-				current_city: '',
-				menu_show: 0,
-				cur_idx: 0, //当前
-				menu_tabs: [],
-				menus: [],
-				//以下二维数组
-				array: [],
-				values: [],
-				not_sub: 0,
+				current_city: '', //选择后的城市
+				menu_show: 0, //弹窗控制器
+				cur_idx: 0, //当前菜单索引
+				menu_tabs: [], //菜单
+				menus: [], //数据源
+				array: [], //选择器展示的数据 【二维数组】
+				values: [], //默认地址
+				not_sub: 0 //没有下一级 隐藏tab'请选择'
 			},
 			computed: {
-				cur_index: function() {
+				cur_index: function() { //用于判断tabs位置以及窗口宽度
 					return this.cur_idx < 1 ? this.cur_idx : this.cur_idx - 1
 				}
 			},
 			created: function() {
-				this.getCity();
+				var getdata = JSON.parse(localStorage.getItem('storagedata'));
+				if (getdata) {
+					this.not_sub = 1;
+					this.cur_idx = getdata.cur_idx;
+					this.menu_tabs = getdata.menu_tabs;
+					this.array = getdata.array;
+					this.values = getdata.values;
+					this.menus_left = getdata.menus_left;
+					$('.menus-tabs').animate({
+						scrollLeft: getdata.menus_left
+					});
+				}else{
+					this.getCity(); //获取数据
+				}
+				
 			},
 			methods: {
+				//显示选择器
 				showMenus: function(bool) {
 					this.menu_show = bool
 				},
+				//切换菜单
 				menusTabs: function(index) {
 					this.cur_idx = index;
 					var i = index ? index - 1 : index;
 					this.menus_left = document.querySelectorAll(".menus-tabs > li")[i].offsetLeft;
-					$('.menus-tabs').animate({
+					$('.menus-tabs').animate({ // 使用jQuery的动画兼容性比较好
 						scrollLeft: this.menus_left
 					});
 				},
+				//选择城市
 				menusSelet: function(item, i, j) {
 					console.log('level', item, i, j);
 					this.not_sub = 0;
 					this.$set(this.menu_tabs, i, item); // 先设置 tabs
 					this.menu_tabs.splice(i + 1, this.menu_tabs.length); //  后清除 tabs
-					this.array.splice(i + 1, this.array.length);
-					this.values.splice(i + 1, this.values.length);
-					this.$set(this.values, i, j);
-					if (item.cities && item.cities.length) {
+					this.array.splice(i + 1, this.array.length); //  先清除 数据
+					this.values.splice(i + 1, this.values.length); //  先清除 数据索引
+					this.$set(this.values, i, j); //设置数据索引
+					if (item.cities && item.cities.length) { //子类cities还是areas或者其他字段
 						this.cur_idx = i + 1; //当前 tabs高亮
-						this.$set(this.array, i + 1, item.cities)
-					}else if (item.areas && item.areas.length) {
+						this.$set(this.array, i + 1, item.cities) //设置下一级城市数据
+					} else if (item.areas && item.areas.length) { //子类cities还是areas或者其他字段
 						this.cur_idx = i + 1; //当前 tabs高亮
-						this.$set(this.array, i + 1, item.areas)
+						this.$set(this.array, i + 1, item.areas) //设置下一级区县数据
 					} else {
-						this.current_city='';
-						this.not_sub = 1; 
-						this.showMenus(0);
-						console.log('this.menu_tabs',this.menu_tabs)
-						for(var k in this.menu_tabs){ 
-							this.current_city += this.menu_tabs[k].name
+						this.current_city = ''; //清空当前选中城市
+						this.not_sub = 1; //没有子类 即最后一项
+						console.log('this.menu_tabs', this.menu_tabs)
+						for (var k in this.menu_tabs) {
+							this.current_city += this.menu_tabs[k].name //选中当前城市
 						}
+						this.showMenus(0); //关闭弹窗
+						var storagedata = {
+							cur_idx: this.cur_idx,
+							menu_tabs: this.menu_tabs,
+							array: this.array,
+							values: this.values,
+							menus_left: this.menus_left,
+						};
+						localStorage.setItem('storagedata', JSON.stringify(storagedata));//本地存储
 					}
 				},
+				//获取数据
 				getCity: function() {
-					this.menus = citysData.provinces;
-					this.array.push(this.menus);
-					this.$set(this.array, 1, this.menus[0].cities) // 设置 二级
+					this.menus = citysData.provinces; // 更加数据格式来确定子类cities还是areas或者其他字段
+					this.$set(this.array, 0, this.menus) // 设置 二级
+					this.$set(this.array, 1, this.menus[0].cities) // 设置 二级 
 					this.$set(this.menu_tabs, 0, this.menus[0]); // 设置 tabs
+					// 设置默认值
 					this.$set(this.values, 0, 0); //设置一级选中状态
-					this.$set(this.values, 1, 0); //设置二级选中状态
+					this.$set(this.values, 1, 0); //设置二级选中状态 
 					console.log(this.array)
 					console.log(this.values)
-				},
-
+				}
 			}
 		});
 	</script>
