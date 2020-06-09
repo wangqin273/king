@@ -111,7 +111,7 @@ body {
     position: relative;
     width: 6.7rem;
     height: 0.92rem;
-    background: #15BCC3;
+    background: #26A2FF;
     border-radius: 0.46rem;
     font-size: .32rem;
     color: #fff;
@@ -204,4 +204,71 @@ body {
     right: 0;
     width: .32rem;
     height: .32rem;
+		pointer-events: auto;
+}
+
+.mint-popup {
+	width: 100%;
+}
+
+.mint-popup-head {
+	/* 	position: absolute;
+	top: 0;
+	left: 0; */
+	width: 100%;
+	height: .8rem;
+	font-size: .28rem;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-moz-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	color: #999;
+}
+
+.mint-popup-head li {
+	width: 50%;
+	height: 100%;
+	padding: 0 .3rem;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+.mint-popup-head li:last-child {
+	color: #26A2FF;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	-moz-box-pack: end;
+	-ms-flex-pack: end;
+	justify-content: flex-end;
+}
+
+.picker-item {
+	font-size: .24rem;
+	color: #999;
+
+}
+
+.picker-selected {
+	font-size: .32rem;
+	height: 1rem;
+	line-height: 1rem;
 }

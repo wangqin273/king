@@ -5,22 +5,26 @@
 		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>问题反馈</title>
-		<link rel="stylesheet" type="text/css" href="css/mint-ui.css" />
+		<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 		<link rel="stylesheet" type="text/css" href="css/common.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
-
 	<body>
 		<div class="vueBox" v-cloak id="app">
 			<div class="page-box">
 				<div class="suggest-title">
 					<span class="text-star">*</span>
+					<span>问题类型</span>
+				</div>
+				<input @click="showProblemName" class="input-box" :value="problem_name" readonly="" type="text" placeholder="请选择问题类型">
+				<div class="suggest-title">
+					<span class="text-star">*</span>
 					<span>问题描述</span>
 				</div>
 				<div class="area-box">
-					<textarea class="textarea-box" placeholder="请输入您的问题或建议" v-model="comment" @input="msgChange" :maxlength="maxlen"></textarea>
+					<textarea class="textarea-box" placeholder="请输入您的问题或建议" v-model="comment" :maxlength="maxlen"></textarea>
 					<div class="amount-box">
-						<p class="amount-txt" v-text="len"></p>
+						<p class="amount-txt" v-text="lens"></p>
 						<p class="amount-txt">/</p>
 						<p class="amount-txt" v-text="maxlen"></p>
 					</div>
@@ -50,32 +54,87 @@
 					<div :class="[is_can?'btn-submit':'btn-submit-opacity']" @click="submitMsg">确认提交</div>
 				</div>
 			</div>
+<custom-input v-model="searchText"></custom-input>
 
+			<mt-popup v-model="problemVisible" position="bottom">
+				<ul class="mint-popup-head">
+					<li @click="selectProblem(0)">取消</li>
+					<li @click="selectProblem(1)">确认</li>
+				</ul>
+				<mt-picker :slots="problem_list" @change="problemChange" value-key="name"> </mt-picker>
+			</mt-popup>
 		</div>
-
 	</body>
-	<script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/mint-ui.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 引入组件库 -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+	<script src="js/resize.js"></script>
 	<script type="text/javascript">
-		var is_submit = false;
+		Vue.component('custom-input', {
+		  props: ['val'],
+		  template: `
+		    <input class="input-box" 
+		     :value="val"
+		      @input="change"
+		    >
+		  `,
+			methods:{
+				change:function(e){ 
+					this.$emit('input', e.target.value)
+				}
+			}
+		})
 		var vm = new Vue({
 			el: '#app',
 			data: {
+				searchText:'',
+				// 选择类型
+				problem_name: '',
+				problemVisible: false,
+				problem_list: [{
+					flex: 1,
+					values: [{
+						"id": 11,
+						"name": "类型一"
+					}, {
+						"id": 21,
+						"name": "类型二"
+					}, {
+						"id": 21,
+						"name": "类型三"
+					}, {
+						"id": 41,
+						"name": "类型四"
+					}, {
+						"id": 51,
+						"name": "类型五"
+					}],
+					textAlign: 'center'
+				}],
 				ico_plus: 'images/ico-plus.png',
 				ico_del: 'images/ico-del.png',
 				sid: '123',
 				comment: '',
 				maxlen: 200,
-				len: 0,
 				mobile: '',
-				imgList: []
+				imgList: [],
+				is_submit: false
 			},
 			computed: {
-				is_can: function() {
-					return (this.comment && this.mobile && this.mobile.length >= 11)
+				lens: function() {
+					var lens = 0; // 中文算2个字
+					for (i = 0; i < this.comment.length; i++) {
+						if ((this.comment.charCodeAt(i) >= 0) && (this.comment.charCodeAt(i) <= 255))
+							lens = lens + 1;
+						else
+							lens = lens + 2;
+					}
+					return lens;
 				},
+				is_can: function() { //控制提交按钮
+					return (this.comment && this.mobile && this.mobile.length >= 11)
+				}
 			},
 			created: function() {
 				if (localStorage.getItem('mobile')) {
@@ -83,8 +142,22 @@
 				}
 			},
 			methods: {
-				msgChange: function() {
-					this.len = this.comment.length;
+				// 类型弹窗
+				showProblemName: function() {
+					this.problemVisible = true;
+					if (!this.problem_temp) {
+						this.problem_temp = this.problem_list[0].values[0].name;
+					}
+				},
+				problemChange: function(picker, values) {
+					if (picker.getSlotValue(0)) {
+						this.problem_temp = picker.getSlotValue(0).name
+					}
+				},
+				selectProblem: function(bool) {
+					// bool 判断 触发的是取消还是确认按钮
+					this.problem_name = bool ? this.problem_temp : this.problem_name;
+					this.problemVisible = false
 				},
 				// 图片上传
 				fileChange: function(el) {
@@ -98,12 +171,12 @@
 					}
 				},
 				fileAdd: function(file) {
-					var _this = this;
+					var that = this;
 					var reader = new FileReader();
 					reader.readAsDataURL(file);
 					reader.onload = function() {
 						file.src = reader.result;
-						_this.imgList.push({
+						that.imgList.push({
 							file: file
 						});
 					}
@@ -111,53 +184,67 @@
 				fileDel: function(index) {
 					this.imgList.splice(index, 1);
 				},
+				//提交数据
 				submitMsg: function() {
-					var _this = this;
-					if (!_this.comment) {
-						_this.$toast({
+					if (this.instance) {
+						this.instance.close()
+					}
+					if (!this.problem_name) {
+						this.instance = this.$toast({
+							message: '请选择问题类型！',
+							duration: 1000
+						});
+						return
+					}
+					if (!this.comment) {
+						this.instance = this.$toast({
 							message: '请输入您的问题或建议！',
 							duration: 1000
 						});
 						return
 					}
-					if (_this.mobile.length < 11) {
-						_this.$toast({
+					if (this.mobile.length < 11) {
+						this.instance = this.$toast({
 							message: '请输入正确的手机号码',
 							duration: 1000
 						});
 						return
 					}
-					if (is_submit) {
+					if (this.is_submit) {
 						return false
 					}
-					is_submit = true;
-					localStorage.setItem('mobile', _this.mobile);
-					var url = '';
+					this.is_submit = true;
+					localStorage.setItem('mobile', this.mobile);
+					// 整合数据
 					var formData = new FormData();
-					formData.append("platform", _this.platform);
-					formData.append("sid", _this.sid);
-					formData.append("mobile", _this.mobile);
-					formData.append("content", _this.comment);
-					for (var i = 0; i < _this.imgList.length; i++) {
-						formData.append("imgs", _this.imgList[i].file);
+					formData.append("platform", this.platform);
+					formData.append("sid", this.sid);
+					formData.append("mobile", this.mobile);
+					formData.append("comment", this.comment);
+					for (var i = 0; i < this.imgList.length; i++) {
+						formData.append("imgs", this.imgList[i].file);
 					}
-					console.log('formData', formData.get('mobile'));
-					console.log('formData', formData.getAll('imgs'));
+					// 测试打印数据
+					console.log('mobile', formData.get('mobile'));
+					console.log('comment', formData.get('comment'));
+					console.log('imgs', formData.getAll('imgs'));
+
+					var url = '';
+					var that = this;
+					// 模拟提交
 					axios.post(url, formData)
 						.then(function(resp) {
 							if (resp.error_code == 0) {
 								setTimeout(function() {
-									is_submit = false;
+									that.is_submit = false;
 								}, 1200)
 							} else {
-								is_submit = true;
+								that.is_submit = true;
 							}
-							
 						})
 						.catch(function(er) {
-							is_submit = false;
+							that.is_submit = false;
 						})
-			 
 				}
 			}
 		});
