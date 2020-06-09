@@ -1,0 +1,8 @@
+vendor
+*.lock
+stdout
+.idea
+.tea
+.env
+.DS_Store
+*/node_modules

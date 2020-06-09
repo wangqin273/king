@@ -1,0 +1,27 @@
+a,body,button,dd,div,dl,dt,form,h1,h2,h3,h4,h5,h6,input,label,li,ol,p,span,table,td,textarea,th,tr,ul{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;border:0;-webkit-tap-highlight-color:transparent}
+body,html{width:100%;min-height:100%;background-color:#fff;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+body{color:#333;font-family:微软雅黑}
+h1,h2,h3,h4,h5,h6{font-weight:400;font-size:100%}
+input,textarea{outline:0;-webkit-appearance:none}
+a{color:#555}
+a,a:hover{text-decoration:none}
+img{border:none;pointer-events:none}
+li,ol,ul{list-style:none}
+.vueBox{width:100%}
+::-webkit-input-placeholder{color:#b0b0b0}
+:-moz-placeholder,::-moz-placeholder{color:#b0b0b0}
+:-ms-input-placeholder{color:#b0b0b0}
+[v-cloak]{display:none}
+.mintui{font-size:.32rem}
+.mint-spinner-triple-bounce{padding:.3rem 0;text-align:center;font-size:0}
+.mint-spinner-triple-bounce-bounce1,.mint-spinner-triple-bounce-bounce2,.mint-spinner-triple-bounce-bounce3{margin:0 2px}
+.mint-msgbox{padding-top:.3rem;width:6.4rem;-webkit-border-radius:.2rem;-moz-border-radius:.2rem;border-radius:.2rem;background:#fff}
+.mint-msgbox-header{padding:0}
+.mint-msgbox-message{font-size:.3rem;line-height:normal}
+.mint-msgbox-title{font-size:.32rem}
+.mint-msgbox-message>b{display:block;padding-bottom:.1rem;color:#333;white-space:nowrap;font-weight:700}
+.mint-msgbox-message>b>i{padding:0 4px;color:#15bcc3;font-style:normal}
+.mint-msgbox-btns{height:.8rem;line-height:.8rem}
+.mint-msgbox-confirm{color:#15bcc3;font-size:.32rem}
+.mint-msgbox-cancel{color:#666;font-size:.32rem}
+.mint-actionsheet-button,.mint-actionsheet-listitem{height:.9rem;font-size:.36rem;line-height:.9rem}
