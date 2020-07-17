@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 引入样式 -->
+		<link href="https://cdn.bootcdn.net/ajax/libs/mui/3.7.1/css/mui.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<form class="mui-input-group" id="formIcon">
+			<div class="mui-input-row">
+				<label>文字</label>
+				<input type="text" name="text" maxlength="4" class="mui-input-clear" placeholder="请输入文字">
+			</div>
+			<div class="mui-input-row">
+				<label>背景颜色</label>
+				<input type="color" name="bgcolor" class="mui-input-password" placeholder="请输入密码">
+			</div>
+			<div class="mui-input-row">
+				<label>字体颜色</label>
+				<input type="color" name="fontcolor" class="mui-input-password" placeholder="请输入密码">
+			</div>
+			<div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-primary" id="muiBtn">确认</button>
+			</div>
+		</form>
+		<div id="imgBox"></div>
+		<!-- 将canvas转图片 -->
+		<!-- 将图片转成canvas -->
+		<script type="text/javascript">
+			muiBtn.addEventListener('click', sendData)
+			function sendData() {
+				var formData = new FormData(formIcon);
+				var text = formData.get('text')
+				var bgcolor = formData.get('bgcolor')
+				var fontcolor = formData.get('fontcolor')
+				// 创建图片  
+				if (fontcolor == bgcolor) {
+					fontcolor = "#FFF";
+					bgcolor = "#166fbe";
+				}
+				if (text) {
+					var mycans = convertImageToCanvas(bgcolor, fontcolor, text);
+					var img = convertCanvasToImage(mycans);
+					//将img插入li中
+					imgBox.appendChild(img);
+				}
+				// 图片保存到本地
+				// canvasTurnImg(mycans)
+			}
+		 
+
+			// 把image 转换为 canvas对象  
+			function convertImageToCanvas(bgcolor, fontcolor, text) {
+				var arr = text.split('')
+				var size = 60;
+				switch (text.length) {
+					case 1:
+						size = 80;
+						break;
+					case 2:
+						size = 60;
+						break;
+					case 3:
+						size = 42;
+						break;
+					case 4:
+						size = 42;
+						arr2 = [arr[0], arr[1]];
+						console.log(arr2)
+						break;
+				}
+				// 创建canvas DOM元素，并设置其宽高 
+				var c = document.createElement("canvas");
+				c.width = 200;
+				c.height = 200;
+				var ctx = c.getContext("2d");
+				ctx.arc(c.width / 2, c.width / 2, c.width / 2, 0, 2 * Math.PI);
+				ctx.clip();
+				ctx.fillStyle = bgcolor;
+				ctx.fillRect(0, 0, 200, 200);
+				ctx.font = "bold " + size + "px 'Arial'"
+				ctx.textBaseline = 'middle'; // top middle bottom，上下位置的方式
+				ctx.fillStyle = fontcolor;
+				ctx.textAlign = "center";
+				// ctx.textBaseline = "middle"
+
+				arr.forEach(function(item, i) {
+					console.log(item, i)
+					switch (text.length) {
+						case 1:
+							ctx.fillText(item, c.width / 2, c.width / 2);
+							break;
+						case 2:
+							ctx.fillText(item, c.width / 2, (size + 10) * (i + 1));
+							break;
+						case 3:
+							ctx.fillText(item, 50 + (size + 10) * (i), c.width / 2);
+							break;
+						case 4:
+							if (i < 2) {
+								ctx.fillText(item, (c.width / 2.8) + (size + 12) * (i % 2), size * 1.9);
+							} else {
+								ctx.fillText(item, (c.width / 2.8) + (size + 12) * (i % 2), size * 3.2);
+							}
+							break;
+					}
+
+
+				})
+				// ctx.fillText(text, 100, 100); 
+				return c;
+			}
+			// 从 canvas 提取图片 image  
+			function convertCanvasToImage(canvas) {
+				//新Image对象，可以理解为DOM  
+				var image = new Image();
+				// canvas.toDataURL 返回的是一串Base64编码的URL
+				// 指定格式 PNG   
+				image.src = canvas.toDataURL("image/png");
+				return image;
+			}
+
+
+			//转换png图片并保存到本地
+			function canvasTurnImg(canvas) {
+				// 图片导出为 png 格式
+				var type = 'png';
+				var imgData = canvas.toDataURL(type);
+				/**
+				 * 获取mimeType
+				 * @param  {String} type the old mime-type
+				 * @return the new mime-type
+				 */
+				var _fixType = function(type) {
+					type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+					var r = type.match(/png|jpeg|bmp|gif/)[0];
+					return 'image/' + r;
+				};
+
+				// 加工image data，替换mime type
+				imgData = imgData.replace(_fixType(type), 'image/octet-stream');
+				/**
+				 * 在本地进行文件保存
+				 * @param  {String} data     要保存到本地的图片数据
+				 * @param  {String} filename 文件名
+				 */
+				var saveFile = function(data, filename) {
+					var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+					save_link.href = data;
+					save_link.download = filename;
+					var event = document.createEvent('MouseEvents');
+					event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+					save_link.dispatchEvent(event);
+				};
+				// 下载后的文件名
+				var filename = 'card_' + (new Date()).getTime() + '.' + type;
+				// download
+				saveFile(imgData, filename);
+				console.log(filename)
+			}
+		</script>
+	</body>
+</html>
