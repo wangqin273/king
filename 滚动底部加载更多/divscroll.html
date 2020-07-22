@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>div滚动分页</title>
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.scroll-box {
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+
+			}
+
+			.scroll-box ul li {
+				display: flex;
+				align-items: center;
+				background-color: #F0AD4E;
+				margin-bottom: 10px;
+				padding: 10px;
+				font-size: 24px;
+			}
+
+			.scroll-box ul li img {
+				width: 64px;
+				height: 64px;
+				border-radius: 50%;
+				margin-right: 20px;
+			}
+			.mint-spinner-triple-bounce,.nothing-more{
+				width: 100%;
+				padding: 15px 0;
+				font-size: 16px;
+				color: #999;
+				display: flex;
+				justify-content: center;
+			}
+			::-webkit-scrollbar {
+				width: 0;
+				height: 0;
+				color: transparent
+			}
+		</style>
+	</head>
+	<body>
+		<div class="vueBox" id="app">
+			<div class="scroll-box" id="scrollBox" :style="{height:scrollH+'px'}" @scroll="divScroll">
+				<ul>
+					<li v-for="item in arr">
+						<img :src="item.atavar" alt="">
+						<span v-text="item.nickname"></span>
+					</li>
+				</ul>
+				<mt-spinner type="triple-bounce" color="#15BCC3" v-show="loading"></mt-spinner>
+				<p class="nothing-more" v-if="page>total_page&&!loading">已经到底啦~</p>
+			</div>
+		</div>
+	</body>
+	<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+	<!-- 引入组件库 -->
+	<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.min.js"></script>
+	<script src="js/resize.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				arr: [],
+				page: 0,
+				total_page: 2,
+				loading: 0,
+				scrollH: 400,
+			},
+			created: function() {
+				this.clientH = document.documentElement.clientHeight || document.body.clientHeight;
+				this.clientW = document.documentElement.clientWidth || document.body.clientWidth;
+				// this.scrollH = this.clientH - this.clientW * 1 * 100 / 750;
+				this.getLists()
+			},
+			methods: {
+				getLists: function() { 
+					this.loading = true;
+					setTimeout(() => {
+					 axios({
+					 		url: 'js/data.json',
+					 		method: 'get',
+					 	})
+					 	.then((res) => {
+					 		console.log(res.data)
+					 
+					 		if (res.data.code == 0) {
+					 			this.arr = this.arr.concat(res.data.data);
+					 			this.total_page = res.data.total_page
+					 			this.page++
+					 		}
+					 		setTimeout(() => {
+					 			this.loading = false;
+					 		}, 1000);
+					 	})
+					 	.catch(function(error) {
+					 		console.log(error);
+					 	});
+					}, 1000);
+				
+				},
+				// 滚动分页
+				divScroll: function() {
+					var scrollBox = document.getElementById("scrollBox");
+					var scrollTop, maxScroll, minScroll = 0;
+					scrollTop = scrollBox.scrollTop;
+					maxScroll = scrollBox.scrollHeight - scrollBox.offsetHeight;
+					console.log(maxScroll, scrollTop)
+					if (scrollTop >= maxScroll) {
+						console.log("滚动到底了");
+						if (this.loading || this.page > this.total_page) {
+							return false;
+						}
+						this.getLists()
+					}
+					if (scrollTop <= 0) {
+						console.log("滚动到顶了");
+						return false;
+					}
+				},
+			}
+		});
+	</script>
+</html>
