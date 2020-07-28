@@ -1,0 +1,62 @@
+.swiper-banners {
+	width: 100%;
+	height: 3.6rem;
+	font-size: 0;
+}
+
+.swiper-slide {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #EFEFEF;
+}
+
+.swiper-slide img {
+	width: 100%;
+	min-height: 100%;
+}
+
+
+.albums-title {
+	width: 100%;
+	height: .72rem;
+	padding: 0 0.15rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.3rem;
+	font-weight: bold;
+	border-bottom: 1px solid #ececec;
+}
+
+.more-text {
+	font-size: 0.22rem;
+	color: #969696;
+	font-weight: normal;
+}
+ 
+.back-top{
+	position: fixed;
+	bottom: 0.5rem;
+	right: 0.15rem;
+	z-index: 9;
+	width: .8rem;
+	height: .8rem;
+	background-color: rgba(222,222,222,0.8);
+	border: 1px solid #efefef;
+	border-radius: 50%;
+	font-size: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: translateX(150%) rotate(360deg);
+	transition: transform .8s;
+}
+.back-top-show{ 
+	 transform: translateX(0) rotate(0deg);
+}
+.icon-arrow-up-bold{
+	color: #fff;
+	font-size: 0.48rem;
+	font-weight: bold;
+}

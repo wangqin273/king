@@ -1,0 +1,102 @@
+
+/* 清除滚动条 */
+::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+	color: transparent;
+}
+
+.tab-list {
+	position: relative;
+
+	font-size: 0;
+	width: 100%;
+	height: .88rem;
+	overflow-x: scroll;
+	background: #ffffff;
+	z-index: 999;
+	white-space: nowrap;
+	box-shadow: 0 1px 0.1rem #efefef;
+}
+
+.tab-item {
+	position: relative;
+	display: inline-block;
+	height: 100%;
+	font-size: .28rem;
+	color: #969696;
+	line-height: .88rem;
+	padding: 0 .25rem;
+}
+
+.tab-item::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 1px;
+	height: .28rem;
+	transform: translateY(-50%);
+	background: #e0e0e0
+}
+
+.tab-item:first-child::before {
+	width: 0;
+}
+
+.tab-item-cur {
+	position: relative;
+	font-size: .28rem;
+	color: #0090ff;
+}
+
+.tab-item-cur::after {
+	/* content: ''; */
+	position: absolute;
+	left: 50%;
+	bottom: .38rem;
+	width: .59rem;
+	height: .06rem;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+	background: -webkit-gradient(linear, left top, right top, from(#DDC47D), to(#D8A455));
+	background: -webkit-linear-gradient(left, #DDC47D, #D8A455);
+	background: -moz-linear-gradient(left, #DDC47D, #D8A455);
+	background: -o-linear-gradient(left, #DDC47D, #D8A455);
+	background: linear-gradient(to right, #DDC47D, #D8A455);
+}
+
+
+/* 分页 */
+.pagination-box {
+	display: flex;
+	font-size: 0.28rem;
+	width: 100%;
+	height: .88rem;
+	background-color: #0090ff;
+	margin-bottom: 0.2rem;
+}
+
+.pagination-box li {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+}
+
+.pagination-box li:hover {
+	background-color: #134faa;
+}
+
+.pagination-box li:not(:first-child) {
+	border-left: 1px solid #fff;
+}
+
+.pagination-box li.disable {
+	color: #ccc;
+	opacity: .5;
+}

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>美图驿馆</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- 引入样式 -->
+		<link href="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_1970187_zqi8bub30pi.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/component-header.css">
+			<link rel="stylesheet" href="css/component-list.css">
+		<link rel="stylesheet" href="css/details.css">
+	</head>
+	<body>
+		<div class="vueBox" id="app" v-cloak> 
+			<component-header :category_name="category_name"></component-header>
+			<!-- 导航 -->
+			<ul class="tab-list">
+				<li ref="tablist" :class="{'tab-item':true,'tab-item-cur':tab_inx==index}" v-for="item,index in category" v-text="item.name"
+				 @click="changeTab(item,index)"></li>
+			</ul>
+			<!-- 主图 -->
+			<div class="preview-box">
+				<div class="preview-title">
+					<span v-text="photo_data.title"></span>
+					<span v-text="'('+(cur_index+1)+'/'+ lens+')'"></span>
+				</div>
+				<div class="preview-time">
+					<span v-text="'上传数据：'+photo_data.time"></span>
+					<span v-text="'图片来源：'+photo_data.from"></span>
+				</div>
+				<div class="preview-imgs" @click="nextPhoto(1)">
+					<img :src="preview_img">
+				</div>
+			</div>
+			<!-- 页码 -->
+			<ul class="pagination-box">
+				<li @click="nextPhoto(0)">
+					<span v-text="'上一'+(cur_index>0?'张':'篇')"></span>
+				</li>
+				<li @click="nextPhoto(1)">
+					<span v-text="'下一'+(cur_index+1<lens?'张':'篇')"></span>
+				</li>
+			</ul>
+			<!-- 高清美女推荐 -->
+			<div class="albums">
+				<div class="albums-title">
+					<span>高清美女推荐</span>
+				</div>
+				<component-list :albums="recommends"></component-list>
+			</div>
+			<!-- 云标签 -->
+			<div class="albums">
+				<div class="albums-title">
+					<span>云标签</span>
+				</div>
+				<ul class="albums-tags">
+					<li v-for="item,i in tags" :style="{'background-color': randomColor()}">
+						<span v-text="item.name"></span>
+					</li>
+				</ul>
+			</div>
+			<!-- 高清美女 -->
+			<div class="albums">
+				<div class="albums-title">
+					<span>高清美女</span>
+				</div>
+				<component-list :albums="recommends2" class="column3"></component-list> 
+			</div>
+		</div>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+		<!-- 引入组件库 -->
+		<script src="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/index.js"></script>
+		<script src="js/component-header.js"></script>
+		<script src="js/component-list.js"></script>
+		<script src="js/resize.js"></script>
+		<script>
+			var metas = document.getElementsByTagName("meta");
+			var mw = 0.32 * (document.body.clientWidth / 750) * 100;
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					category: [],
+					category_name: '',
+					tab_inx: 0,
+					tab_cur: {},
+					photo_id: 0,
+					photo_data: {},
+					preview_img: '',
+					cur_index: 0,
+					lens: 1,
+					recommends: [],
+					recommends2: [],
+					tags: []
+				},
+				created: function() {
+					if (getQueryValue('photo_id')) {
+						this.photo_id = getQueryValue('photo_id');
+					}
+					console.log(this.photo_id)
+					this.getPhotoData();
+				},
+				mounted: function() {},
+				methods: {
+					changeTab: function(item, index) {
+						location.href = 'category.html?index=' + index
+					},
+					getPhotoData: function() {
+						var that = this;
+						// 模拟数据
+						axios.get('./data/details.json', {
+								params: {
+									id: that.photo_id
+								}
+							})
+							.then(function(resp) {
+								console.log('resp', resp.data)
+								that.photo_data = resp.data;
+								that.category_id = resp.data.category_id;
+								that.lens = that.photo_data.data.length;
+								that.preview_img = that.photo_data.data[that.cur_index].cover;
+								that.getCategory()
+								that.getRecommends(that.category_id);
+								that.getTags(that.category_id)
+							});
+					},
+					getCategory: function() {
+						var that = this;
+						// 模拟数据
+						axios.get('./data/category.json')
+							.then(function(resp) {
+								that.category = resp.data.category;
+								that.category.forEach(function(item, i) {
+									if (that.category_id == item.id) {
+										that.tab_inx = i;
+										that.category_name = item.title && item.title.split('-')[0]
+									}
+								})
+							});
+					},
+					getTags: function(id) {
+						var that = this;
+						// 模拟数据
+						axios.get('./data/tags.json', {
+								params: {
+									id: id
+								}
+							})
+							.then(function(resp) {
+								that.tags = resp.data.tags; 
+							});
+					},
+					
+					getRecommends: function(id) {
+						var that = this;
+						// 模拟数据
+						axios.get('./data/recommends.json', {
+								params: {
+									id: id
+								}
+							})
+							.then(function(resp) {
+								that.recommends = resp.data.recommends;
+								that.recommends2 = resp.data.recommends2;
+
+							});
+					},
+					prevPhoto: function(index) {
+						if (this.istoast) {
+							this.istoast.close()
+						}
+						var that = this;
+						if (that.page >= that.total_page && index > 1) {
+							this.istoast = this.$toast('已经是最后一页了');
+							return false
+						}
+						if (that.page <= 1 && index <= 1) {
+							this.istoast = this.$toast('已经是第一页了');
+
+							return false
+						}
+						// this.getPhotoData(this.tab_cur.id, index)
+					},
+					nextPhoto: function(index) {
+						var that = this;
+						if (this.istoast) {
+							this.istoast.close()
+						}
+						if (index) {
+							if (that.cur_index + 1 >= that.lens) {
+								location.href = 'details.html?photo_id=' + this.photo_data.next_id;
+								return false
+							}
+							this.cur_index++;
+						} else {
+							if (that.cur_index <= 0) {
+								location.href = 'details.html?photo_id=' + this.photo_data.prev_id;
+								return false
+							}
+							this.cur_index--
+						}
+						that.preview_img = that.photo_data.data[that.cur_index].cover;
+					},
+
+				},
+			});
+
+			function getQueryValue(name) {
+				url = location.href;
+				name = name.replace(/[\[\]]/g, "\\$&");
+				var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+					results = regex.exec(url);
+				if (!results) {
+					if (name == 'id') {
+						return location.pathname.replace(/\/$/, '').split('/').reverse().shift();
+					}
+					return null;
+				}
+				if (!results[2]) {
+					return '';
+				}
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+			// 设置随机数函数 返回十六进制颜色值
+			function randomColor() {
+				// 随机生成6个 0到15 之间的随机数转换为十六进制 和 # 号拼接成十六进制颜色值
+				var strColor = "#"
+				for (var i = 0; i < 3; i++) {
+					strColor += Math.floor(Math.random() * 16).toString(16)
+				}
+				return strColor;
+			}
+		</script>
+	</body>
+</html>

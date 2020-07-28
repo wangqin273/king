@@ -1,0 +1,32 @@
+{
+	"error_code": 0,
+	"current_page": 1,
+	"total_page": 1,
+	"total_entries": 5,
+	"banners": [{
+			"url": "https:\/\/m.tupianzj.com\/mingxing\/juzhao\/20200721\/214417.html",
+			"img_url": "images/banner1.jpg",
+			"title": "电视剧《三十而已》高清剧照"
+		},
+		{
+			"url": "https:\/\/m.tupianzj.com\/sheying\/huahui\/20200722\/214439.html",
+				"img_url": "images/banner2.jpg",
+			"title": "昙花一现唯美梦幻鲜花图片大全"
+		},
+		{
+			"url": "https:\/\/m.tupianzj.com\/zhuangxiu\/xiaohuxing\/20200721\/214407.html",
+				"img_url": "images/banner3.jpg",
+			"title": "小户型温馨简约风公寓装修图"
+		},
+		{
+			"url": "https:\/\/m.tupianzj.com\/mingxing\/xiezhen\/20200720\/214281.html",
+				"img_url": "images/banner4.jpg",
+			"title": "女演员戚薇甜美泡泡袖少女心壁纸"
+		},
+		{
+			"url": "https:\/\/m.tupianzj.com\/mingxing\/xiezhen\/20200717\/214133.html",
+				"img_url": "images/banner5.jpg",
+			"title": "90后男演员陈星旭帅气杂志封面"
+		}
+	]
+}

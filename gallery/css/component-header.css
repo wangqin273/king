@@ -1,0 +1,36 @@
+/* 顶部导航 */
+.header {
+	position: relative;
+	width: 100%;
+	height: 0.88rem;
+	background-color: #0090FF;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #fff;
+
+}
+
+.header-name {
+	flex: 1;
+	text-align: center;
+	font-size: 0.3rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.header-home,
+.header-menu {
+	width: 0.88rem;
+	height: 0.88rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon-home,
+.icon-menu,
+.icon-close {
+	font-size: 0.48rem;
+}

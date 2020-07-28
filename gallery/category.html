@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>美图驿馆</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- 引入样式 -->
+		<link href="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_1970187_zqi8bub30pi.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/component-header.css">
+		<link rel="stylesheet" href="css/component-list.css">
+		<link rel="stylesheet" href="css/category.css">
+	</head>
+	<body>
+		<div class="vueBox" id="app" v-cloak>
+			<component-header :category_name="category_name"></component-header>
+			<ul class="tab-list">
+				<li ref="tablist" :class="{'tab-item':true,'tab-item-cur':tab_inx==index}" v-for="item,index in category" v-text="item.name"
+				 @click="changeTab(item,index)"></li>
+			</ul>
+			<div class="albums">
+				<!-- <ul class="albums-list">
+					<li v-for="item,i in photo_data">
+						<div class="photo-box" @click="navToDes(item)">
+							<div class="photo-title" v-text="item.title"></div>
+							<div class="lazy-img">
+								<img v-lazy="item.cover" src="item.cover" :alt="item.title" />
+							</div>
+							<div class="photo-time" v-text="item.time"></div>
+						</div>
+					</li>
+				</ul> -->
+				<component-list :albums="photo_data"></component-list> 
+			</div>
+			<ul class="pagination-box">
+				<li :class="{'disable':(page>=total_page&&index>1)||(page<=1&&index<=1)}" v-for="item,index in pagination" @click="goPage(index)">
+					<span v-if="page<=1&&index==1">第一页</span>
+					<span v-else-if="page>=total_page&&index==2">最后页</span>
+					<span v-text="item.name" v-else></span>
+				</li>
+			</ul>
+			<div class="albums">
+				<div class="albums-title">
+					<span>高清美女推荐</span>
+				</div>
+				<component-list :albums="recommends"></component-list>
+			</div>
+		</div>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0-0/axios.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+		<!-- 引入组件库 -->
+		<script src="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/index.js"></script>
+		<script src="js/component-header.js"></script>
+		<script src="js/component-list.js"></script>
+		<script src="js/resize.js"></script>
+		<script>
+			var metas = document.getElementsByTagName("meta");
+			var mw = 0.32 * (document.body.clientWidth / 750) * 100;
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					album_type: '',
+					category_name: '',
+					category: [],
+					tab_inx: 0,
+					tab_cur: {},
+					photo_data: [],
+					total_page: 1,
+					current_page: 1,
+					page: 1,
+					pagination: [{
+							name: "首页",
+						},
+						{
+							name: "上一页",
+						},
+						{
+							name: "下一页",
+						},
+						{
+							name: "末页",
+						}
+					],
+					recommends: [],
+				},
+				created: function() {
+					if (getQueryValue('album_type')) {
+						this.album_type = getQueryValue('album_type');
+					}
+					if (getQueryValue('index')) {
+						this.tab_inx = getQueryValue('index') * 1;
+					}
+					this.getCategory();
+				},
+				mounted: function() {},
+				methods: {
+					navHome: function() {
+						location.href = "index.html"
+					},
+					showMenu: function() {
+						this.menu_show = !this.menu_show
+					},
+					changeTab: function(item, index) {
+						// 设置title,keywords,description
+						document.title = item.title;
+						for (var i in metas) {
+							if (metas[i].name == "keywords") {
+								metas[i].content = item.keywords
+							}
+							if (metas[i].name == "description") {
+								metas[i].content = item.description
+							}
+						}
+						// 设置当前分类
+						this.tab_cur = item;
+						this.tab_inx = index;
+						this.category_name = item.name;
+						var i = index ? index - 1 : index;
+						var domLeft = this.$refs.tablist[i].offsetLeft - mw;
+						$('.tab-list').animate({
+							scrollLeft: domLeft
+						})
+						// 设置当前分类page归零
+						this.page = 1;
+						this.total_page = 1;
+						this.getPhotoData(item.id, 0);
+						// 获取推荐列表
+						this.getRecommends(item.id);
+					},
+					getCategory: function() {
+						var that = this;
+						// 模拟数据
+						axios.get('./data/category.json', {
+								params: {
+									type: that.album_type
+								}
+							})
+							.then(function(resp) {
+								that.category = resp.data.category;
+								that.$nextTick(function() {
+									that.changeTab(that.category[that.tab_inx], that.tab_inx);
+								})
+							});
+					},
+					getPhotoData: function(id, index) {
+						var that = this;
+
+						// 模拟数据
+						axios.get('./data/photo_data.json', {
+								params: {
+									id: id,
+									page: that.page
+								}
+							})
+							.then(function(resp) {
+								that.total_page = resp.data.total_page;
+								that.current_page = resp.data.current_page;
+								that.photo_data = resp.data.photo_data;
+								setTimeout(function() {
+									switch (index) {
+										case 0:
+											that.page = 1;
+											break;
+										case 1:
+											if (that.page > 1) {
+												that.page--
+											}
+											break;
+										case 2:
+											if (that.page < that.total_page) {
+												that.page++
+											}
+											break;
+										case 3:
+											that.page = that.total_page;
+											break;
+										default:
+											break;
+									}
+									console.log('page', that.page)
+								})
+							});
+					},
+					getRecommends: function(id) {
+						var that = this;
+						// 模拟数据
+						axios.get('./data/recommends.json', {
+								params: {
+									id: id
+								}
+							})
+							.then(function(resp) {
+								that.recommends = resp.data.recommends;
+
+							});
+					},
+					goPage: function(index) {
+						if (this.istoast) {
+							this.istoast.close()
+						}
+						var that = this;
+						if (that.page >= that.total_page && index > 1) {
+							this.istoast = this.$toast('已经是最后一页了');
+							return false
+						}
+						if (that.page <= 1 && index <= 1) {
+							this.istoast = this.$toast('已经是第一页了');
+							return false
+						}
+						this.getPhotoData(this.tab_cur.id, index)
+					},
+					navToDes: function(item) {
+						location.href = 'details.html?photo_id=' + item.id;
+					},
+				},
+			})
+
+			function getQueryValue(name) {
+				url = location.href;
+				name = name.replace(/[\[\]]/g, "\\$&");
+				var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+					results = regex.exec(url);
+				if (!results) {
+					if (name == 'id') {
+						return location.pathname.replace(/\/$/, '').split('/').reverse().shift();
+					}
+					return null;
+				}
+				if (!results[2]) {
+					return '';
+				}
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+		</script>
+	</body>
+</html>
