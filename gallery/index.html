@@ -10,14 +10,13 @@
 		<link href="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/style.css" rel="stylesheet">
 		<link rel="stylesheet" href="//at.alicdn.com/t/font_1970187_zqi8bub30pi.css">
 		<link rel="stylesheet" href="css/common.css">
-		<link rel="stylesheet" href="css/component-header.css">
-		<link rel="stylesheet" href="css/component-list.css">
+		<link rel="stylesheet" href="css/base.css"> 
 		<link rel="stylesheet" href="css/index.css">
 	</head>
-
 	<body>
 		<div id="app" v-cloak>
-				<component-header></component-header>
+			<component-header></component-header>
+			<!--<div class="menu-box"></div>-->
 			<div class="swiper-container swiper-banners">
 				<div class="swiper-wrapper">
 					<a class="swiper-slide" v-for="item in banners" :href="item.url">

@@ -1,0 +1,242 @@
+{
+	"error_code": 0,
+	"current_page": 1,
+	"total_page": 1,
+	"total_entries": 5,
+	"menus": [{
+			"title": "美女图片",
+			"cover": "images/1.jpg",
+			"type": "meinv",
+			"list": [{
+					"name": "美女大全",
+					"id": "sheying"
+				},
+				{
+					"name": "清纯美女",
+					"id": "xiezhen"
+				},
+				{
+					"name": "性感美女",
+					"id": "xinggan"
+				},
+				{
+					"name": "古装美女",
+					"id": "guzhuang"
+				},
+				{
+					"name": "人体艺术",
+					"id": "yishu"
+				},
+				{
+					"name": "丝袜美女",
+					"id": "siwa"
+				},
+				{
+					"name": "香车美人",
+					"id": "chemo"
+				},
+				{
+					"name": "旗袍美女",
+					"id": "qipao"
+				}
+			]
+		},
+		{
+			"title": "搞笑图片",
+			"cover": "images/2.jpg",
+			"type": "gaoxiao",
+			"list": [{
+					"name": "QQ搞笑图片",
+					"id": "qqgx"
+				},
+				{
+					"name": "搞笑动态图片",
+					"id": "gxdt"
+				},
+				{
+					"name": "QQ表情",
+					"id": "qqbq"
+				},
+				{
+					"name": "搞笑头像",
+					"id": "gxtx"
+				},
+				{
+					"name": "儿童搞笑",
+					"id": "rtgx"
+				}
+			]
+		},
+
+		{
+			"title": "明星娱乐",
+			"cover": "images/3.jpg",
+			"type": "mingxing",
+			"list": [{
+					"name": "明星写真",
+					"id": "mxxz"
+				},
+				{
+					"name": "娱乐新闻",
+					"id": "xinwen"
+				},
+				{
+					"name": "明星绯闻",
+					"id": "feiwen"
+				},
+				{
+					"name": "美女写真",
+					"id": "xiezhen"
+				},
+				{
+					"name": "明星库",
+					"id": "mingxingku"
+				},
+				{
+					"name": "娱乐事件",
+					"id": "shijian"
+				},
+				{
+					"name": "男明星专辑",
+					"id": "nanmingxing"
+				},
+				{
+					"name": "女明星专辑",
+					"id": "nvmingxing"
+				}
+			]
+		},
+		{
+			"title": "摄影作品",
+			"cover": "images/4.jpg",
+			"type": "sheying",
+			"list": [{
+					"name": "人像摄影",
+					"id": "renxiang"
+				},
+				{
+					"name": "风景摄影图片",
+					"id": "fengjing"
+				},
+				{
+					"name": "纪实摄影",
+					"id": "jishi"
+				},
+				{
+					"name": "生态摄影",
+					"id": "shengtai"
+				}, {
+					"name": "婚纱摄影",
+					"id": "hunsha"
+				},
+				{
+					"name": "花卉图片",
+					"id": "huahui"
+				}
+			]
+		},
+		{
+			"title": "影视剧",
+			"cover": "images/5.jpg",
+			"type": "yingshiju",
+			"list": [{
+					"name": "影视剧照",
+					"id": "renxiang"
+				},
+				{
+					"name": "影视资讯",
+					"id": "fengjing"
+				},
+				{
+					"name": "影视剧资料",
+					"id": "jishi"
+				},
+				{
+					"name": "影视专辑",
+					"id": "shengtai"
+				}
+			]
+		}, {
+			"title": "家居装修",
+			"cover": "images/6.jpg",
+			"type": "jiajuzhuangxiu",
+			"list": [{
+					"name": "装修风格",
+					"id": "renxiang"
+				},
+				{
+					"name": "装修户型",
+					"id": "fengjing"
+				},
+				{
+					"name": "厨房专享",
+					"id": "jishi"
+				},
+				{
+					"name": "电视背景墙",
+					"id": "shengtai"
+				}
+			]
+		}, {
+			"title": "高清壁纸",
+			"cover": "images/7.jpg",
+			"type": "bizhi",
+			"list": [{
+					"name": "电脑壁纸",
+					"id": "renxiang"
+				},
+				{
+					"name": "手机壁纸",
+					"id": "fengjing"
+				},
+				{
+					"name": "ipad壁纸",
+					"id": "jishi"
+				},
+				{
+					"name": "壁纸专区",
+					"id": "shengtai"
+				}
+			]
+		}, {
+			"title": "发型图片",
+			"cover": "images/8.jpg",
+			"type": "faxing",
+			"list": [{
+					"name": "新娘发型",
+					"id": "renxiang"
+				},
+				{
+					"name": "明星发型",
+					"id": "fengjing"
+				},
+				{
+					"name": "女神发型",
+					"id": "jishi"
+				},
+				{
+					"name": "儿童发型",
+					"id": "shengtai"
+				}, {
+					"name": "男士发型",
+					"id": "hunsha"
+				},
+				{
+					"name": "盘发发型图片",
+					"id": "huahui"
+				},
+				{
+					"name": "短发发型图片",
+					"id": "shengtai"
+				}, {
+					"name": "直发发型图片",
+					"id": "hunsha"
+				},
+				{
+					"name": "梨花头发型",
+					"id": "huahui"
+				}
+			]
+		}
+	]
+}
