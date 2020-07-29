@@ -45,8 +45,7 @@ Vue.component("component-header", {
 			// 模拟数据
 			axios.get('./data/menu.json')
 				.then(function(resp) { 
-					that.menus = resp.data.menus;
-					console.log('menu', that.menus)
+					that.menus = resp.data.menus; 
 				});
 		},
 		_navHome: function() {

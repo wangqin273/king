@@ -11,7 +11,7 @@
 		<link href="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/style.css" rel="stylesheet">
 		<link rel="stylesheet" href="//at.alicdn.com/t/font_1970187_zqi8bub30pi.css">
 		<link rel="stylesheet" href="css/common.css">
-		<link rel="stylesheet" href="css/base.css"> 
+		<link rel="stylesheet" href="css/base.css">
 		<link rel="stylesheet" href="css/category.css">
 	</head>
 	<body>
@@ -33,7 +33,7 @@
 						</div>
 					</li>
 				</ul> -->
-				<component-list :albums="photo_data"></component-list> 
+				<component-list :albums="photo_data"></component-list>
 			</div>
 			<ul class="pagination-box">
 				<li :class="{'disable':(page>=total_page&&index>1)||(page<=1&&index<=1)}" v-for="item,index in pagination" @click="goPage(index)">
@@ -48,6 +48,7 @@
 				</div>
 				<component-list :albums="recommends"></component-list>
 			</div>
+			<component-gotop></component-gotop>
 		</div>
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdn.bootcdn.net/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
@@ -57,6 +58,7 @@
 		<script src="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/index.js"></script>
 		<script src="js/component-header.js"></script>
 		<script src="js/component-list.js"></script>
+		<script src="js/component-gotop.js"></script>
 		<script src="js/resize.js"></script>
 		<script>
 			var metas = document.getElementsByTagName("meta");

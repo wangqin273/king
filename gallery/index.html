@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -10,13 +10,13 @@
 		<link href="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/style.css" rel="stylesheet">
 		<link rel="stylesheet" href="//at.alicdn.com/t/font_1970187_zqi8bub30pi.css">
 		<link rel="stylesheet" href="css/common.css">
-		<link rel="stylesheet" href="css/base.css"> 
+		<link rel="stylesheet" href="css/base.css">
 		<link rel="stylesheet" href="css/index.css">
 	</head>
 	<body>
 		<div id="app" v-cloak>
 			<component-header></component-header>
-			<!--<div class="menu-box"></div>-->
+			<div class="menu-box"></div>
 			<div class="swiper-container swiper-banners">
 				<div class="swiper-wrapper">
 					<a class="swiper-slide" v-for="item in banners" :href="item.url">
@@ -30,11 +30,9 @@
 					<span v-text="album.title"></span>
 					<span class="more-text" @click="albumMore(album)">更多&nbsp;&gt;&gt;</span>
 				</div>
-				<component-list :albums="album.albums"></component-list>  
+				<component-list :albums="album.albums"></component-list>
 			</div>
-			<div :class="['back-top',show_top?'back-top-show':'']" @click="backTop">
-				<i class="iconfont icon-arrow-up-bold"></i>
-			</div>
+			<component-gotop></component-gotop>
 		</div>
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdn.bootcdn.net/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
@@ -42,36 +40,30 @@
 		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
 		<!-- 引入组件库 -->
 		<script src="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/index.js"></script>
-			<script src="js/component-header.js"></script>
-				<script src="js/component-list.js"></script>
+		<script src="js/component-header.js"></script>
+		<script src="js/component-list.js"></script>
+		<script src="js/component-gotop.js"></script>
 		<script src="js/resize.js"></script>
 		<script>
 			var swiperBanner = {};
 			var vm = new Vue({
 				el: "#app",
-				data: { 
+				data: {
 					banners: [],
 					albums: [],
 					show_top: 0,
 				},
-				created: function() {
-					console.log('created');
+				created: function() { 
 					this.getBanners()
 					this.getAlbums()
 				},
-				mounted: function() {
-
+				mounted: function() { 
+			 
 				},
 				methods: {
-					backTop: function() {
-						$('html,body').animate({
-							scrollTop: 0
-						})
-					},
 					albumMore: function(item) {
-						location.href = 'category.html?album_type='+item.type
+						location.href = 'category.html?album_type=' + item.type
 					},
- 
 					getBanners: function() {
 						var that = this;
 						// 模拟数据
@@ -94,29 +86,13 @@
 						var that = this;
 						// 模拟数据
 						axios.get('./data/albums.json')
-							.then(function(resp) {
-								console.log('albums', resp.data.albums)
+							.then(function(resp) { 
 								that.albums = resp.data.albums
 							});
 					},
 				},
 			})
-			window.onload = function() {
-				window.onscroll = function() {
-					var sTop = document.body.scrollTop || document.documentElement.scrollTop;
-					if (sTop > 200) {
-						if (!vm.show_top) {
-							vm.show_top = 1;
-							console.log(sTop);
-						}
-					} else {
-						if (vm.show_top) {
-							vm.show_top = 0;
-							console.log(sTop);
-						}
-					}
-				}
-			}
+			 
 		</script>
 	</body>
 </html>

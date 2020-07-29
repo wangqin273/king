@@ -1,3 +1,6 @@
+body,html{
+	overflow-x: hidden;
+}
 /* 清除滚动条 */
 ::-webkit-scrollbar {
 	width: 0;
@@ -264,7 +267,7 @@ img[lazy=loading] {
 
 .back-top {
 	position: fixed;
-	bottom: 0.5rem;
+	bottom: 0.8rem;
 	right: 0.15rem;
 	z-index: 9;
 	width: .8rem;
