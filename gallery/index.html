@@ -40,9 +40,12 @@
 		<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
 		<!-- 引入组件库 -->
 		<script src="https://cdn.bootcdn.net/ajax/libs/mint-ui/2.2.13/index.js"></script>
-		<script src="js/component-header.js"></script>
-		<script src="js/component-list.js"></script>
-		<script src="js/component-gotop.js"></script>
+		<!-- 全局组件 -->
+		<!-- <script src="js/component-header.js"></script> -->
+		<!-- <script src="js/component-list.js"></script> -->
+		<!-- <script src="js/component-gotop.js"></script> -->
+		<!-- 局部组件 -->
+		<script src="js/components.js"></script>
 		<script src="js/resize.js"></script>
 		<script>
 			var swiperBanner = {};
@@ -53,12 +56,17 @@
 					albums: [],
 					show_top: 0,
 				},
-				created: function() { 
+				components: {
+					componentGotop,
+					componentHeader,
+					componentList
+				},
+				created: function() {
 					this.getBanners()
 					this.getAlbums()
 				},
-				mounted: function() { 
-			 
+				mounted: function() {
+
 				},
 				methods: {
 					albumMore: function(item) {
@@ -86,13 +94,12 @@
 						var that = this;
 						// 模拟数据
 						axios.get('./data/albums.json')
-							.then(function(resp) { 
+							.then(function(resp) {
 								that.albums = resp.data.albums
 							});
 					},
 				},
 			})
-			 
 		</script>
 	</body>
 </html>
