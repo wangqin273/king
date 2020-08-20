@@ -1,0 +1,44 @@
+<view class="top-wrap">
+	<tab id="category"
+			 tab-data="{{categoryMenu}}"
+			 tab-cur="{{categoryCur}}"
+			 size="{{80}}"
+			 scroll="{{true}}"
+			 bindchange="toggleCategory">
+	</tab>
+</view>
+
+<swiper current="{{categoryCur}}" duration="{{duration}}" bindanimationfinish="animationFinish">
+	<swiper-item wx:for="{{categoryData}}" wx:key="index">
+		<scroll requesting="{{item.requesting}}"
+				end="{{item.end}}"
+				empty-show="{{item.emptyShow}}"
+				list-count="{{item.listData.length}}"
+				has-top="{{true}}"
+				top-size="{{80}}"
+				bind:refresh="refresh"
+				bind:more="more">
+				<view class="cells">
+					<view class="cell"
+						  wx:for="{{item.listData}}"
+						  wx:key="index"
+						  data-link="{{item.link}}"
+							bindtap="showArticle">
+						<view class="cell__bd">
+							<view class="name">
+								<rich-text nodes="{{item.title}}"></rich-text>
+							</view>
+							<view class="tags">
+								<view class="tags__bd">
+									<view wx:for="{{item.tags}}" wx:key="name" class="tag">
+										{{item.name}}
+									</view>
+								</view>
+								<view class="date">{{item.niceDate}}</view>
+							</view>
+						</view>
+					</view>
+				</view>
+		</scroll>
+	</swiper-item>
+</swiper>

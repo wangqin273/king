@@ -1,0 +1,35 @@
+@import "../../assets/css/variables";
+
+.tab-wrap {
+	background: #ffffff;
+	margin-bottom: 40rpx;
+}
+
+.control-panel {
+	border-top: 1rpx solid $line-color;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 12213;
+	background: #ffffff;
+	padding: 20rpx;
+	box-sizing: border-box;
+
+	&.isX {
+		padding-bottom: 60rpx;
+	}
+}
+
+.panel-item {
+	display: flex;
+	align-items: center;
+
+	&_hd {
+
+	}
+
+	&__bd {
+		flex: 1;
+	}
+}

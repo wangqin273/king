@@ -1,0 +1,63 @@
+@import "../../assets/css/variables";
+
+$top-height: 90rpx;
+
+.top-wrap {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color: #ffffff;
+	z-index: 99;
+	box-shadow: $shadow;
+}
+
+swiper {
+	height: 100vh;
+}
+
+.cells {
+	background: #ffffff;
+	margin-top: 20rpx;
+}
+
+.cell {
+	display: flex;
+	padding: 20rpx;
+
+	&:not(:last-child) {
+		border-bottom: 1rpx solid $line-color;
+	}
+	&__bd {
+		flex: 1;
+		.name {
+			height: 80rpx;
+			font-size: 28rpx;
+			margin-bottom: 12rpx;
+			& > view {
+				@include line(2);
+			}
+		}
+
+		.tags {
+			display: flex;
+			align-items: center;
+			.tags__bd {
+				flex: 1;
+				& > view {
+					display: inline-block;
+					border: 1px solid rgba($theme-color, 0.6);
+					color: rgba($theme-color, 0.6);
+					font-size: 20rpx;
+					height: 30rpx;
+					line-height: 30rpx;
+					padding: 0 8rpx;
+				}
+			}
+			.date {
+				color: $black3;
+				font-size: 24rpx;
+			}
+		}
+	}
+}

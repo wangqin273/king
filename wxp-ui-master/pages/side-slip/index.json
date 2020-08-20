@@ -1,0 +1,5 @@
+{
+	"usingComponents": {
+		"side-slip": "/components/side-slip/index"
+	}
+}

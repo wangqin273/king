@@ -1,0 +1,5 @@
+{
+	"usingComponents": {
+		"tab": "../../components/tab/index"
+	}
+}

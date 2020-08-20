@@ -1,0 +1,79 @@
+<view>
+	<view id="success"
+		  class="success {{successShow ? 'success--show' : ''}} {{successTran ? 'success--tran' : ''}}"
+		  style="top: {{topSize}}rpx;color: {{color}}">
+		<view class="info">刷新成功</view>
+	</view>
+	<movable-area class="movable-area">
+		<movable-view
+				class="scroll"
+				style="height: calc(100vh + 40rpx + {{refreshSize}}rpx)"
+				bind:change="change"
+				bind:touchend="touchend"
+				direction="vertical"
+				disabled="{{refreshStatus >= 3}}"
+				y='{{move}}'>
+			<scroll-view
+					class="scroll__view"
+					style="padding-bottom: {{bottomSize}}rpx;padding-top: {{topSize}}rpx;"
+					scroll-y="{{refreshStatus == 1}}"
+					bindscroll="scroll"
+					scroll-top="{{scrollTop}}"
+          enable-back-to-top="{{enableBackToTop}}"
+					lower-threshold="{{80}}rpx"
+					bindscrolltolower="more">
+				<view id="refresh"
+					  class="scroll__refresh {{successShow ? 'scroll__refresh--hidden' : ''}}"
+					  style="height: {{refreshSize}}rpx;padding: 20rpx 0;">
+					<view class="scroll__loading">
+						<view wx:if="{{refreshStatus == 1 || refreshStatus == 2}}" class="{{refreshStatus == 2 ? 'rotate' : ''}} arrow"></view>
+						<view wx:if="{{refreshStatus == 3}}" class="loading">
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+						</view>
+						<view class="text" wx:if="{{refreshStatus == 1}}">下拉刷新</view>
+						<view class="text" wx:elif="{{refreshStatus == 2}}">松开更新</view>
+						<view class="text" wx:elif="{{refreshStatus == 3}}">加载中...</view>
+					</view>
+				</view>
+				<slot></slot>
+				<view wx:if="{{listCount === 0 && emptyShow}}" class="empty">
+					<image class="empty__image" src="{{emptyUrl}}"></image>
+					<view class="empty__text">{{emptyText}}</view>
+				</view>
+				<view wx:if="{{listCount !== 0 && overOnePage}}" class="scroll__bottom">
+					<view class="scroll__loading" wx:if="{{end}}">
+						已全部加载
+					</view>
+					<view class="scroll__loading" wx:else>
+						<view class="loading">
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+							<view class="loading__item"></view>
+						</view>
+						<view class="text">加载中...</view>
+					</view>
+				</view>
+			</scroll-view>
+		</movable-view>
+	</movable-area>
+</view>

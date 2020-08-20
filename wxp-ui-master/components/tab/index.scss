@@ -1,0 +1,67 @@
+@import "../../assets/css/variables";
+
+$top-height: 90rpx;
+
+.scroll-view {
+	width: 100%;
+	height: $top-height;
+	overflow: hidden;
+}
+
+.tabs-wrap {
+	padding-bottom: 20rpx;
+}
+
+.tabs {
+	position: relative;
+	height: $top-height;
+	color: $black3;
+	display: flex;
+
+	&--scroll {
+		white-space: nowrap !important;
+		display: block !important;
+	}
+
+	&--scroll &__item {
+		flex: initial !important;
+		text-align: initial !important;
+		display: inline-block !important;
+		padding: 0 30rpx;
+	}
+
+	&--scroll &__item-child {
+		display: block !important;
+	}
+
+	&__item {
+		flex: 1;
+		text-align: center;
+		height: $top-height;
+		line-height: $top-height;
+		padding: 0 10rpx;
+		box-sizing: border-box;
+		transition: color 0.3s ease-in-out;
+
+		&--cur {
+			color: $black1;
+		}
+	}
+
+	&__item-child {
+		display: inline-block;
+	}
+
+	&__line {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		background-color: $theme-color;
+		height: 4rpx;
+		width: 0rpx;
+		display: inline-block;
+		&.transition {
+			transition: width 0.3s, transform 0.3s;
+		}
+	}
+}

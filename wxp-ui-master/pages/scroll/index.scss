@@ -1,0 +1,88 @@
+@import "../../assets/css/variables";
+
+$top-height: 90rpx;
+
+.title {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background-color: #ffffff;
+	z-index: 99;
+	height: 90rpx;
+	line-height: 90rpx;
+	text-align: center;
+	font-weight: bold;
+	box-shadow: $shadow;
+	overflow: hidden;
+}
+
+.cells {
+	background: #ffffff;
+	margin-top: 20rpx;
+}
+
+.cell {
+	display: flex;
+	padding: 20rpx;
+
+	&:not(:last-child) {
+		border-bottom: 1rpx solid $line-color;
+	}
+
+	&__hd {
+		font-size: 0;
+
+		image {
+			width: 160rpx;
+			height: 160rpx;
+			margin-right: 20rpx;
+			border-radius: 12rpx;
+		}
+	}
+
+	&__bd {
+		flex: 1;
+
+		.name {
+			@include line(2);
+			font-size: 28rpx;
+			margin-bottom: 12rpx;
+		}
+
+		.des {
+			@include line(2);
+			color: $black2;
+			font-size: 24rpx;
+		}
+	}
+}
+
+.control-panel {
+	border-top: 1rpx solid $line-color;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 12213;
+	background: #ffffff;
+	padding: 20rpx;
+	box-sizing: border-box;
+
+	&.isX {
+		padding-bottom: 60rpx;
+	}
+}
+
+.panel-item {
+	display: flex;
+	align-items: center;
+
+	&_hd {
+
+	}
+
+	&__bd {
+		flex: 1;
+	}
+}

@@ -1,0 +1,18 @@
+<view class="tip">
+	<text style="color: red;">长按触发拖拽排序!!</text>
+	<text style="color: #3F82FD;">最新版本增加顶部固定区域高度和底部固定区域高度, 以响应超过一屏时候可以正确滑动</text>
+</view>
+
+<view class="dragWrap">
+	<drag id="drag"
+				bind:click="itemClick"
+				bind:change="change"
+				bind:sortend="sortEnd"
+				bind:dragdown="dragDown"
+				list-data="{{listData}}"
+				columns="{{size}}"
+				scroll-top="{{scrollTop}}"
+				top-size="110"
+				bottom-size="{{isIphoneX ? 380 : 300 }}">
+	</drag>
+</view>

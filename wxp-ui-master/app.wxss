@@ -1,0 +1,9 @@
+Page {
+	background: #f8f9fa;
+	font-size: 28rpx;
+	color: #333333;
+}
+
+.input-placeholder {
+	color: #bbbbbb;
+}
