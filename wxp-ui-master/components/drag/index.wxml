@@ -12,12 +12,8 @@
 		catch:touchend="{{dragging?'touchEnd':''}}">
 
 		<!-- start:请在该区域编写自己的渲染逻辑 -->
-		<view wx:if="{{columns === 1 && item.extraNode}}" class="cell">
-			<view class="cell__bd" style="height: 160rpx;">
-				<slot name="{{item.slot}}"></slot>
-			</view>
-		</view>
-		<view wx:elif="{{columns === 1 && !item.extraNode}}" class="cell">
+	 
+		<view  class="cell">
 			<view class="cell__hd">
 				<image class="image" mode="aspectFill" src="{{item.data.images}}" alt=""/>
 			</view>
@@ -26,16 +22,8 @@
 				<view class="des">{{item.data.description}}</view>
 			</view>
 		</view>
-		<view wx:elif="{{columns > 1 && item.extraNode}}" class="info">
-			<view class="info__item">
-				<slot name="{{item.slot}}"></slot>
-			</view>
-		</view>
-		<view wx:elif="{{columns > 1 && !item.extraNode}}" class="info">
-			<view class="info__item">
-				<image class="image" src="{{item.data.images}}"></image>
-			</view>
-		</view>
+	 
+ 
 		<!-- end:请在该区域编写自己的渲染逻辑 -->
 
 	</view>

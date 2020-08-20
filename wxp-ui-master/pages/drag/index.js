@@ -76,9 +76,9 @@ let listData = [
 Page({
 	data: {
 		isIphoneX: app.globalData.isIphoneX,
-		size: 4,
+		size: 1,
 		listData: [],
-		extraNodes: [
+		extraNodess: [
 			{
 				type: "destBefore",
 				dragId: "destBefore0",

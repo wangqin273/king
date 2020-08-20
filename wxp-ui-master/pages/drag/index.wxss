@@ -1,6 +1,4 @@
-page {
-  padding-top: 110rpx; }
-
+ 
 .empty-bottom {
   padding-bottom: 300rpx; }
   .empty-bottom.isX {
