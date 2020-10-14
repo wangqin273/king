@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>LuckyStar</title>
+		<link rel="stylesheet" href="./css/index.css?v=1.0.0">
+	</head>
+	<body>
+		<div class="lucky-star" id="luckyStar">
+			<div class="score-target">
+				<p class="score-level">关卡 <span id="scoreLevel"></span></p>
+				<p>目标：<span id="scoreTarget"></span></p>
+			</div>
+			<div class="score-current">得分<span id="scoreCurrent"></span></div>
+			<div class="score-select" id="scoreSelect"></div>
+			<ul class="star-list" id="starList"> </ul>
+		</div>
+	</body> 
+	<script src="./js/countUp.js"></script>
+	<script src="./js/index.js"></script>
+	<script src="./js/resize.js"></script>
+	<script>
+		new PopStar() 
+	</script>
+</html>
