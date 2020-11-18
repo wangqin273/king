@@ -13,12 +13,15 @@
 		scoreCurrent: document.querySelector('#scoreCurrent'),
 		scoreSelect: document.querySelector('#scoreSelect'),
 		scoreLevel: document.querySelector('#scoreLevel'),
+		clippedMask: document.querySelector('.clipped-mask'),
+		clippedBox: document.querySelector('.clipped-box')
 	};
 	// 改变行数  
 	config.tileWidth = config.tileHeight = (7.5 / config.tableRows); //小星星的宽高
 	//全局计算属性
 	var computed = {
-		flag: true, //锁
+		flag: false, //锁 星星爆炸时不可点击
+		lock: false, //锁 
 		choose: [], //已选中的小星星集合
 		timer: null,
 		totalScore: 0, //总分数
@@ -30,7 +33,7 @@
 
 	//Block对象
 	function Block(number, row, col) {
-		var tile = document.createElement('li');
+		var tile = document.createElement("li");
 		tile.width = config.tileWidth;
 		tile.height = config.tileHeight;
 		tile.number = number;
@@ -39,9 +42,9 @@
 		return tile;
 	}
 	// 广告图标
-	function AD() {
-		var img = document.createElement('img');
-		img.src = './images/coin.png';
+	function Advert() {
+		var img = document.createElement("img");
+		img.src = "./images/coin.png";
 		img.onclick = function(e) {
 			alert('广告弹窗')
 			e.stopPropagation() //阻止冒泡
@@ -90,18 +93,18 @@
 				el = config.el,
 				self = this,
 				len = choose.length;
-			if (!computed.flag || len <= 1) {
+			if (computed.lock || len <= 1) {
 				return;
 			}
-			computed.flag = false;
+			computed.lock = true;
 			computed.tempTile = null;
 			var score = 0;
 			for (var i = 0; i < len; i++) {
 				score += baseScore + i * stepScore;
 				// console.log('score',score)
 			}
-
 			new CountUp(config.scoreCurrent, computed.totalScore, computed.totalScore += score).start();
+			self.blowUp(len, choose[0])
 			for (var i = 0; i < len; i++) {
 				setTimeout(function(i) {
 					if (choose[i].ad) {
@@ -109,14 +112,14 @@
 					}
 					tileSet[choose[i].row][choose[i].col] = null;
 					el.removeChild(choose[i]);
-				}, i * 100, i);
+				}, i * 50, i);
 			}
 			setTimeout(function() {
 				self.move();
 				//判断结束
-				setTimeout(function() {
+				setTimeout(function() { 
 					if (self.isFinish()) {
-						self.clear();
+						self.clean();
 						if (computed.totalScore >= config.targetScore) {
 
 							new CountUp(config.scoreTarget, config.targetScore, config.targetScore += (computed.level - 1) * computed
@@ -132,23 +135,23 @@
 							// alert("游戏失败");
 							console.log("游戏失败")
 						}
-						computed.flag = true;
-						
+						computed.lock = false;
 					} else {
 						choose = [];
-						computed.flag = true; //在所有动作都执行完成之后释放锁
+						computed.lock = false; //在所有动作都执行完成之后释放锁
 						self.mouseOver(computed.tempTile);
 					}
-				}, 300 + choose.length * 150);
-			}, choose.length * 100);
+				}, 200 + choose.length * 150);
+			}, choose.length * 50);
 		},
 		/**
 		 * 闯关成功或失败清除（清除二维数组和el的子节点）操作
 		 */
-		clear: function() {
+		clean: function() {
 			var tileSet = config.tileSet,
 				rows = tileSet.length,
-				el = config.el; 
+				el = config.el,
+				self = this;
 			var temp = [];
 			for (var i = rows - 1; i >= 0; i--) {
 				for (var j = tileSet[i].length - 1; j >= 0; j--) {
@@ -159,18 +162,25 @@
 					tileSet[i][j] = null;
 				}
 			}
+			//刚好消除完没有剩余的情况
+			if (temp.length <= 0) {
+				setTimeout(function(k) {
+					new PopStar();
+				}, 1000)
+				return false
+			}
 			for (var k = 0; k < temp.length; k++) {
 				setTimeout(function(k) {
 					if (temp[k].ad) {
 						console.log('消除了带有广告的星')
-					} 
-					el.removeChild(temp[k]);	
-						if(k>=temp.length-1){
-								setTimeout(function(k) { 
-										new PopStar();
-								},1000)
-						
-						}
+					}
+					el.removeChild(temp[k]);
+					if (k >= temp.length - 1) {
+						self.blowUp(3, temp[k], 1)
+						setTimeout(function(k) {
+							new PopStar();
+						}, 1000)
+					}
 				}, k * 100, k);
 			}
 		},
@@ -179,6 +189,7 @@
 		 * @returns {boolean}
 		 */
 		isFinish: function() {
+
 			var tileSet = config.tileSet,
 				rows = tileSet.length;
 			for (var i = 0; i < rows; i++) {
@@ -230,7 +241,7 @@
 		 * @param obj
 		 */
 		mouseOver: function(obj) {
-			if (!computed.flag) { //处于锁定状态不允许有操作
+			if (computed.lock) { //处于锁定状态不允许有操作
 				computed.tempTile = obj;
 				return;
 			}
@@ -363,8 +374,8 @@
 					};
 					// 插入广告
 					if (i == x && j == y) {
-						tile.appendChild(new AD());
-						tile.ad = 1;
+						tile.appendChild(new Advert());
+						tile.ad = true;
 					}
 					tileSet[i][j] = tile;
 					el.appendChild(tile);
@@ -405,8 +416,91 @@
 		createBlock: function(number, row, col) {
 			return new Block(number, row, col);
 		},
-
+		/** 消除星星碎裂特效
+		 *  lens 碎裂星星个数
+		 *  index 碎裂星星类型 
+		 */
+		blowUp: function(lens, obj, isEnd) {
+			this.genClips(lens > 5 ? 30 : lens * 5, obj.number, isEnd ? isEnd : '');
+			var self = this;
+			if (!computed.flag) {
+				computed.flag = true;
+				config.clippedMask.style.display = 'block'; 
+				config.clippedBox.style.left = (isEnd ? config.tableRows / 2 : obj.col) * config.tileWidth + "rem";
+				config.clippedBox.style.bottom = obj.row * config.tileHeight + "rem";
+				config.clippedBox.childNodes.forEach(function(item, i) {
+					var v = self.rand(100, 80),
+						angle = self.rand(80, 100),
+						theta = (angle * Math.PI) / 180,
+						g = -9.8;
+					var t = 0,
+						z, r, nx, ny, totalt = 10;
+					var negate = [-1, 1],
+						direction = negate[Math.floor(Math.random() * negate.length)];
+					var randDeg = self.rand(-5, 10),
+						randScale = self.rand(1, 2),
+						randDeg2 = self.rand(30, 5);
+					// 缩放实现星星不同大小
+					var randScale2 = parseInt(12 * Math.random()) / 10 + 1;
+					item.style = 'transform:' + 'scale(' + randScale2 + ') skew(' + randDeg + 'deg) rotateZ(' + randDeg2 + 'deg)';
+					z = setInterval(function() {
+						var ux = (Math.cos(theta) * v) * direction;
+						var uy = (Math.sin(theta) * v) - ((-g) * t);
+						nx = (ux * t);
+						ny = (uy * t) + (0.25 * (g) * Math.pow(t, 2));
+						item.style.bottom = (ny) + 'px';
+						item.style.left = (nx) + 'px';
+						// 时间累加0.1
+						t = t + 0.1;
+						//跳出循环
+						if (t > totalt) {
+							computed.flag = false; //在所有动作都执行完成之后释放锁
+							clearInterval(z);
+							self.resetClips();
+							config.clippedMask.style.display = 'none';
+							config.clippedBox.style.left = 0;
+							config.clippedBox.style.bottom = 0;
+						}
+					}, 10);
+				})
+			}
+		},
+		rand: function(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		},
+		genClips: function(lens, index, isEnd) {
+			this.resetClips()
+			for (var z = 0; z < lens; z++) {
+				var p = document.createElement("p");
+				p.classList.add("clip");
+				if (isEnd) {
+					p.classList.add("star_"+ this.rand(0, 4) );
+				} else {
+					p.classList.add("star_"+index); 
+				}
+				config.clippedBox.appendChild(p);
+			}
+		},
+		genClipsw: function(lens, index, isEnd) {
+			this.resetClips()
+			for (var z = 0; z < lens; z++) {
+				var img = document.createElement("img");
+				img.classList.add("clips");
+				if (isEnd) {
+					img.src = "./images/star_" + this.rand(0, 4) + ".png";
+				} else {
+					img.src = "./images/star_" + index + ".png";
+				}
+				config.clippedBox.appendChild(img);
+			}
+		},
+		resetClips: function() {
+			for (var i = 0; i < config.clippedBox.childNodes.length; i++) {
+				config.clippedBox.removeChild(config.clippedBox.childNodes[i])
+			}
+		}
 	};
 	PopStar.prototype.init.prototype = PopStar.prototype;
-	window.PopStar = PopStar;
+	// window.PopStar = PopStar;
+	new PopStar()
 })();

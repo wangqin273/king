@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
+		<link rel="stylesheet" href="./css/common.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<div id="App" class="vueBox" :class="[{'fixed-box':flag}]" :style="{top:fixed_top+'rem'}">
+			<div class="demo" @click="show(1)" >
+				<div v-for="item in rules">
+					<p class="rules-list-q" v-text="item.q"></p>
+					<p class="rules-list-a" v-text="item.a"></p>
+				</div>
+			</div>
+			<div class="mask-box" v-if="flag">
+				<div class="rules-box">
+					<div class="rules-close" @click="show(0)"></div>
+					<div class="rules-title">活动规则</div>
+					<div class="rules-mian">
+						<ul class="rules-list">
+							<li v-for="item in rules">
+								<p class="rules-list-q" v-text="item.q"></p>
+								<p class="rules-list-a" v-text="item.a"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="./js/vue.js"></script>
+		<script type="text/javascript" src="./js/resize.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: "#App",
+				data: {
+					fixed_top: 0,
+					flag: 0,
+					rules: [{
+							q: '公爵黑卡是什么？',
+							a: '公爵黑卡提供超350+项尊享特权，覆盖购物、美食、酒店、出行、娱乐等；全国350+城市加油7折起，美食外卖3折起，热门会员充值3折起，天猫/京东/拼多多/苏宁、唯品会等购物1折起，更多优惠皆可在公爵黑卡APP中可查看并使用。',
+						},
+						{
+							q: '如何抢购100元话费？',
+							a: '用户领取公爵黑卡后，搜索“1元秒杀”点击进入后即可参与100元话费秒杀活动。每天6场秒杀活动，每场秒杀商品数量有限，先到先得；100元手机话费秒杀成功后，将在3个工作日自动充值到公爵黑卡绑定手机号；',
+						},
+						{
+							q: '公爵黑卡是信用卡吗？',
+							a: '公爵黑卡不是信用卡，不能取现，也没有透支额度。',
+						},
+						{
+							q: '办理后还会再收费吗？',
+							a: '不会。终身免年费，成功办理后不会在收取年费。',
+						},
+						{
+							q: '办理周期需要多久？',
+							a: '电子卡办理，即开即用。',
+						},
+						{
+							q: '办理之后如何查询购卡订单？',
+							a: '可点击页面上客服售后，订单查询输入支付手机号，也可向客服在线咨询。',
+						},
+						{
+							q: '如何退货？',
+							a: '现阶段会员费限时折扣，不接受因个人情况的退款申请。若开卡后10天内累计7天参与秒杀活动，如均未抢到100元手机话费，可申请退还费用。如有疑问，可咨询客服：400-092-6588',
+						}
+					]
+				},
+				methods: {
+					show: function(bool) {
+						this.flag = bool;
+						var that = this;
+						if (bool) {
+							this.top = window.pageYOffset;
+							this.fixed_top = -window.pageYOffset / parseFloat(document.documentElement.style.fontSize); 
+						} else {  
+							this.$nextTick(function() {
+								window.scrollTo(0, that.top);
+							});
+						}
+					},
+				}
+			})
+		</script>
+	</body>
+</html>
