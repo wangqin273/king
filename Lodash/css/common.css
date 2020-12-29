@@ -1,0 +1,114 @@
+
+/* css reset */
+body, div, p, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, a, input, button, textarea, table, th, tr, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html {
+    min-height: 100%;
+    width: 100%;
+}
+
+body {
+	
+    color: #333;
+    font-family: "微软雅黑";
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 100%;
+}
+input, textarea{
+    outline: none;
+	-webkit-appearance: none;
+}
+a {
+    color: #555;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    border: none;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+.vueBox{
+    width: 100%;
+}
+
+/* placeholder 字体颜色*/
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:#B0B0B0;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#B0B0B0;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#B0B0B0;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:#B0B0B0;
+}
+
+[v-cloak]{
+    display: none;
+}
+
+/* 加载动画 */
+
+.mint-spinner-triple-bounce {
+	font-size: 0;
+	padding: .3rem 0;
+	text-align: center;
+}
+
+.mint-spinner-triple-bounce-bounce1,
+.mint-spinner-triple-bounce-bounce2,
+.mint-spinner-triple-bounce-bounce3 {
+	margin: 0 2px;
+}
+
+.mint-msgbox {
+	width: 6.4rem;
+	-webkit-border-radius: 0.2rem;
+	-moz-border-radius: 0.2rem;
+	border-radius: 0.2rem;
+}
+
+.mint-msgbox-title {
+	font-size: 0.32rem;
+	font-weight: bold;
+}
+
+.mint-msgbox-btns {
+	height: .88rem;
+}
+
+.mint-msgbox-btn {
+	font-size: 0.3rem;
+}
+
+.mint-msgbox-confirm {
+	color: #FF8219;
+}
+
+.mint-msgbox-confirm:active {
+	color: rgba(255, 204, 154, .75);
+}
+.mint-msgbox-message{
+	line-height:1.5em;
+}
