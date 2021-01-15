@@ -1,0 +1,50 @@
+.status-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 160rpx;
+  color: #333333;
+}
+
+.ico_success {
+  width: 180rpx;
+  height: 155rpx;
+}
+
+.text_success {
+  font-size: 32rpx;
+  padding: 20rpx;
+}
+
+.order_info_price {
+  font-size: 48rpx;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: 40rpx;
+}
+
+.order_price {
+  font-size: 72rpx;
+  font-weight: bold; 
+}
+
+.btn-complete {
+  width: 520rpx;
+  height: 90rpx;
+  border-radius: 45rpx;
+  border: 1px solid #678AFF;
+  font-size: 34rpx;
+  color: #678AFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 140rpx;
+}
+.pay_result_bg{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 195rpx;
+}

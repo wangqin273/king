@@ -1,0 +1,57 @@
+<view class="page-box">
+  <view class="payment_box">
+    <view class="info_name_phone">
+      <text class="info_name">{{user_info.info_name}}</text>
+      <text>{{user_info.info_phone}}</text>
+    </view>
+    <view class="info_address">
+      <text>{{user_info.city_name}}</text>
+      <text>{{user_info.info_address}}</text>
+    </view>
+  </view>
+   <view class="payment_info">
+    <view class="payment_info_list">
+      <view>冲印套数：{{user_info.print_count}}套</view>
+      <view class="payment_price">
+        <text class="payment_rmb">￥</text>
+        <text>{{user_info.print_price}}</text>
+      </view>
+    </view>
+    <view class="payment_info_list" catchtap="valueAdded" style='opacity:{{can_switch_cloth?1:0.4}}'>
+      <text class="value-added">增值换装：¥9.9</text>
+      <image class="ico_select" src="{{is_added?ico_select:ico_no_select}}"/>
+    </view>
+    
+  </view>
+  <view class="payment_info">
+    <view class="payment_info_list">
+      <view>快递费用</view>
+      <view class="payment_postage">
+        <text class="payment_rmb">￥</text>
+        <text >{{postage}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="payment-footer">
+  <view class="payment-amount">
+    <view class="payment-total-amount">
+      <text>合计：</text>
+      <text class="text-highlight">￥</text>
+      <text class="text-highlight total_amount">{{total_amount}}</text>
+    </view>
+    <view class="text-through">
+      <text>原价</text>
+      <text>￥{{price_original}}</text>
+    </view>
+  </view>
+  <form report-submit="true" onReset="onReset">
+    <view class="payment-btn">
+      <text>确认支付</text>
+      <button class="opacity-btn" formType="submit" catchtap='paymentConfirm'></button>
+    </view>
+  </form>
+  <view class="footer-tip">
+    <text>{{footer_tip}}</text>
+  </view>
+</view>

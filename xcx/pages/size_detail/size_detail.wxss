@@ -1,0 +1,134 @@
+/* pages/size_detail/size_detail.wxss */
+
+.skill-box {
+  position: fixed;
+  top: 52rpx;
+  right: 0;
+  width: 64rpx;
+  font-size: 24rpx;
+  color: #fe9087;
+  padding: 10rpx 14rpx 18rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 30rpx 0 0 30rpx;
+  background: rgba(254, 144, 135, 0.13);
+}
+
+.img-skill {
+  width: 32rpx;
+  height: 32rpx;
+  margin-bottom: 10rpx;
+}
+
+.size-head-box {
+  padding: 50rpx 30rpx 0;
+  display: flex;
+  align-items: center; 
+}
+.size-head-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 400rpx;
+  height: 292rpx;
+  padding-bottom: 30rpx;
+}
+.img-photo {
+  width: 260rpx;
+  height: 292rpx;
+  flex: 0 0 auto; 
+}
+
+.size-detail-name {
+ line-height: 48rpx;
+  font-size: 36rpx;
+  color: #2d2d2d; 
+}
+
+.electron-print-box {
+  font-size: 24rpx;
+  color: #333;
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.img-electron-print {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 12rpx;
+}
+
+.size-detail-box {
+  width: 670rpx;
+  margin: 38rpx auto;
+  border-radius: 16rpx;
+  padding: 18rpx 40rpx 22rpx;
+  box-shadow: 0px 10rpx 16rpx 0px rgba(0, 0, 0, 0.06), 0px -1px 14rpx 0px rgba(0, 0, 0, 0.02);
+}
+
+.size-detail-item {
+  height: 88rpx;
+  font-size: 26rpx;
+  color: #969696;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.size-detail-value {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.size-detail-color {
+  display: flex;
+  align-items: center;
+}
+
+.detail-color-item {
+  width: 30rpx;
+  height: 30rpx;
+  padding: 5rpx;
+  margin-left: 21rpx;
+  border-radius: 100rpx;
+}
+
+.detail-color-item text {
+  display: block;
+  height: 100%;
+  border-radius: 100rpx;
+}
+
+.btn-box {
+  padding: 0 40rpx;
+  margin-top: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-photograph {
+  position: relative;
+  width: 320rpx;
+  height: 96rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 96rpx;
+  border-radius: 55rpx;
+}
+
+.img-photograph{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-photograph text{
+  position: relative
+}

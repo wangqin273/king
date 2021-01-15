@@ -1,0 +1,23 @@
+/**app.wxss**/
+
+
+cover-view, scroll-view, view, swiper, text, button, input, label, picker,
+picker-view, textarea, image {
+  box-sizing: border-box;
+}
+.mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* 隐藏滚动条 */
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}

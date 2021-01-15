@@ -1,0 +1,168 @@
+page {
+  background-color: #f6f6f6;
+}
+
+.page-box {
+  width: 100%;
+  padding: 20rpx 24rpx;
+}
+
+.payment_box {
+  position: relative;
+  background-color: #fff;
+  font-size: 28rpx;
+  color: #333333;
+  padding: 30rpx;
+  border-radius: 20rpx;
+}
+
+.info_name_phone {
+  display: flex;
+  align-items: baseline;
+  padding-bottom: 16rpx;
+}
+
+.info_name {
+  max-width: 400rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-right: 10rpx;
+  white-space: nowrap;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.info_address {
+  line-height: 42rpx;
+  word-break: break-all;
+}
+
+.payment_order_number {
+  width: 100%;
+  height: 80rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+
+.payment_info {
+  width: 100%;
+  padding: 0 30rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+}
+
+.payment_info_list {
+  font-size: 30rpx;
+  color: #333;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f3f3f3;
+}
+.payment_info_list:last-child{
+   border-bottom:none;
+}
+.payment_price {
+  color: #FF584A;
+  font-size: 48rpx;
+}
+
+.payment_rmb {
+  font-size: 30rpx;
+}
+
+.text-through {
+  font-size: 24rpx;
+  color: #969696;
+  text-decoration: line-through;
+}
+
+.ico_select {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 提交申请 */
+
+.payment-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0 24rpx;
+  height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f3f3f3;
+  background-color: #fff;
+}
+
+.payment-total-amount {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+  padding-bottom: 8rpx;
+}
+
+.text-highlight {
+  color: #FF695D;
+}
+
+.total_amount {
+  font-size: 36rpx;
+}
+
+.payment-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: 420rpx;
+  height: 90rpx;
+  border-radius: 45rpx;
+  background: #698DFF;
+  font-size: 34rpx;
+}
+
+.footer-tip {
+  padding: 12rpx 20rpx;
+  position: absolute;
+  left: 24rpx;
+  top: -60rpx;
+  font-size: 22rpx;
+  color: #fff;
+  border-radius: 10rpx;
+  background: linear-gradient(to bottom, #f96, #ff8282);
+}
+
+.footer-tip:after {
+  content: '';
+  position: absolute;
+  left: 40rpx;
+  bottom: 1px;
+  width: 0;
+  height: 0;
+  border: 8rpx solid transparent;
+  border-top: 14rpx solid #ff8282;
+  transform: translateY(100%) skew(-30deg);
+}
+
+.opacity-btn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}

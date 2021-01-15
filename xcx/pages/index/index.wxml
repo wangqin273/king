@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<image class="img-page-bg" src="{{page_bg}}"/>
+<view class="skill-box" catchtap="navToExplain">
+  <image class="img-skill" src="{{ico_skill_white}}"/>
+  <text>如何使用</text>
+</view>
+<view class="skill-box contact-box">
+  <image class="img-skill" src="{{ico_contact}}"/>
+  <text>联系客服</text>
+  <button class="btn-authorize" open-type="contact"></button>
+</view>
+<view class="footer-box">
+  <view class="footer-content">
+    <view class="footer-item" catchtap="navToOrder">
+      <image class="img-footer" src="{{ico_order}}"/>
+      <text>订单</text>
+      <!-- <button class="btn-authorize" open-type="getAuthorize" scope="phoneNumber"></button> -->
+    </view>
+    <view class="footer-item" catchtap="selectSize">
+      <view class="footer-photograph">
+        <image class="img-photograph" src="{{ico_camera}}"/>
+        <text>拍照</text>
+        <!-- <button class="btn-authorize" open-type="getAuthorize" scope="phoneNumber"></button> -->
+      </view>
+    </view>
+    <view class="footer-item" catchtap="selectSize">
+      <image class="img-footer" src="{{ico_size}}"/>
+      <text>常见尺寸</text>
+      <!-- <button class="btn-authorize" open-type="getAuthorize" scope="phoneNumber"></button> -->
+    </view>
+  </view>
+</view>

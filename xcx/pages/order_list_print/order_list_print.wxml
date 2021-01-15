@@ -1,0 +1,14 @@
+<view class="tab_box">
+  <view class="{{status==item.status?'tab_list_cur':'tab_list'}}" wx:for="{{tab_list}}" wx:key="{{index}}" data-status="{{item.status}}" catchtap="tabSelect">
+    <text>{{item.text}}</text>
+  </view>
+</view>
+<view class="order_wrapper"  wx:if="{{status=='print_pay_wait'}}">
+  <order-list list="{{order_list}}" orders_type="0" bind:onOrderCanceled="onOrderCanceled"  status="{{status}}"/>
+</view>
+<view class="order_wrapper"  wx:if="{{status=='print_wait_receive'}}">
+  <order-list list="{{order_list_paid}}" orders_type="0"  status="{{status}}"/>
+</view>
+<view class="order_wrapper"  wx:if="{{status=='print_done'}}">
+  <order-list list="{{order_list_finish}}" orders_type="0"  status="{{status}}"/>
+</view>

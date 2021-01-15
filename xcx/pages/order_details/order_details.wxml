@@ -1,0 +1,130 @@
+<view class="order_list_tip">
+  <text class="ico_warning">!</text>
+  <text>电子版相册有效期7天</text>
+</view>
+<view class="order_wrapper">
+  <view class="order_list">
+    <view class="order_list_top">
+      <view class="order_img">
+        <image mode="widthFix" src="{{order_info.img}}"></image>
+      </view>
+      <view class="order_list_info">
+        <view class="order_list_title">
+          <text>{{order_info.title}}</text>
+        </view>
+        <view class="order_number" wx:if="order_info.payment_no" data-payment_no="{{order_info.payment_no}}" catchtap="textPaste">
+          <text>订单号：</text>
+          <text class="payment_no">{{order_info.payment_no}}</text>
+          <image class="ico_copy" src="/images/ico_copy.png" />
+        </view>
+        <text class="order_time">{{order_info.time}}</text>
+        <view class="order_price">
+          <text>￥</text>
+          <text>{{order_info.price}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="order_list_btn" wx:if="{{!order_info.is_expire}}">
+      <text wx:if="{{order_info.pay_status===0}}" class="order_btn_primary" data-number="{{order_info.number}}" catchtap="payPhoto">付款</text>
+      <text wx:if="{{order_info.pay_status===1}}" class="order_btn_primary" data-id="{{id}}" catchtap="downloadPhoto">下载电子版</text>
+    </view>
+    <image wx:if="{{order_info.is_expire}}" class="ico_overdue" src="{{ico_overdue}}" />
+  </view>
+</view>
+<view class="order_wrapper">
+  <!-- 收货信息 -->
+  <view class="register-info">
+    <view class="register-info-head">
+      <text class="register-head-text">收货信息</text>
+      <block wx:if="{{!order_info.is_overdue}}">
+        <form bindsubmit="navToRegister" report-submit="true" bindreset="onReset" hidden="{{!is_edit}}">
+          <view class="register-btn" form-type="submit" hidden="{{!is_edit}}">
+            <text>保存</text>
+            <button class="opacity-btn" form-type="submit"></button>
+          </view>
+        </form>
+        <view class="edit-btn" hidden="{{is_edit||!order_info.is_print_order}}" catchtap='editInfo'>
+          <image class="ico_edit" src="{{ico_edit}}" />
+          <text>修改</text>
+        </view>
+      </block>
+    </view>
+    <view class="info-empty" wx:if="{{!order_info.is_print_order}}">
+      <image class="ico_truck" src="{{ico_order}}" />
+      <text>无需收货信息</text>
+    </view>
+    <block wx:if="{{order_info.is_print_order}}">
+      <view>
+        <text class="info-title {{warn_name?'highlight':''}}">姓名</text>
+        <text wx:if="{{!is_edit}}" class="info-input-text">{{info_name}}</text>
+        <input wx:if="{{is_edit}}" class="info-input" placeholder-class="placeholder" type="text" placeholder="{{tip_name}}" maxlength="20" value="{{info_name}}" bindinput="inputName"></input>
+      </view>
+      <view>
+        <text class="info-title {{warn_phone?'highlight':''}}">手机号码</text>
+        <text wx:if="{{!is_edit}}" class="info-input-text">{{info_phone}}</text>
+        <input wx:if="{{is_edit}}" class="info-input" placeholder-class="placeholder" maxlength="11" type="number" placeholder="{{tip_phone}}" value="{{info_phone}}" bindinput="inputPhone"></input>
+      </view>
+      <view>
+        <text class="info-title {{warn_city?'highlight':''}}">收件地址</text>
+        <text wx:if="{{!is_edit}}" class="info-input-text">{{city_name}}</text>
+        <block wx:if="{{is_edit}}">
+          <text class="info-input" catchtap='showCities' wx:if="{{city_name}}">{{city_name}}</text>
+          <text class="info-input placeholder-txt" catchtap='showCities' wx:if="{{!city_name}}">{{tip_city}}</text>
+          <text class="arrow_right"></text>
+        </block>
+      </view>
+      <view>
+        <text class="info-title {{warn_address?'highlight':''}}">详细地址</text>
+        <text wx:if="{{!is_edit}}" class="info-input-text">{{info_address}}</text>
+        <input wx:if="{{is_edit}}" class="info-input" placeholder-class="placeholder" maxlength="50" type="text" placeholder="如：XX路、XX小区、XX单元" value="{{info_address}}" bindinput="inputAddress"></input>
+      </view>
+    </block>
+  </view>
+  <!-- 物流信息 -->
+  <view class="register-info">
+    <view class="register-info-head">
+      <text class="register-head-text">物流信息</text>
+    </view>
+    <view class="info-empty" wx:if="{{express_info.length<=0}}">
+      <image class="ico_truck" src="{{ico_truck}}" />
+      <text>{{order_info.is_print_order?'暂无物流信息':'无需物流信息'}}</text>
+    </view>
+    <view class="info-empty" wx:if="{{express_info.length}}">
+      <text>物流单号:{{order_info.express_no}}</text>
+    </view>
+    <view class="trace_info_box" wx:if="{{express_info.length}}">
+      <view class="trace_info_list">
+        <view class="trace_info_li" wx:for='{{express_info}}' wx:key="">
+          <text class="trace_status_dot" wx:if="{{index!==0}}"></text>
+          <text class="trace_status_cur" wx:if="{{index==0}}"></text>
+          <view class="trace_info_text {{index==0?'trace_info_cur':''}}">
+            <text>{{item.text}}</text>
+            <text class="trace_info_time">{{item.time}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--请选择地区-->
+<view class='mask' hidden="{{!is_show_selector}}" catchtap='hideCities'>
+</view>
+<view class='picker-box {{is_show_selector?"picker-show-box":""}}'>
+  <view class='btn-box'>
+    <text class='btn-picker-cancel' catchtap='hideCities'>取消</text>
+    <text>请选择地区</text>
+    <text class='btn-picker-confirm' catchtap='confirm'>确定</text>
+  </view>
+  <picker-view value="{{value}}" bindchange="cityChange" class="picker-city" indicator-class="citycurrent">
+    <picker-view-column>
+      <view class="city-item" wx:for="{{provinces}}" wx:key="{{index}}">{{item.name}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view class="city-item" wx:for="{{citys}}" wx:key="{{index}}">{{item.name}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view class="city-item" wx:for="{{areas}}" wx:key="{{index}}">{{item.name}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>

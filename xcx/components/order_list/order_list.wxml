@@ -1,0 +1,39 @@
+<!--components/orderlist/orderlist.wxml-->
+<view class="order_list" wx:for="{{list}}" wx:key="{{index}}" data-id="{{item.id}}" catchtap="navToDetails">
+  <view class="order_list_top">
+    <image class="order_img" mode="aspectFit" src="{{item.preview_imgs.length > 0 ? item.preview_imgs[0]:item.origin_url}}"></image>
+    <view class="order_list_info">
+      <view class="order_list_title">
+        <text>{{item.size_name}}</text>
+      </view>
+      <view class="order_number" wx:if="item.number" data-payment_no="{{item.payment_no}}" catchtap="textPaste">
+        <text>订单号：</text>
+        <text class="payment_no">{{item.payment_no}}</text>
+        <image class="ico_copy" src="/images/ico_copy.png" />
+      </view>
+      <text class="order_time">{{item.created_time}}</text>
+      <view class="order_price">
+        <text>￥</text>
+        <text>{{item.amount}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 冲印版订单 -->
+  <view class="order_list_btn" wx:if="{{orders_type==0}}">
+    <text wx:if="{{status==='print_pay_wait'&&item.canceled!=1}}" class="order_btn" data-id="{{item.id}}" catchtap="cancelOrder">取消</text>
+    <text wx:if="{{status==='print_pay_wait'&&item.canceled!=1}}" class="order_btn_primary" data-id="{{item.id}}" catchtap="payPhoto">付款</text>
+    <text wx:if="{{status==='print_wait_receive'}}" class="order_btn_circle" data-id="{{item.id}}" catchtap="navToDetails">待收货</text>
+    <text wx:if="{{status==='print_done'}}" class="order_btn" data-id="{{item.id}}" catchtap="navToDetails">已完成</text>
+  </view>
+  <!-- 电子版订单 -->
+  <view class="order_list_btn" wx:if="{{orders_type==1}}">
+    <text wx:if="{{status==='elec_wait'&&item.canceled!=1}}" data-id="{{item.id}}" class="order_btn" data-id="{{item.id}}" catchtap="cancelOrder">取消</text>
+    <text wx:if="{{status==='elec_wait'&&item.canceled!=1}}" class="order_btn_primary" data-id="{{item.id}}" catchtap="payPhoto">付款</text>
+    <text wx:if="{{status==='elec_done'}}" class="order_btn_primary" data-id="{{item.id}}" catchtap="downloadPhoto">下载电子版</text>
+  </view>
+</view>
+<!-- 订单为空 -->
+<view class="order-empty-box" wx:if="{{is_empty}}">
+  <image class="img-empty-order" src="{{empty_order}}" />
+  <text>暂无相关订单</text>
+</view>

@@ -1,0 +1,475 @@
+page {
+  background-color: #f6f6f6;
+}
+
+.order_list_tip {
+  position: relative;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #698dff;
+  background-color: #f0f4ff;
+  z-index: 999;
+}
+
+.ico_warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32rpx;
+  height: 32rpx;
+  border: 1px solid #698dff;
+  border-radius: 50%;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #698dff;
+  margin-right: 12rpx;
+}
+/* 顶部 */
+.order_list {
+  position: relative;
+  width: 100%;
+  padding: 24rpx;
+  /* height: 272rpx; */
+  background: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.order_list_top, .order_list_title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order_list_title {
+  font-size: 30rpx;
+  line-height: 42rpx;
+  align-items: center; 
+}
+
+.order_list_info {
+  flex: 1;
+  /* height: 158rpx; */
+  padding-left: 24rpx;
+}
+
+
+.order_img {
+  width: 110rpx;
+  height: 158rpx; 
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.order_img image{
+  width: 100%;
+}
+
+.order_time {
+  font-size: 20rpx;
+  color: #969696;
+}
+
+.order_number {
+  padding: 10rpx 0;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #666; 
+}
+.payment_no{
+  display: inline-block;
+  white-space: nowrap;
+  width: 360rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ico_copy {
+  width: 22rpx;
+  height: 22rpx;
+  margin-left: 10rpx;
+}
+
+.order_price {
+  font-size: 28rpx;
+  padding: 10rpx 0;
+  color: #FF2C2C
+}
+
+.order_list_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 5rpx
+}
+
+.order_btn, .order_btn_circle, .order_btn_primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 35rpx;
+  height: 56rpx;
+  font-size: 28rpx;
+  color: #969696;
+  border: 1px solid #c0c0c0;
+  border-radius: 28rpx;
+  margin-left: 30rpx;
+}
+
+.order_btn_circle {
+  border: 1px solid #698dff;
+  color: #698dff;
+}
+
+.order_btn_primary {
+  color: #fff;
+  background-color: #698dff;
+  border: 1px solid #698dff;
+}
+
+.ico_overdue {
+  position: absolute;
+  bottom: 30rpx;
+  right: 30rpx;
+  width: 175rpx;
+  height: 90rpx;
+}
+
+/* 收货信息 */
+.order_wrapper {
+  position: relative;
+  width: 100%;
+  padding: 0 24rpx;
+}
+
+
+.register-info {
+  width: 100%;
+  font-size: 28rpx;
+  color: #666666;
+  background-color: #fff;
+  padding: 0 30rpx;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.register-info>view {
+  position: relative;
+  width: 100%;
+  display: flex; 
+  border-bottom: 1px solid #F6F6F6;
+}
+
+.register-info-head {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register-head-text {
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: bold;
+}
+
+.edit-btn {
+  font-size: 26rpx;
+  color: #666;
+  display: flex;
+  align-items: center
+}
+
+.ico_edit {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+}
+
+.register-text {
+  position: relative;
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: bold;
+}
+
+.info-title {
+  width: 120rpx;
+   padding: 20rpx 0;
+  text-align: justify;
+  text-align-last: justify;
+  margin-right: 50rpx;
+}
+
+.info-title.highlight {
+  color: #c00;
+}
+
+.info-input {
+  flex: 1;
+  height: 100%;
+  padding: 20rpx 0;
+  font-size: 28rpx; 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-left: 0rpx;
+  color: #666;
+}
+
+.info-input-text {
+  color: #000;
+  flex: 1;
+  padding: 20rpx 0
+}
+
+.placeholder {
+  color: #999;
+}
+
+.placeholder-txt {
+  padding: 0 10rpx;
+  color: #999;
+}
+
+.city-picker-box {
+  line-height: 40rpx;
+}
+
+.arrow_right {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.arrow_right:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  transform: rotate(45deg);
+}
+
+.register-btn {
+  position: relative;
+  color: #698DFF;
+  font-size: 28rpx;
+}
+
+.opacity-btn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+ 
+.btn-box {
+  height: 88rpx;
+  font-size: 30rpx;
+  color: #3c3c3c;
+  line-height: 88rpx;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-picker-cancel {
+  font-size: 26rpx;
+  color: #969696;
+  padding: 0 34rpx;
+}
+
+.btn-picker-confirm {
+  font-size: 28rpx;
+  color: #698DFF;
+  padding: 0 34rpx;
+}
+
+.info-empty {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 28rpx
+}
+
+.ico_truck {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+
+
+/*物流列表*/
+
+.trace_info_box {
+    margin-top: 20rpx;
+    display: flex; 
+    width: 100%;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.trace_info_list {
+  width: 640rpx;
+  color: #969696;
+  font-size: 24rpx;
+}
+
+.trace_info_li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.trace_info_li:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 10rpx;
+  width: 1px;
+  height: 100%;
+  background-color: #dfdfdf;
+}
+
+.trace_info_li:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: -30rpx;
+  width: 1px;
+  height: 40rpx;
+  background-color: #dfdfdf;
+}
+
+.trace_info_li:last-child:before {
+  height: 0;
+}
+
+.trace_info_li:first-child:after {
+  height: 0;
+}
+
+.trace_info_text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 40rpx;
+  line-height: 32rpx;
+}
+
+.trace_info_time {
+  padding-top: 8rpx;
+  color: #C0C0C0;
+}
+
+.trace_status_dot {
+  position: absolute;
+  top: 10rpx;
+  left: 1px;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background-color: #dfdfdf;
+  transform: translateX(-50%);
+}
+
+.trace_status_cur {
+  position: absolute;
+  top: 10rpx;
+  left: 0;
+  width: 16rpx;
+  height: 16rpx;
+  background-color: #698DFF;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #698DFF;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.trace_info_cur{
+  color: #698DFF;
+}
+.trace_info_cur .trace_info_time{
+  color: rgba(105, 141, 255,.7);
+}
+
+/* 地区选择器 */
+
+.mask {
+  z-index: 10
+}
+
+.picker-box {
+  width: 100%;
+  /* height: 393rpx; */
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  background-color: #fff;
+  transition: 0.5s;
+  z-index: 11
+}
+
+.picker-show-box {
+  bottom: 0
+}
+
+.btn-box {
+  height: 88rpx;
+  font-size: 30rpx;
+  color: #3c3c3c;
+  line-height: 88rpx;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-picker-cancel {
+  font-size: 26rpx;
+  color: #969696;
+  padding: 0 34rpx;
+}
+
+.btn-picker-confirm {
+  font-size: 28rpx;
+  color: #698DFF;
+  padding: 0 34rpx;
+}
+
+.picker-city {
+  height: 305rpx;
+  
+}
+
+.city-item {
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.citycurrent {
+  height: 100rpx;
+}

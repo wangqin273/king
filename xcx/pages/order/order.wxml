@@ -1,0 +1,6 @@
+<view class="orders_type_box">
+  <view class="orders_type" wx:for="{{orders_type}}"  data-index="{{index}}" catchtap="navToOrdersList" wx:key="{{index}}">
+    <image class="orders_bg" src="{{item.bg}}"></image>
+    <text class="orders_title">{{item.title}}</text>
+  </view>
+</view>
