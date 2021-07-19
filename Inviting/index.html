@@ -251,6 +251,7 @@
         html2canvas(document.querySelector("#screenshots"),{
             backgroundColor: 'transparent',// 设置背景透明
         }).then(canvas => {
+					console.log(canvas)
             // document.body.appendChild(canvas)
             canvasTurnImg(canvas)
         });
@@ -274,7 +275,7 @@
 
         // 加工image data，替换mime type
         imgData = imgData.replace(_fixType(type),'image/octet-stream');
-
+				console.log(imgData)
         /**
          * 在本地进行文件保存
          * @param  {String} data     要保存到本地的图片数据
@@ -293,7 +294,7 @@
         // 下载后的文件名
         var filename = 'screenshots_card_' + (new Date()).getTime() + '.' + type;
         // download
-        saveFile(imgData,filename);
+        // saveFile(imgData,filename);
         // console.log(filename)
     }
 </script>

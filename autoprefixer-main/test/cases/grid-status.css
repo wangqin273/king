@@ -1,0 +1,57 @@
+/* autoprefixer grid: on */
+/* autoprefixer grid: off */
+
+.grid-disabled {
+  /* autoprefixer: off */
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px 100px;
+  /* autoprefixer: ignore next */
+  grid-auto-flow: column;
+}
+
+.grid-status-off {
+  /* autoprefixer grid: off */
+  /* autoprefixer grid: off */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px 100px;
+}
+
+.grid-2 {
+  display: grid;
+}
+
+@supports (grid-auto-rows: 100px) {
+  .disabled {
+    display: grid;
+    grid-auto-rows: 100px;
+  }
+}
+
+.grid-autoplace-enabled {
+  /* autoprefixer grid: autoplace */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 30px;
+}
+
+.grid-autoplace-disabled {
+  /* autoprefixer grid: off */
+  /* autoprefixer grid: autoplace */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 30px;
+}
+
+.grid-autoplace-disabled-2 {
+  /* autoprefixer grid: no-autoplace */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}

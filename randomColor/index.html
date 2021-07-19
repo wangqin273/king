@@ -61,8 +61,11 @@
                 // 无聊 顺便改一下按钮的字体颜色
                 oBtn.style.color = randomColor
                 // 设置 生成60组后停止 如果不停止可以无限生成下去
-
-            },50)
+								var lens  = oBox.getElementsByTagName('li').length;
+								if(lens>=60){
+									 clearInterval(oBox.numColor)
+								} 
+            },100)
 
         }
         // 设置随机数函数 返回十六进制颜色值

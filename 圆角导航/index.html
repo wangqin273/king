@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title>宰牲节活动</title>
+		<link rel="stylesheet" href="./css/common.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+
+	<body>
+		<div id="app" class="vueBox">
+			<ul class="tab-list">
+				<li :class="[{'cur': cur_idx==index},{'prev':cur_idx==index+1},{'next':cur_idx==index-1}]" v-for="(item,index) in tabs" @click="changeTab(index)">
+					<span v-text="item"></span>
+				</li>
+			</ul>
+		</div>
+		<script src="./js/vue.min.js"></script>
+		<script src="./js/resize.js"></script>
+		<script>
+			const vm = new Vue({
+				el: "#app",
+				data: {
+					tabs: [
+						'菜单一',
+						'菜单二',
+						'菜单三',
+						'菜单四',
+						'菜单五',
+					],
+					cur_idx: 0,
+				},
+				created: function() {
+				},
+				methods: {
+					changeTab: function(index) {
+						this.cur_idx = index
+					},
+
+				}
+			})
+		</script>
+	</body>
+
+</html>

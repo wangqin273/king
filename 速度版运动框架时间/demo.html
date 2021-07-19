@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		 	
+		 function getParameters(url) { 
+			var arr = url.slice(url.indexOf('?') + 1).split('&');
+			var obj = {}
+			for (var index = 0; index < arr.length; index++) {
+				var value = arr[index].slice(arr[index].indexOf('=') + 1)
+				if (value) {
+					obj[arr[index].slice(0, arr[index].indexOf('='))] = decodeURIComponent(value)
+				}
+			}
+			//escape加密 unescape解密
+			//encodeURI加密 decodeURI解密
+			console.log('obj', obj)
+			return obj
+		}
+		var params = getParameters(url);
+		console.log('params',params)
+		
+
+	</script>
+</html>

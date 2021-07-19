@@ -1,0 +1,53 @@
+a,body,button,dd,div,dl,dt,h1,h2,h3,h4,h5,h6,input,label,li,ol,p,table,td,textarea,th,tr,ul{margin:0;padding:0;border:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+html{width:100%;background-color:#fff}
+body{color:#333;font-family:"微软雅黑";width:100%}
+body{
+	padding: 20px;
+}
+li,ol,ul{list-style:none}
+.tab-list {
+	width: 100%;
+	display: flex;
+	font-size: 20px;
+	color: #6C64E6;
+	background-color: #3C289A;
+	border-radius: 16px 16px 0 0;
+	overflow: hidden;
+}
+
+.tab-list li {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	flex: 1;
+	padding: 20px; 
+	background-color: #493fd6;
+}
+.tab-list li span {
+	position: relative;
+}
+.tab-list li.cur {
+	color: #f5c304;
+	border-radius: 16px 16px 0 0;
+}
+.tab-list li::before {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	content: '';
+	width: 100%;
+	height: 100%;
+	background-color: #3C289A;
+}
+.tab-list li.prev::before {
+	border-radius: 0 0 16px 0 ;
+}
+.tab-list li.next::before {
+	border-radius: 0 0 0 16px;
+} 
+.tab-list li.cur::before {
+	border-radius: 0;
+	background-color: rgba(0, 0, 0, .0);
+}
+ 

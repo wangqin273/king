@@ -1,0 +1,717 @@
+html,
+body,
+.swiper-container,
+.swiper-wrapper,
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../images/swiper_six1.png);
+}
+
+.slide1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url('../images/swiper_one4.png')
+}
+
+.swiper-button-next {
+    width: .39rem !important;
+    height: .27rem !important;
+    top: auto !important;
+    right: 50% !important;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    -moz-transform: translateX(50%);
+    -o-transform: translateX(50%);
+    transform: translateX(50%);
+    bottom: .24rem !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+    background-image: url('../images/more.png') !important;
+}
+
+.img-logo {
+    width: 1.86rem;
+    height: .75rem;
+    margin:  .64rem
+}
+
+.slide1-bgd {
+    position: relative;
+    width: 7.10rem;
+    height: 9.35rem;
+    padding-top: 3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url('../images/swiper_one1.png')
+}
+
+.slide1-box {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    -webkit-justify-content: flex-end;
+    -moz-box-pack: end;
+    justify-content: flex-end
+}
+
+.slide1-img-title {
+    position: absolute;
+    width: 3.82rem;
+    height: .38rem;
+    top: .2rem;
+    right: .7rem;
+}
+
+.slide1-left-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center;
+}
+
+.img-position {
+    width: 1.12rem;
+    height: .63rem;
+}
+
+.img-position-number {
+    width: .85rem;
+    height: 2.75rem;
+    margin-top: .4rem
+}
+
+.img-right {
+    width: 1.39rem;
+    height: 4.94rem;
+    margin-left: .4rem
+}
+
+.text-company {
+    position: absolute;
+    bottom: 0.6rem;
+    width: 100%;
+    text-align: center;
+    font-size: .24rem;
+    color: #D7D7D7;
+    margin-top: 1.26rem
+}
+
+.slide2 {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url('../images/swiper_two1.png')
+}
+
+.slide2-img-left {
+    position: absolute;
+    width: 1.1rem;
+    height: .94rem;
+    top: 1.39rem;
+    left: .52rem;
+}
+
+.slide2-img-right {
+    position: absolute;
+    width: .6rem;
+    height: .68rem;
+    top: 3.2rem;
+    right: .32rem;
+}
+
+.slide2-img-title {
+    width: 5.03rem;
+    height: 1.88rem;
+    margin-top: 1.75rem
+}
+
+.slide2-img-show {
+    width: 5.17rem;
+    height: 4.17rem;
+    margin-top: .974rem
+}
+
+.slide2-img-white {
+    width: 5.93rem;
+    height: 2.02rem;
+    margin-top: .42rem;
+}
+
+.slide2-img-you {
+    width: 4.4rem;
+    height: .89rem;
+    margin-top: -1.49rem;
+}
+
+.slide3 {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url('../images/swiper_three1.png')
+}
+
+.slide3-img-team {
+    width: 2.83rem;
+    height: 1.13rem;
+    position: absolute;
+    top: 1.42rem;
+    left: .54rem
+}
+
+.slide3-content-box {
+    position: relative;
+    width: 6.57rem;
+    height: 9.45rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center;
+    margin-left: .61rem;
+    margin-top: 2.36rem;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../images/swiper_three2.png);
+    z-index: 10;
+}
+
+.slide3-img-pos {
+    width: 2.77rem;
+    height: 3.48rem;
+    position: absolute;
+    top: .09rem;
+    right: .45rem;
+}
+
+.slide3-text-content {
+    font-size: .24rem;
+    color: #2A2A2A;
+    width: 4.5rem;
+    padding-left: .2rem;
+}
+
+.slide3-img-intro {
+    width: 1.58rem;
+    height: .45rem;
+    margin-bottom: .3rem;
+    margin-left: -.4rem
+}
+
+.slide3-img-welfare {
+    width: 1.69rem;
+    height: .43rem;
+    margin-bottom: .3rem;
+    margin-left: -.4rem;
+    margin-top: .58rem
+}
+
+li {
+    margin-bottom: .2rem
+}
+
+.slide4-img-star {
+    width: 2.97rem;
+    height: 2.89rem;
+    position: absolute;
+    top: .18rem;
+    right: 0;
+}
+
+.slide4 {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url('../images/swiper_four1.png')
+}
+
+.slide4-content-box {
+    width: 6.85rem;
+    height: 12.28rem;
+    font-size: .24rem;
+    color: #2A2A2A;
+    margin-top: .506rem;
+    margin-left: .405rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/swiper_four5.png')
+}
+
+.slide4-img-claim {
+    width: 1.82rem;
+    height: .46rem;
+    margin-bottom: .41rem
+}
+
+.slide4-text-content {
+    width: 5.1rem;
+    padding-left: .2rem
+}
+
+.slide4-text-content ul li {
+    list-style: none;
+    line-height: .33rem
+}
+
+.slide5 {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/swiper_four1.png')
+}
+
+.slide5-img-trump {
+    width: 1.62rem;
+    height: 1.52rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.slide5-img-contact {
+    width: 5.4rem;
+    height: 1.66rem;
+    margin-bottom: .4rem
+}
+
+.slide5-address-box {
+    width: 5.16rem;
+    height: 1.25rem;
+    line-height: .42rem;
+    font-size: .3rem;
+    color: #2A2A2A;
+    margin-top: .3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/swiper_five2.png')
+}
+
+.slide5-phone-box {
+    width: 4.88rem;
+    height: 1.18rem;
+    background-image: url('../images/swiper_five3.png')
+}
+
+.slide5-email-box {
+    width: 5.42rem;
+    height: 1.18rem;
+    background-image: url('../images/swiper_five4.png')
+}
+
+.slide5-img-qrCode {
+    width: 3.62rem;
+    height: 3.44rem;
+    margin-top: .413rem
+}
+
+.slide3-img-need {
+    position: absolute;
+    left: .86rem;
+    bottom: .91rem;
+    width: 3.8rem;
+    height: 1.22rem;
+    z-index: 100
+}
+
+.slide6 {
+    padding-top: 1.46rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center;
+
+    -webkit-background-size: cover;
+
+    -moz-background-size: cover;
+
+    -o-background-size: cover;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/swiper_six1.png')
+}
+
+.slide6-img-join {
+    width: 5.31rem;
+    height: 1.71rem;
+    margin-bottom: 1.86rem
+}
+
+.slide6-form-box {
+    position: relative;
+    width: 5.45rem;
+
+}
+
+.slide6-btn-submit {
+    display: block;
+    width: 2.18rem;
+    height: .91rem;
+    margin: 1.1rem auto;
+    background-color: transparent;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../images/swiper_six2.png)
+}
+.swiper-button-disabled{
+    display: none;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: .88rem;
+    margin-bottom: .3rem
+
+}
+.input-box input {
+    position: absolute;
+    top:0;
+    left: 0;
+    border: 0;
+    outline: none;
+    width: 100%;
+    height: .88rem;
+    line-height: .88rem;
+    padding: 0 .57rem;
+    background-color: #fff;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+
+}
+
+.slide6-sex-box {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    align-items: center
+}
+
+.slide6-img-male {
+    width: .25rem;
+    height: .38rem;
+    margin-left: .18rem;
+    margin-right: .36rem
+}
+
+.slide6-img-female {
+    width: .33rem;
+    height: .34rem;
+    margin-left: .18rem;
+}
+
+.slide6-img-radio {
+    font-size: 0; 
+    margin-left: .48rem;
+     
+}
+.slide6-img-radio input{
+    display: none;
+}
+
+.slide6-img-radio  label{
+    display: block;
+    background-image: url("../images/swiper_six4.png");
+    background-size: 0.24rem 0.24rem;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 0.24rem;
+}
+.slide6-img-radio input:checked+label{
+    background-image: url("../images/swiper_six5.png");
+}
+
+.ani-next {
+    -webkit-animation: tipmove 1.5s infinite ease-in-out;
+    -moz-animation: tipmove 1.5s infinite ease-in-out;
+    -o-animation: tipmove 1.5s infinite ease-in-out;
+    animation: tipmove 1.5s infinite ease-in-out;
+
+}
+
+@-webkit-keyframes tipmove {
+    0% {
+        bottom: 0.2rem;
+        opacity: 0
+    }
+    100% {
+        bottom: 0.1rem;
+        opacity: 0
+    }
+    50% {
+        bottom: 0.15rem;
+        opacity: 1
+    }
+
+}
+
+
+
+@-moz-keyframes tipmove {
+    0% {
+        bottom: 0.2rem;
+        opacity: 0
+    }
+    100% {
+        bottom: 0.1rem;
+        opacity: 0
+    }
+    50% {
+        bottom: 0.15rem;
+        opacity: 1
+    }
+}
+
+
+
+@-o-keyframes tipmove {
+    0% {
+        bottom: 0.2rem;
+        opacity: 0
+    }
+    100% {
+        bottom: 0.1rem;
+        opacity: 0
+    }
+    50% {
+        bottom: 0.15rem;
+        opacity: 1
+    }
+}
+
+
+
+@keyframes tipmove {
+    0% {
+        bottom: 0.2rem;
+        opacity: 0
+    }
+    100% {
+        bottom: 0.1rem;
+        opacity: 0
+    }
+    50% {
+        bottom: 0.15rem;
+        opacity: 1
+    }
+}

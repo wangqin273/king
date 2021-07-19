@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0" />
+		<link rel="stylesheet" href="./css/common.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<div id="App" class="vueBox">
+			<div id="egg" class="egg-gif"></div>
+		</div>
+		<script type="text/javascript" src="./js/vue.js"></script>
+		<script type="text/javascript" src="./js/svga.min.js"></script>
+		<script type="text/javascript" src="./js/resize.js"></script>
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: "#App",
+				data: {
+					baseurl: "https://image-static.segmentfault.com/",
+					fileList: [],
+				},
+				created: function() {
+					var that = this;
+					var res = {
+						data: {
+							data: {
+								photo: "422/302/4223025350-5696f8079586b"
+							}
+						}
+					}
+		 var fileList = (that.baseurl + res.data.data.photo) ;
+					that.fileList.push(fileList)
+					
+					console.log('this.fileList',this.fileList)
+
+
+				},
+				mounted: function() {
+					var that = this;
+					this.playerSvga()
+					this.$nextTick(function() {
+
+					})
+				},
+				methods: {
+					playerSvga: function() {
+						var player = new SVGA.Player('#egg');
+						var parser = new SVGA.Parser('#egg');
+
+						parser.load('images/banner.svga', function(
+							videoItem) {
+							player.setVideoItem(videoItem);
+							player.startAnimation(); // 开始播放动画
+						})
+					},
+				}
+			})
+		</script>
+	</body>
+</html>
