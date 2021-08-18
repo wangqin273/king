@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+			integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+		<style type="text/css">
+			ul>li {
+				list-style: none;
+				padding: 10px;
+			}
+		</style>
+		<title>amr播放</title>
+	</head>
+	<body> 
+		<ul>
+			<li>
+				<div class="audio-amr btn btn-default"
+					data-src="http://mt-development.oss-cn-hangzhou.aliyuncs.com/love/user_voice_signatures/path/d0231c801a20066cbfd887a4716f3613.m4a">
+					<span class="glyphicon glyphicon-play"></span>
+					<span class="audio-txt">播放音频</span>
+				</div>
+			</li>
+			<li>
+				<div class="audio-amr btn btn-lg  btn-default "
+					data-src="http://mt-development.oss-cn-hangzhou.aliyuncs.com/love/user_voice_signatures/path/F70E395E3CFE09F612159129F2FE76BA.amr">
+					<span class="glyphicon glyphicon-play"></span>
+					<span class="audio-txt">播放音频</span>
+				</div>
+			</li>
+			<li>
+				<div class="audio-amr btn btn-lg  btn-default"
+					data-src="http://mt-development.oss-cn-hangzhou.aliyuncs.com/love/user_voice_signatures/path/EF705B03B1EFB69F70EC18D6DCDB9382.amr">
+					<span class="glyphicon glyphicon-play"></span> <span class="audio-txt">播放音频</span>
+				</div>
+			</li>
+			<li>
+				<div class="audio-amr btn btn-lg btn-default"
+					data-src="http://mt-development.oss-cn-hangzhou.aliyuncs.com/love/user_voice_signatures/path/271B310A8220AF8A4DB334D3732FAD1D.amr">
+					<span class="glyphicon glyphicon-play"></span>
+					<span class="audio-txt">播放音频</span>
+				</div>
+			</li>
+		</ul>
+		<script src="amr/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="amr/amrnb.js" type="text/javascript" charset="utf-8"></script>
+		<script src="amr/amrplayer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var audioUrl, audioPlayer;
+			$(".audio-amr").click(function() { 
+				var $this = $(this);
+				if (audioPlayer && audioUrl ==$this.data('src')) {
+					console.log('return')
+					audioPlayer.pause();
+					audioPlayer = null;
+					$this.find('.audio-txt').text('播放音频');
+					$this.find('.glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
+					$this.removeClass('btn-info');
+					return false
+				}
+				if (audioPlayer && audioPlayer.isPlaying) {
+					console.log('pause')
+					audioPlayer.pause()
+				}
+				audioUrl = $this.data('src');
+				audioPlayer = new AmrPlayer(audioUrl); 
+				setTimeout(function() {
+					audioPlayer.play();
+					console.log('play')
+					$('[data-src]').find('.audio-txt').text('播放音频')
+					$('[data-src]').removeClass('btn-info')
+					$this.addClass('btn-info') 
+					$('[data-src]').find('.glyphicon').removeClass('glyphicon-pause').addClass('glyphicon-play')
+					$this.find('.glyphicon').addClass('glyphicon-pause')
+					$this.find('.audio-txt').text('停止播放')
+					audioPlayer.endedWith(function() {
+						console.log('endedWith')
+						if (audioPlayer && audioPlayer.isPlaying) {
+							audioUrl = null;
+							$this.removeClass('btn-info')
+							$this.find('.audio-txt').text('播放音频');
+							$this.find('.glyphicon').removeClass('glyphicon-pause').addClass(
+								'glyphicon-play') 
+						}
+					})
+				}, 100)
+			})
+		</script>
+	</body>
+</html>
