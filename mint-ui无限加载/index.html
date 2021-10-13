@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>里程记录</title>
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+		<div class="vueBox">
+			<div class="empty-box" v-if="is_empty">
+				<img :src="ico_empty" alt="">
+				<span>还没有任何数据~</span>
+			</div>
+			<ul class="histories-box" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading"
+				infinite-scroll-distance="150">
+				<li v-for="item in histories">
+					<div class="histories-info">
+						<p class="histories-time" v-text="item.time"></p>
+						<p class="histories-text" v-text="item.text"></p>
+					</div>
+					<div class="histories-number">
+						<p class="histories-plus" v-text="'+'"></p>
+						<p v-text="item.number"></p>
+					</div>
+				</li>
+			</ul>
+			</ul>
+			<mt-spinner class="loading" type="triple-bounce" color="#FF8E48" v-show="page<=total_page&&loading">
+			</mt-spinner>
+			<p class="text_tip" v-show="histories.length&&page>total_page"> 已经到底啦~ </p>
+		</div>
+		<!-- 引入组件库 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+		<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+		<script src="js/resize.js"></script>
+		<script>
+			var vm = new Vue({
+				el: ".vueBox",
+				data: {
+					loading: false,
+					is_empty: 0,
+					total_page: 1,
+					page: 1,
+					histories: [],
+					is_empty: 0,
+					ico_empty: "./images/ico-empty.png"
+				},
+				created: function() {},
+				methods: {
+					loadMore: function() {
+						var that = this;
+						that.loading = true;
+						var params = {
+							'sid': that.sid,
+							'code': that.code,
+							'page': that.page
+						};
+						var resp = {
+							error_code: 0,
+							total_page: 3,
+							histories: [{
+									time: "2021-09-16 14:05:27",
+									text: "赠送机票1张",
+									number: 7
+								},
+								{
+									time: "2021-09-16 14:05:27",
+									text: "赠送豪华机票2张",
+									number: 29
+								},
+								{
+									time: "2021-09-16 14:05:27",
+									text: "完成赠送机票任务1次",
+									number: 100
+								},
+								{
+									time: "2021-09-16 14:05:27",
+									text: "完成赠送豪华机票任务1次",
+									number: 100
+								},
+								{
+									time: "2021-09-16 14:05:27",
+									text: "完成充值任务1次",
+									number: 100
+								},
+								{
+									time: "2021-09-16 14:05:27",
+									text: "完成分享任务1次",
+									number: 100
+								},
+								{
+									time: "2021-09-16 14:05:27",
+									text: "完成浇水任务3次",
+									number: 300
+								},
+								{
+									time: "2021-09-16 14:05:27",
+									text: "赠送豪华机票",
+									number: 10
+								},
+								{
+									time: "2021-09-16 14:05:27",
+									text: "完成赠送机票任务1次",
+									number: 100
+								}
+							]
+						}
+						setTimeout(() => {
+							if (resp.error_code === 0) {
+								console.log(resp);
+								that.total_page = resp.total_page;
+								that.is_empty = resp.histories.length <= 0 && resp.total_page <= 1;
+								that.histories = that.histories.concat(resp.histories);
+								that.page++;
+							} else {
+								that.$toast({
+									message: resp.error_reason,
+									duration: 1000
+								})
+							}
+							if (that.page <= that.total_page) {
+								that.loading = false; //若为真，则无限滚动不会被触发
+							}
+						}, 1500);
+					},
+				},
+			});
+		</script>
+
+	</body>
+</html>

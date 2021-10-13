@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "电子版订单",
-  "usingComponents": {
-     "order-list": "/components/order_list/order_list"
-   }
-}
